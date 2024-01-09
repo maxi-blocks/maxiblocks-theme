@@ -5,7 +5,7 @@
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
  * @package MaxiBlocks Theme
- * @since MaxiBlocks Theme 1.5.0
+ * @since MaxiBlocks Theme 1.6.0
  */
 
 /**
@@ -148,32 +148,6 @@ endif;
 add_action('init', 'maxiblocks_block_styles');
 
 
-/**
- * Register pattern categories.
- */
-
-if (! function_exists('maxiblocks_pattern_categories')) :
-    /**
-     * Register pattern categories
-     *
-     * @since MaxiBlocks Theme 1.5.0
-     * @return void
-     */
-    function maxiblocks_pattern_categories()
-    {
-
-        register_block_pattern_category(
-            'page',
-            array(
-                'label'       => _x('Pages', 'Block pattern category'),
-                'description' => __('A collection of full page layouts.'),
-            )
-        );
-    }
-endif;
-
-add_action('init', 'maxiblocks_pattern_categories');
-
 function maxiblocks_customize_register($wp_customize)
 {
     $wp_customize->add_setting('maxiblocks_custom_theme_css', array(
@@ -202,6 +176,18 @@ function maxiblocks_enqueue_fonts()
 }
 
 add_action('wp_enqueue_scripts', 'maxiblocks_enqueue_fonts');
+
+function maxiblocks_enqueue_admin_styles()
+{
+    // Use get_template_directory_uri() if the theme is not a child theme.
+    // Use get_stylesheet_directory_uri() if the theme is a child theme.
+    $admin_css_url = get_template_directory_uri() . '/assets/build/admin/css/styles.min.css';
+
+    // Enqueue the admin stylesheet.
+    wp_enqueue_style('maxiblocks-admin-styles', $admin_css_url, array(), '1.6.0');
+}
+
+add_action('admin_enqueue_scripts', 'maxiblocks_enqueue_admin_styles');
 
 function maxiblocks_custom_theme_css()
 {
