@@ -75,7 +75,7 @@ function mbt_render_install_plugin_notice()
                     <?php esc_html_e('Our builder plugin is packed with advanced block editing tools, interactions, and hover effects. Use 100 complimentary style cards, 13K free icons, and thousands of designer templates to help you work faster.', 'maxiblocks'); ?>
                 </p>
                 <div class="mbt-notice__actions">
-                    <button id="maxiblocks-install-maxiblocks" class="mbt-button mbt-button--primary mbt-button--hero">
+                    <button id="mbt-notice-install-maxiblocks" class="mbt-button mbt-button--primary mbt-button--hero">
                         <span class="mbt-button__text">
                             <?php esc_html_e($plugin_status === 'installed' ? 'Activate MaxiBlocks builder' : 'Install MaxiBlocks builder', 'maxiblocks'); ?>
                         </span>
