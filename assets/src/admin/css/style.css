@@ -1,0 +1,64 @@
+.mbt-notice {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.mbt-notice__row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mbt-notice__col {
+  flex: 1;
+  padding: 10px;
+}
+
+.mbt-notice__col--right {
+  max-width: 300px;
+}
+
+.mbt-notice__title, .mbt-notice__subtitle {
+  margin: 0;
+}
+
+.mbt-notice__description {
+  margin-bottom: 15px;
+}
+
+.mbt-notice__actions .mbt-button--primary {
+  background-color: #0073aa;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+.mbt-notice__actions .mbt-button--primary__text {
+  font-weight: bold;
+}
+
+.mbt-notice__actions .mbt-button--primary:hover {
+  background-color: #005177;
+}
+
+.mbt-notice__image-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+.mbt-notice__dismiss {
+  float: right;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.mbt-notice__dismiss__dismiss-text {
+  display: none;
+}

@@ -8,18 +8,71 @@
  * @since MaxiBlocks Theme 1.6.0
  */
 
+if (!defined('MBT_DEBUG')) {  // Set to false in production
+    define('MBT_DEBUG', true);
+}
+if (!defined('MBT_VERSION')) {
+    define('MBT_VERSION', wp_get_theme()->get('Version'));
+}
+if (!defined('MBT_PREFIX')) {
+    define('MBT_PREFIX', 'maxiblocks-theme-');
+}
+if (!defined('MBT_PATH')) { // path to the root theme folder
+    define('MBT_PATH', get_template_directory());
+}
+if (!defined('MBT_PATH_BUILD_ADMIN_PHP')) { // path to the /assets/build/admin/php theme folder
+    define('MBT_PATH_BUILD_ADMIN_PHP', get_template_directory() . '/assets/build/admin/php');
+}
+if (!defined('MBT_PATH_SRC_ADMIN_PHP')) { // path to the /assets/src/admin/php theme folder
+    define('MBT_PATH_SRC_ADMIN_PHP', get_template_directory() . '/assets/src/admin/php');
+}
+if (!defined('MBT_URL')) { // url to the root theme folder
+    define('MBT_URL', get_template_directory_uri());
+}
+if (!defined('MBT_URL_BUILD_ADMIN')) { // url to the /assets/build/admin theme folder
+    define('MBT_URL_BUILD_ADMIN', get_template_directory_uri() . '/assets/build/admin');
+}
+if (!defined('MBT_URL_BUILD_FRONTEND')) { // url to the /assets/build/frontend theme folder
+    define('MBT_URL_BUILD_FRONTEND', get_template_directory_uri() . '/assets/build/frontend');
+}
+if (!defined('MBT_URL_SRC_ADMIN')) { // url to the /assets/src/admin theme folder
+    define('MBT_URL_SRC_ADMIN', get_template_directory_uri() . '/assets/src/admin');
+}
+if (!defined('MBT_URL_SRC_FRONTEND')) { // url to the /assets/src/frontend theme folder
+    define('MBT_URL_SRC_FRONTEND', get_template_directory_uri() . '/assets/src/frontend');
+}
+if (!defined('MBT_PLUGIN_PATH')) { // maxi-blocks plugin path
+    define('MBT_PLUGIN_PATH', 'maxi-blocks/plugin.php');
+}
+
+function mbt_include_php_files($directory)
+{
+    foreach (glob("{$directory}/*.php") as $file) {
+        require_once($file);
+    }
+}
+
+if (defined('MBT_DEBUG') && MBT_DEBUG) {
+    // Include files from the SRC directory for development
+    mbt_include_php_files(MBT_PATH_SRC_ADMIN_PHP);
+} else {
+    // Include files from the BUILD directory for production
+    mbt_include_php_files(MBT_PATH_BUILD_ADMIN_PHP);
+}
+
+
 /**
  * Register block styles.
  */
 
-if (! function_exists('maxiblocks_block_styles')) :
+if (! function_exists('mbt_block_styles')) :
     /**
      * Register custom block styles
      *
      * @since MaxiBlocks Theme 1.5.0
      * @return void
      */
-    function maxiblocks_block_styles()
+    function mbt_block_styles()
     {
 
         register_block_style(
@@ -145,53 +198,57 @@ if (! function_exists('maxiblocks_block_styles')) :
     }
 endif;
 
-add_action('init', 'maxiblocks_block_styles');
+add_action('init', 'mbt_block_styles');
 
 
-function maxiblocks_customize_register($wp_customize)
+function mbt_customize_register($wp_customize)
 {
-    $wp_customize->add_setting('maxiblocks_custom_theme_css', array(
+    $wp_customize->add_setting('mbt_custom_theme_css', array(
         'default'     => '',
         'transport'   => 'refresh',
     ));
 
-    $wp_customize->add_control(new WP_Customize_Code_Editor_Control($wp_customize, 'maxiblocks_custom_theme_css', array(
+    $wp_customize->add_control(new WP_Customize_Code_Editor_Control($wp_customize, 'mbt_custom_theme_css', array(
         'label'       => __('Custom Theme CSS', 'maxiblocks'),
-        'section'     => 'maxiblocks_new_section_name',
-        'settings'    => 'maxiblocks_custom_theme_css',
+        'section'     => 'mbt_new_section_name',
+        'settings'    => 'mbt_custom_theme_css',
         'code_type'   => 'text/css',
     )));
 }
-add_action('customize_register', 'maxiblocks_customize_register');
+add_action('customize_register', 'mbt_customize_register');
 
-function maxiblocks_enqueue_fonts()
+function mbt_enqueue_fonts()
 {
     // Check if the 'maxi-blocks' plugin is active
     include_once(ABSPATH . 'wp-admin/includes/plugin.php');
-    if (!is_plugin_active('maxi-blocks/plugin.php')) {
+    if (!is_plugin_active(MBT_PLUGIN_PATH)) {
         // Enqueue Roboto font here if 'maxi-blocks' is NOT active
-        wp_enqueue_style('maxiblocks-theme-roboto-font', get_template_directory().'/assets/fonts/roboto/Roboto-Regular.woff2');
-        // Replace 'path_to_your_font_file' with the actual path to the Roboto font file
+        wp_enqueue_style(MBT_PREFIX . 'roboto-font', MBT_PATH .'/assets/fonts/roboto/Roboto-Regular.woff2');
     }
 }
 
-add_action('wp_enqueue_scripts', 'maxiblocks_enqueue_fonts');
+add_action('wp_enqueue_scripts', 'mbt_enqueue_fonts');
 
-function maxiblocks_enqueue_admin_styles()
+function mbt_enqueue_admin_styles()
 {
-    // Use get_template_directory_uri() if the theme is not a child theme.
-    // Use get_stylesheet_directory_uri() if the theme is a child theme.
-    $admin_css_url = get_template_directory_uri() . '/assets/build/admin/css/styles.min.css';
+    // Check if we are in debug mode
+    if (defined('MBT_DEBUG') && MBT_DEBUG) {
+        // Use the unminified CSS file in the SRC directory
+        $admin_css_url = MBT_URL_SRC_ADMIN . '/css/style.css';
+    } else {
+        // Use the minified CSS file in the BUILD directory
+        $admin_css_url = MBT_URL_BUILD_ADMIN . '/css/styles.min.css';
+    }
 
     // Enqueue the admin stylesheet.
-    wp_enqueue_style('maxiblocks-admin-styles', $admin_css_url, array(), '1.6.0');
+    wp_enqueue_style(MBT_PREFIX . 'admin-styles', $admin_css_url, array(), MBT_VERSION, 'all');
 }
 
-add_action('admin_enqueue_scripts', 'maxiblocks_enqueue_admin_styles');
+add_action('admin_enqueue_scripts', 'mbt_enqueue_admin_styles');
 
-function maxiblocks_custom_theme_css()
+function mbt_custom_theme_css()
 {
-    $custom_css = get_theme_mod('maxiblocks_custom_theme_css');
-    wp_add_inline_style('maxiblocks-style', $custom_css);
+    $custom_css = get_theme_mod('mbt_custom_theme_css');
+    wp_add_inline_style(MBT_PREFIX . 'custom-styles', $custom_css);
 }
-add_action('wp_enqueue_scripts', 'maxiblocks_custom_theme_css');
+add_action('wp_enqueue_scripts', 'mbt_custom_theme_css');

@@ -1,128 +1,81 @@
-.swt-welcome-notice {
-    position: relative;
-    padding-top: 48px;
-}
-.swt-welcome-notice .swt-row {
-    display: flex;
-    flex-wrap: wrap;
-}
-.swt-welcome-notice .swt-row .swt-col {
-    width: 50%;
-}
-.swt-welcome-notice .swt-row .swt-col.swt-col-right {
-    align-self: flex-end;
-}
-.swt-welcome-notice .swt-row .swt-col .notice-content {
-    max-width: 630px;
-    padding-left: 64px;
-    padding-bottom: 30px;
-}
-@media screen and (max-width: 1199px) {
-    .swt-welcome-notice .swt-row .swt-col .notice-content {
-        max-width: 100%;
-        padding-right: 2em;
-        padding-left: 2em;
+// Base notice styles
+.mbt-notice {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-sizing: border-box;
+
+    // Row inside the notice
+    &__row {
+        display: flex;
+        flex-wrap: wrap;
     }
-}
-@media screen and (max-width: 782px) {
-    .swt-welcome-notice .swt-row .swt-col .notice-content {
-        padding: 0;
+
+    // Column styles
+    &__col {
+        flex: 1;
+        padding: 10px;
+
+        // Modifier for the right column
+        &--right {
+            max-width: 300px;
+        }
     }
-}
-.swt-welcome-notice .swt-row .swt-col .sub-notice-title {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 22px;
-    color: #4f46e5;
-    margin-bottom: 10px;
-    margin-top: 0;
-    padding: 0;
-}
-.swt-welcome-notice .swt-row .swt-col .notice-title {
-    font-weight: 500;
-    font-size: 36px;
-    line-height: 47px;
-    letter-spacing: -0.5px;
-    color: #1f2937;
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-@media screen and (max-width: 782px) {
-    .swt-welcome-notice .swt-row .swt-col .notice-title {
-        font-size: 25px;
-        line-height: 30px;
+
+    // Title and subtitle styles
+    &__title,
+    &__subtitle {
+        margin: 0;
     }
-}
-.swt-welcome-notice .swt-row .swt-col .description {
-    color: #4b5563;
-    margin-bottom: 27px;
-    font-size: 18px;
-    line-height: 29px;
-    font-weight: 400;
-}
-@media screen and (max-width: 782px) {
-    .swt-welcome-notice .swt-row .swt-col .description {
-        margin-bottom: 25px;
-        font-size: 16px;
+
+    // Description paragraph
+    &__description {
+        margin-bottom: 15px;
     }
-}
-.swt-welcome-notice .swt-row .swt-col .notice-actions a,
-.swt-welcome-notice .swt-row .swt-col .notice-actions button {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
-    padding: 10px 16px;
-    border-radius: 6px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    text-align: center;
-}
-@media screen and (max-width: 782px) {
-    .swt-welcome-notice .swt-row .swt-col .notice-actions a,
-    .swt-welcome-notice .swt-row .swt-col .notice-actions button {
-        width: 100%;
+
+    // Action area
+    &__actions {
+        // Primary button styles
+        .mbt-button--primary {
+            background-color: #0073aa;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            text-align: center;
+            display: inline-block;
+            text-decoration: none;
+            border-radius: 3px;
+
+            // Text inside the button
+            &__text {
+                font-weight: bold;
+            }
+
+            &:hover {
+                background-color: darken(#0073aa, 10%);
+            }
+        }
     }
-}
-.swt-welcome-notice .swt-row .swt-col .notice-actions button {
-    background: #4f46e5;
-    color: #fff;
-    margin-right: 12px;
-}
-.swt-welcome-notice .swt-row .swt-col .notice-actions a {
-    color: #4f46e5;
-    border-color: #4f46e5;
-    background-color: #fff;
-}
-.swt-welcome-notice .swt-row .swt-col .image-container {
-    padding-right: 2em;
-    padding-left: 2em;
-    margin-bottom: -5px;
-}
-.swt-welcome-notice .swt-row .swt-col .image-container img {
-    width: 100%;
-    height: auto;
-}
-@media screen and (max-width: 1199px) {
-    .swt-welcome-notice .swt-row .swt-col .image-container {
-        display: none;
+
+    // Image container
+    &__image-container {
+        img {
+            max-width: 100%;
+            height: auto;
+        }
     }
-}
-@media screen and (max-width: 1199px) {
-    .swt-welcome-notice .swt-row .swt-col {
-        width: 100%;
+
+    // Dismiss button
+    &__dismiss {
+        float: right;
+        border: none;
+        background: none;
+        cursor: pointer;
+
+        // Text for screen readers
+        &__dismiss-text {
+            display: none;
+        }
     }
-}
-@media screen and (max-width: 782px) {
-    .swt-welcome-notice .swt-row {
-        padding: 1em;
-    }
-}
-@media screen and (max-width: 782px) {
-    .swt-welcome-notice {
-        padding-top: 30px;
-        padding-bottom: 30px;
-    }
-}
-#swt-install-spectra.updating-message::before {
-    color: #a7aaad;
 }

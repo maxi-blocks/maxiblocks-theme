@@ -1,203 +1,188 @@
 <?php
 /**
- * Admin Welcome Notice
+ * Admin Install Plugin Notice
  *
  * @package MaxiBlocks Theme
  * @author MaxiBlocks Team
  * @since 1.6.0
  */
 
-declare(strict_types=1);
-
-namespace Swt;
-
 if (! defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-add_action('admin_notices', SWT_NS . 'render_install_plugin_notice', 0);
-add_action('wp_ajax_swt_dismiss_install_plugin_notice', SWT_NS . 'close_install_plugin_notice');
+if (!defined('MBT_PLUGIN_NOTICE_JS')) {
+    define('MBT_PLUGIN_NOTICE_JS', MBT_PREFIX . 'install-plugin-notice');
+}
+
+if (!defined('MBT_PLUGIN_NOTICE_DISMISS')) {
+    define('MBT_PLUGIN_NOTICE_DISMISS', MBT_PREFIX . 'dismiss-plugin-notice');
+}
+
+add_action('admin_notices', 'mbt_render_install_plugin_notice', 0);
+add_action('wp_ajax_mbt_dismiss_install_plugin_notice', 'mbt_close_install_plugin_notice');
 
 /**
- * Render the welcome notice.
+ * Renders the installation notice for the MaxiBlocks plugin.
  *
- * @since 0.0.1
+ * This function checks if the notice should be displayed based on certain conditions
+ * and then enqueues the necessary JavaScript file (minified or unminified based on the debug mode).
+ * It also outputs HTML markup for the notice, including dynamic text and URLs.
+ *
+ * @since 1.6.0
  * @return void
  */
-function maxiblocks_render_install_plugin_notice(): void
+function mbt_render_install_plugin_notice()
 {
-    if (! maxiblocks_install_plugin_notice_display_conditions()) {
+    // Check if the notice should be displayed.
+    if (!mbt_plugin_notice_display()) {
         return;
     }
 
-    $plugin_status = maxiblocks_is_maxiblocks_plugin_status();
+    // Get the plugin status.
+    $plugin_status = mbt_is_maxiblocks_plugin_status();
 
-    $file_prefix = defined('SWT_DEBUG') && SWT_DEBUG ? '' : '.min';
-    $dir_name    = defined('SWT_DEBUG') && SWT_DEBUG ? 'unminified' : 'minified';
-    $css_uri     = get_uri() . 'assets/css/' . $dir_name . '/admin';
+    // Determine the JavaScript file URL based on the debug mode.
+    $notice_js_url = defined('MBT_DEBUG') && MBT_DEBUG ?
+                     MBT_URL_SRC_ADMIN . '/js/install-plugin-notice.js' :
+                     MBT_URL_BUILD_ADMIN . '/js/install-plugin-notice.js';
 
-    /* Check and added rtl prefix */
-    if (is_rtl()) {
-        $file_prefix .= '-rtl';
-    }
+    // Enqueue the script.
+    wp_enqueue_script(MBT_PLUGIN_NOTICE_JS, $notice_js_url, [], MBT_VERSION, true);
+    wp_localize_script(MBT_PLUGIN_NOTICE_JS, 'maxiblocks', mbt_localize_install_plugin_notice_js($plugin_status));
 
-    /* Load Theme Styles*/
-    wp_enqueue_style(SWT_SLUG . '-welcome-notice', $css_uri . '/welcome-notice' . $file_prefix . '.css', array(), SWT_VER);
+    // Define other variables.
+    $install_plugin_image  = MBT_URL_BUILD_ADMIN . 'images/maxiblocks-plugin-install-notice.png';
+    $more_info_url = 'https://maxiblocks.com/go/maxi-theme-activation-more-info';
 
-    $js    = defined('SWT_DEBUG') && SWT_DEBUG ? get_uri() . 'build/' : get_uri() . 'assets/js/';
-    $asset = defined('SWT_DEBUG') && SWT_DEBUG ? require SWT_DIR . 'build/install_plugin_notice.asset.php' : require SWT_DIR . 'assets/js/install_plugin_notice.asset.php';
-    $deps  = $asset['dependencies'];
-
-    wp_register_script(SWT_SLUG . '-welcome-notice', $js . 'install_plugin_notice.js', $deps, SWT_VER, true);
-
-    wp_enqueue_script(SWT_SLUG . '-welcome-notice');
-
-    wp_localize_script(
-        SWT_SLUG . '-welcome-notice',
-        SWT_LOC,
-        maxiblocks_localize_install_plugin_notice_js($plugin_status)
-    );
-
+    // Start output buffering.
     ob_start();
-
-    $banner_image  = get_uri() . 'assets/image/maxiblocks-plugin-banner.png';
-    $lean_more_url = 'https://maxiblocks.com/';
     ?>
-
-<div class="notice notice-info maxiblocks-welcome-notice">
-    <button type="button" class="notice-dismiss"><span
-            class="screen-reader-text"><?php esc_html_e('Close this notice..', 'maxiblocks'); ?></span></button>
-    <div class="maxiblocks-row">
-        <div class="maxiblocks-col">
-            <div class="notice-content">
-                <p class="sub-notice-title">
-                    <?php esc_html_e('Thanks for installing the Spectra One theme &#x1F389;', 'maxiblocks'); ?>
+<div class="mbt-notice mbt-notice--info">
+    <button type="button" class="mbt-notice__dismiss">
+        <span class="mbt-notice__dismiss-text"><?php esc_html_e('Close', 'maxiblocks'); ?></span>
+    </button>
+    <div class="mbt-notice__row">
+        <div class="mbt-notice__col">
+            <div class="mbt-notice__content">
+                <p class="mbt-notice__subtitle">
+                    <?php esc_html_e('Thanks for choosing the MaxiBlocks theme', 'maxiblocks'); ?> 🎈
                 </p>
-                <h2 class="notice-title">
-                    <?php esc_html_e('Please install the Spectra Builder', 'maxiblocks'); ?>
+                <h2 class="mbt-notice__title">
+                    <?php esc_html_e('Please install the MaxiBlocks builder', 'maxiblocks'); ?>
                 </h2>
-                <p class="description">
-                    <?php esc_html_e('Once you have installed the Spectra Builder plugin, you will be ready to build amazing, fast-loading websites.', 'maxiblocks'); ?>
+                <p class="mbt-notice__description">
+                    <?php esc_html_e('Our builder plugin is packed with advanced block editing tools, interactions, and hover effects. Use 100 complimentary style cards, 13K free icons, and thousands of designer templates to help you work faster.', 'maxiblocks'); ?>
                 </p>
-                <div class="notice-actions">
-                    <button id="maxiblocks-install-maxiblocks" class="button button-primary button-hero">
-                        <span class="text">
-                            <?php
-                                'installed' === $plugin_status ? esc_html_e('Activate Spectra Builder', 'maxiblocks') : esc_html_e('Install Spectra Builder', 'maxiblocks');
-    ?>
+                <div class="mbt-notice__actions">
+                    <button id="maxiblocks-install-maxiblocks" class="mbt-button mbt-button--primary mbt-button--hero">
+                        <span class="mbt-button__text">
+                            <?php esc_html_e($plugin_status === 'installed' ? 'Activate MaxiBlocks builder' : 'Install MaxiBlocks builder', 'maxiblocks'); ?>
                         </span>
                     </button>
-                    <a href="<?php echo esc_url($lean_more_url); ?>" target="_blank"
-                        class="button button-primary button-hero">
-                        <?php esc_html_e('Learn More', 'maxiblocks'); ?>
+                    <a href="<?php echo esc_url($more_info_url); ?>" target="_blank"
+                        class="mbt-button mbt-button--primary mbt-button--hero">
+                        <?php esc_html_e('More info', 'maxiblocks'); ?>
                     </a>
                 </div>
             </div>
         </div>
-        <div class="maxiblocks-col maxiblocks-col-right">
-            <div class="image-container">
-                <img src="<?php echo esc_url($banner_image); ?>" alt="maxiblocks-install-banner">
+        <div class="mbt-notice__col mbt-notice__col--right">
+            <div class="mbt-notice__image-container">
+                <img src="<?php echo esc_url($install_plugin_image); ?>" alt="maxiblocks-install-plugin">
             </div>
         </div>
     </div>
 </div>
+
 <?php
-    echo wp_kses_post(ob_get_clean());
+        // Output the buffered content.
+        echo wp_kses_post(ob_get_clean());
 }
 
 /**
- * Close welcome notice.
+ * Close install notice.
  *
- * @since 0.0.1
+ * @since 1.6.0
  */
-function maxiblocks_close_install_plugin_notice()
+function mbt_mbt_close_install_plugin_notice()
 {
-    if (! isset($_POST['nonce'])) {
+    if (!isset($_POST['nonce'])) {
         return;
     }
 
-    if (isset($_POST['nonce']) && is_string($_POST['nonce']) && ! wp_verify_nonce(sanitize_text_field($_POST['nonce']), 'maxiblocks-dismiss-welcome-notice-nonce')) {
+    if (isset($_POST['nonce']) && is_string($_POST['nonce']) && !wp_verify_nonce(sanitize_text_field($_POST['nonce']), MBT_PLUGIN_NOTICE_DISMISS . '-nonce')) {
         return;
     }
-    update_option('maxiblocks-dismiss-welcome-notice', 'yes');
+    update_option(MBT_PLUGIN_NOTICE_DISMISS, 'yes');
     wp_die();
 }
 
 /**
- * Welcome notice condition.
+ * Determines if a plugin notice should be displayed.
  *
- * @since 0.0.1
- * @return bool
+ * The function checks several conditions to determine if the notice should be shown:
+ * - Verifies if a specific plugin is active.
+ * - Checks if the notice has been dismissed by the user.
+ * - Ensures the notice is only shown on specific admin pages (dashboard and themes).
+ * - Excludes AJAX requests, network admin, users without specific capabilities, and block editor context.
+ *
+ * @since 1.6.0
+ * @return bool True if the notice should be displayed, false otherwise.
  */
-function maxiblocks_install_plugin_notice_display_conditions(): bool
+function mbt_plugin_notice_display()
 {
-
-    // Check if plugin is active.
-    if (is_plugin_active('maxi-blocks/plugin.php')) {
-        return false;
-    }
-
-    // Check if welcome notice was closed.
-    if ('yes' === get_option('maxiblocks-dismiss-welcome-notice', 'no')) {
-        return false;
-    }
-
     $screen = get_current_screen();
 
-    // Show the notice on dashboard.
-    if (null !== $screen && ! in_array($screen->id, array( 'dashboard', 'themes' ))) {
+    // Check if plugin is active, if notice was dismissed, or if current user lacks required capabilities.
+    if (is_plugin_active(MBT_PLUGIN_PATH) ||
+        'yes' === get_option(MBT_PLUGIN_NOTICE_DISMISS, 'no') ||
+        !current_user_can('manage_options') ||
+        !current_user_can('install_plugins')) {
         return false;
     }
 
-    // Check AJAX actions.
-    if (defined('DOING_AJAX') && DOING_AJAX) {
-        return false;
-    }
-
-    // Hide from network admin.
-    if (is_network_admin()) {
-        return false;
-    }
-
-    // Check if use can 'manage_options'.
-    if (! current_user_can('manage_options')) {
-        return false;
-    }
-
-    // Check if use can 'install_plugins'.
-    if (! current_user_can('install_plugins')) {
-        return false;
-    }
-
-    // Block editor context.
-    if (null !== $screen && $screen->is_block_editor()) {
+    // Restrict notice display to specific admin pages and contexts.
+    if (null !== $screen && // in_array($screen->id, ['dashboard', 'themes']) ||
+        ((defined('DOING_AJAX') && DOING_AJAX) ||
+         is_network_admin() ||
+         $screen->is_block_editor())) {
         return false;
     }
 
     return true;
 }
 
-/**
- * Spectra plugin status.
- *
- * @since 0.0.1
- * @return string
- */
-function maxiblocks_is_maxiblocks_plugin_status(): string
-{
-    $plugin_slug = 'maxi-blocks/plugin.php';
-    $status      = 'not-installed';
 
+/**
+ * Retrieves the status of the MaxiBlocks plugin.
+ *
+ * The function checks the status of the plugin and returns it as a string:
+ * - 'activated' if the plugin is active.
+ * - 'installed' if the plugin is installed but not active.
+ * - 'not-installed' if the plugin is not installed.
+ *
+ * @since 1.6.0
+ * @return string The status of the MaxiBlocks plugin.
+ */
+function mbt_is_maxiblocks_plugin_status()
+{
+    $plugin_slug = MBT_PLUGIN_PATH;
+
+    // Check if the plugin is active.
     if (is_plugin_active($plugin_slug)) {
         return 'activated';
     }
 
+    // Check if the plugin is installed (exists in the plugins directory).
     if (file_exists(WP_PLUGIN_DIR . '/' . $plugin_slug)) {
         return 'installed';
     }
 
-    return $status;
+    // Default to 'not-installed' if the above conditions are not met.
+    return 'not-installed';
 }
+
 
 /**
  * Localize js.
@@ -206,11 +191,11 @@ function maxiblocks_is_maxiblocks_plugin_status(): string
  * @param string $plugin_status plugin current status.
  * @return array
  */
-function maxiblocks_localize_install_plugin_notice_js($plugin_status): array
+function mbt_localize_install_plugin_notice_js($plugin_status)
 {
 
     return array(
-        'nonce'         => wp_create_nonce('maxiblocks-dismiss-welcome-notice-nonce'),
+        'nonce'         => wp_create_nonce(MBT_PLUGIN_NOTICE_DISMISS . '-nonce'),
         'ajaxUrl'       => esc_url(admin_url('admin-ajax.php')),
         'pluginStatus'  => $plugin_status,
         'pluginSlug'    => 'maxi-blocks',
@@ -220,14 +205,14 @@ function maxiblocks_localize_install_plugin_notice_js($plugin_status): array
                     'plugin_status' => 'all',
                     'paged'         => '1',
                     'action'        => 'activate',
-                    'plugin'        => rawurlencode('maxi-blocks/plugin.php'),
+                    'plugin'        => rawurlencode(MBT_PLUGIN_PATH),
                     '_wpnonce'      => wp_create_nonce('activate-plugin_maxi-blocks/plugin.php'),
                 ),
                 admin_url('plugins.php')
             )
         ),
-        'activating'    => __('Activating', 'maxiblocks') . '&hellip;',
-        'installing'    => __('Installing', 'maxiblocks') . '&hellip;',
+        'activating'    => __('Activating', 'maxiblocks'),
+        'installing'    => __('Installing', 'maxiblocks'),
         'done'          => __('Done', 'maxiblocks'),
     );
 }
