@@ -20,7 +20,7 @@ if (!defined('MBT_PLUGIN_NOTICE_DISMISS')) {
 }
 
 add_action('admin_notices', 'mbt_render_install_plugin_notice', 0);
-add_action('wp_ajax_mbt_dismiss_install_plugin_notice', 'mbt_close_install_plugin_notice');
+add_action('wp_ajax_maxiblocks-theme-dismiss-plugin-notice', 'mbt_close_install_plugin_notice');
 
 /**
  * Renders the installation notice for the MaxiBlocks plugin.
@@ -69,7 +69,7 @@ function mbt_render_install_plugin_notice()
                     <?php esc_html_e('Thanks for choosing the MaxiBlocks theme', 'maxiblocks'); ?> 🎈
                 </p>
                 <h2 class="mbt-notice__title">
-                    <?php esc_html_e('Please install the MaxiBlocks builder', 'maxiblocks'); ?>
+                    <?php $plugin_status === 'installed' ?  esc_html_e('Please activate the MaxiBlocks builder', 'maxiblocks') : esc_html_e('Please install the MaxiBlocks builder', 'maxiblocks'); ?>
                 </h2>
                 <p class="mbt-notice__description">
                     <?php esc_html_e('Our builder plugin is packed with advanced block editing tools, interactions, and hover effects. Use 100 complimentary style cards, 13K free icons, and thousands of designer templates to help you work faster.', 'maxiblocks'); ?>
@@ -77,7 +77,7 @@ function mbt_render_install_plugin_notice()
                 <div class="mbt-notice__actions">
                     <button id="mbt-notice-install-maxiblocks" class="mbt-button mbt-button--primary mbt-button--hero">
                         <span class="mbt-button__text">
-                            <?php esc_html_e($plugin_status === 'installed' ? 'Activate MaxiBlocks builder' : 'Install MaxiBlocks builder', 'maxiblocks'); ?>
+                            <?php $plugin_status === 'installed' ?  esc_html_e('Activate MaxiBlocks builder', 'maxiblocks') : esc_html_e('Install MaxiBlocks builder', 'maxiblocks'); ?>
                         </span>
                     </button>
                     <a href="<?php echo esc_url($more_info_url); ?>" target="_blank"
@@ -105,7 +105,7 @@ function mbt_render_install_plugin_notice()
  *
  * @since 1.6.0
  */
-function mbt_mbt_close_install_plugin_notice()
+function mbt_close_install_plugin_notice()
 {
     if (!isset($_POST['nonce'])) {
         return;
@@ -187,7 +187,7 @@ function mbt_is_maxiblocks_plugin_status()
 /**
  * Localize js.
  *
- * @since 0.0.1
+ * @since 1.6.0
  * @param string $plugin_status plugin current status.
  * @return array
  */
