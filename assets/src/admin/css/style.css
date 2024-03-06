@@ -1,9 +1,25 @@
+button.maxiblocks-custom-pattern .block-editor-block-preview__content {
+  transform: none !important;
+  aspect-ratio: auto !important;
+}
+
+button.maxiblocks-custom-pattern .block-editor-block-preview__content img {
+  max-width: 100%;
+}
+@charset "UTF-8";
 .mbt-notice {
   font-family: 'Roboto', sans-serif;
-  background-color: #f5f5f5;
+  color: #9b9b9b;
+  font-weight: 400;
+  background-color: #fff;
+  background-size: contain;
+  background-position: right;
+  background-repeat: no-repeat;
   border: 1px solid #ddd;
-  padding: 20px;
+  padding: 42px 67px;
   box-sizing: border-box;
+  margin-top: 35px;
+  margin-right: 25px;
 }
 
 .mbt-notice__row {
@@ -20,31 +36,64 @@
   max-width: 300px;
 }
 
-.mbt-notice__title, .mbt-notice__subtitle {
+.mbt-notice__title {
+  font-size: 36px;
+  color: #000000;
+  font-weight: 700;
+  margin: 26px 2px 33px;
+}
+
+.mbt-notice__subtitle {
   margin: 0;
+  font-size: 18px;
+}
+
+.mbt-notice__subtitle:after {
+  content: '🎈';
 }
 
 .mbt-notice__description {
   margin-bottom: 15px;
+  font-size: 18px;
+  line-height: 1.5;
+  max-width: 32%;
 }
 
-.mbt-notice__actions .mbt-button--primary {
-  background-color: #0073aa;
+.mbt-notice__actions {
+  display: flex;
+  margin-top: 40px;
+}
+
+.mbt-notice__actions button {
+  margin-right: 17px;
+}
+
+.mbt-notice__actions .mbt-button {
+  border-radius: 49px;
+  background-color: #119da4;
   color: #fff;
   border: none;
-  padding: 10px 15px;
+  padding: 10px 26px;
   text-align: center;
   display: inline-block;
   text-decoration: none;
-  border-radius: 3px;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  transition: all 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.mbt-notice__actions .mbt-button--primary__text {
-  font-weight: bold;
+.mbt-notice__actions .mbt-button__icon {
+  font-size: 30px;
+  margin-left: 8px;
+  margin-top: -3px;
 }
 
-.mbt-notice__actions .mbt-button--primary:hover {
-  background-color: #005177;
+.mbt-notice__actions .mbt-button:hover {
+  opacity: 0.502;
+  cursor: pointer;
 }
 
 .mbt-notice__image-container img {

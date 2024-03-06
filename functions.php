@@ -23,6 +23,9 @@ if (!defined('MBT_PATH')) { // path to the root theme folder
 if (!defined('MBT_MAXI_PATTERNS_PATH')) { // path to the .maxi-patterns folder
     define('MBT_MAXI_PATTERNS_PATH', get_template_directory() . '/maxi-patterns/');
 }
+if (!defined('MBT_MAXI_PATTERNS_URL')) {
+    define('MBT_MAXI_PATTERNS_URL', get_template_directory_uri() . '/maxi-patterns/');
+}
 if (!defined('MBT_PATH_BUILD_ADMIN_PHP')) { // path to the /assets/build/admin/php theme folder
     define('MBT_PATH_BUILD_ADMIN_PHP', get_template_directory() . '/assets/build/admin/php');
 }
@@ -81,71 +84,6 @@ if (! function_exists('mbt_block_styles')) :
     function mbt_block_styles()
     {
 
-        register_block_style(
-            'core/details',
-            array(
-                'name'         => 'arrow-icon-details',
-                'label'        => __('Arrow icon', 'maxiblocks'),
-                /*
-                 * Styles for the custom Arrow icon style of the Details block
-                 */
-                'inline_style' => '
-				.is-style-arrow-icon-details {
-					padding-top: var(--wp--preset--spacing--10);
-					padding-bottom: var(--wp--preset--spacing--10);
-				}
-
-				.is-style-arrow-icon-details summary {
-					list-style-type: "\2193\00a0\00a0\00a0";
-				}
-
-				.is-style-arrow-icon-details[open]>summary {
-					list-style-type: "\2192\00a0\00a0\00a0";
-				}',
-            )
-        );
-        register_block_style(
-            'core/post-terms',
-            array(
-                'name'         => 'pill',
-                'label'        => __('Pill', 'maxiblocks'),
-                /*
-                 * Styles variation for post terms
-                 * https://github.com/WordPress/gutenberg/issues/24956
-                 */
-                'inline_style' => '
-				.is-style-pill a,
-				.is-style-pill span:not([class], [data-rich-text-placeholder]) {
-					display: inline-block;
-					background-color: var(--wp--preset--color--base-2);
-					padding: 0.375rem 0.875rem;
-					border-radius: var(--wp--preset--spacing--20);
-				}
-
-				.is-style-pill a:hover {
-					background-color: var(--wp--preset--color--contrast-3);
-				}',
-            )
-        );
-        register_block_style(
-            'core/list',
-            array(
-                'name'         => 'checkmark-list',
-                'label'        => __('Checkmark', 'maxiblocks'),
-                /*
-                 * Styles for the custom checkmark list block style
-                 * https://github.com/WordPress/gutenberg/issues/51480
-                 */
-                'inline_style' => '
-				ul.is-style-checkmark-list {
-					list-style-type: "\2713";
-				}
-
-				ul.is-style-checkmark-list li {
-					padding-inline-start: 1ch;
-				}',
-            )
-        );
         register_block_style(
             'core/navigation-link',
             array(
@@ -206,14 +144,24 @@ endif;
 
 add_action('init', 'mbt_block_styles');
 
-
+/**
+ * Registers customization options for the theme.
+ *
+ * This function adds a new setting for custom theme CSS and a corresponding control
+ * to the WordPress Customizer, allowing users to add their own CSS to the theme.
+ * The 'transport' method is set to 'refresh', meaning changes will be applied by reloading the page.
+ *
+ * @param WP_Customize_Manager $wp_customize WordPress Customizer object. It's used to add settings and controls to the customizer.
+ */
 function mbt_customize_register($wp_customize)
 {
+    // Add a new setting for custom theme CSS.
     $wp_customize->add_setting('mbt_custom_theme_css', array(
         'default'     => '',
         'transport'   => 'refresh',
     ));
 
+    // Add a new control to the customizer for the custom theme CSS setting.
     $wp_customize->add_control(new WP_Customize_Code_Editor_Control($wp_customize, 'mbt_custom_theme_css', array(
         'label'       => __('Custom Theme CSS', 'maxiblocks'),
         'section'     => 'mbt_new_section_name',
@@ -223,17 +171,19 @@ function mbt_customize_register($wp_customize)
 }
 add_action('customize_register', 'mbt_customize_register');
 
-function mbt_enqueue_fonts()
-{
-    // Check if the 'maxi-blocks' plugin is active
-    include_once(ABSPATH . 'wp-admin/includes/plugin.php');
-    if (!is_plugin_active(MBT_PLUGIN_PATH)) {
-        // Enqueue Roboto font here if 'maxi-blocks' is NOT active
-        wp_enqueue_style(MBT_PREFIX . 'roboto-font', MBT_PATH .'/assets/fonts/roboto/Roboto-Regular.woff2');
-    }
-}
+include_once(ABSPATH . 'wp-admin/includes/plugin.php');
 
-add_action('wp_enqueue_scripts', 'mbt_enqueue_fonts');
+if (!is_plugin_active(MBT_PLUGIN_PATH)) {
+    function mbt_enqueue_fonts()
+    {
+        $font_url = MBT_URL . '/assets/fonts/roboto/roboto-font.css';
+        wp_enqueue_style(MBT_PREFIX . 'roboto-font', $font_url, array(), null);
+    }
+    
+    // Hook into both front-end and admin scripts
+    add_action('wp_enqueue_scripts', 'mbt_enqueue_fonts');
+    add_action('admin_enqueue_scripts', 'mbt_enqueue_fonts');
+}
 
 function mbt_enqueue_admin_styles()
 {
@@ -249,7 +199,6 @@ function mbt_enqueue_admin_styles()
     // Enqueue the admin stylesheet.
     wp_enqueue_style(MBT_PREFIX . 'admin-styles', $admin_css_url, array(), MBT_VERSION, 'all');
 }
-
 add_action('admin_enqueue_scripts', 'mbt_enqueue_admin_styles');
 
 function mbt_custom_theme_css()
@@ -258,6 +207,11 @@ function mbt_custom_theme_css()
     wp_add_inline_style(MBT_PREFIX . 'custom-styles', $custom_css);
 }
 add_action('wp_enqueue_scripts', 'mbt_custom_theme_css');
+
+function mbt_get_maxi_patterns()
+{
+    return glob(MBT_MAXI_PATTERNS_PATH . '*', GLOB_ONLYDIR);
+}
 
 /**
  * Registers custom block pattern categories and block patterns for MaxiBlocks.
@@ -296,7 +250,7 @@ function mbt_register_maxi_block_patterns()
     }
 
     // Get a list of directories inside the maxi-patterns directory.
-    $pattern_directories = glob(MBT_MAXI_PATTERNS_PATH . '*', GLOB_ONLYDIR);
+    $pattern_directories = mbt_get_maxi_patterns();
 
     // Allow filtering the block patterns directories.
     $pattern_directories = apply_filters('mbt_block_pattern_directories', $pattern_directories);
@@ -338,6 +292,15 @@ function mbt_fse_admin_script()
         MBT_VERSION,
         true
     );
+
+
+    $vars = array(
+        'url'         => MBT_MAXI_PATTERNS_URL,
+        'directories' => mbt_get_maxi_patterns(),
+    );
+
+    wp_localize_script(MBT_FSE_JS, 'maxiblocks', $vars);
+
 
 }
 
