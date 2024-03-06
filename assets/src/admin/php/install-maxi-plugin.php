@@ -60,13 +60,13 @@ function mbt_render_install_plugin_notice()
     ?>
 <div class="mbt-notice mbt-notice--info" style="background-image: url(<?php echo esc_url($install_plugin_image); ?>);">
     <button type="button" class="mbt-notice__dismiss">
-        <span class="mbt-notice__dismiss-text"><?php esc_html_e('Close', 'maxiblocks'); ?></span>
+        <span class="mbt-notice__dismiss-text">&#10799;</span>
     </button>
     <div class="mbt-notice__row">
         <div class="mbt-notice__col">
             <div class="mbt-notice__content">
                 <p class="mbt-notice__subtitle">
-                    <?php esc_html_e('Thanks for choosing the MaxiBlocks theme', 'maxiblocks');?> 
+                    <?php esc_html_e('Thanks for choosing the MaxiBlocks theme', 'maxiblocks');?>
                 </p>
                 <h2 class="mbt-notice__title">
                     <?php $plugin_status === 'installed' ?  esc_html_e('Please activate the MaxiBlocks builder', 'maxiblocks') : esc_html_e('Please install the MaxiBlocks builder', 'maxiblocks'); ?>
@@ -78,7 +78,7 @@ function mbt_render_install_plugin_notice()
                     <button id="mbt-notice-install-maxiblocks" class="mbt-button mbt-button--primary mbt-button--hero">
                         <span class="mbt-button__text">
                             <?php $plugin_status === 'installed' ?  esc_html_e('Activate MaxiBlocks builder', 'maxiblocks') : esc_html_e('Install MaxiBlocks builder', 'maxiblocks');?>
-    </span><span class="mbt-button__icon">&rsaquo;</span></button>
+                        </span><span class="mbt-button__icon">&rsaquo;</span></button>
                     <a href="<?php echo esc_url($more_info_url); ?>" target="_blank"
                         class="mbt-button mbt-button--primary mbt-button--hero">
                         <span class="mbt-button__text"><?php esc_html_e('More info', 'maxiblocks'); ?>
