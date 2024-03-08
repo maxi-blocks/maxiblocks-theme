@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (iframe) {
                     console.log('Iframe found.');
                     const img = document.createElement('img');
-                    img.src = `${url}${idPart}/preview.jpg`;
+                    img.src = `${url}${idPart}/preview.webp`;
                     // img.style.width = iframe.style.width; // Optional: Set the width of the image to match the iframe
                     // img.style.height = iframe.style.height; // Optional: Set the height of the image to match the iframe
                     // Get the direct parent of the iframe

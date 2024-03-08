@@ -206,8 +206,8 @@ function mbt_localize_install_plugin_notice_js($plugin_status)
                 admin_url('plugins.php')
             )
         ),
-        'activating'    => __('Activating', 'maxiblocks'),
-        'installing'    => __('Installing', 'maxiblocks'),
-        'done'          => __('Done', 'maxiblocks'),
+        'activating'    => __('Activating', 'maxiblocks') . '&#9203;',
+        'installing'    => __('Installing', 'maxiblocks') . ' &#9203;',
+        'done'          => __('Done', 'maxiblocks') . ' &#10003;',
     );
 }
