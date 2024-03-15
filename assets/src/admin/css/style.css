@@ -40,7 +40,7 @@ button.maxiblocks-custom-pattern .block-editor-block-preview__content img {
   font-size: 36px;
   color: #000000;
   font-weight: 700;
-  margin: 26px 2px 33px;
+  margin: 26px 2px 33px !important;
 }
 
 .mbt-notice__subtitle {
