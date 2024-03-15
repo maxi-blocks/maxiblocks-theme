@@ -4,10 +4,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const { url, directories } = maxiblocks;
 
-        console.log('url');
-        console.log(url);
-        console.log('directories');
-        console.log(directories);
+        // console.log('url');
+        // console.log(url);
+        // console.log('directories');
+        // console.log(directories);
 
         if (!directories) {
             return;
@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', function () {
             // Construct the full ID by prefixing the editorPrefix
             const fullId = `${editorPrefix}${idPart}`;
 
-            console.log('fullId');
-            console.log(fullId);
+            // console.log('fullId');
+            // console.log(fullId);
 
             // Get the button by ID
             const button = document.getElementById(fullId);
