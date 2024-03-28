@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // If the button exists, add it to the buttons array
             if (button) {
-               // console.log('Button found.');
+                console.log('Button found.');
                 button.classList.add('maxiblocks-custom-pattern');
                 const iframe = button.querySelector('iframe');
 
@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     console.log('Iframe found.');
                     const img = document.createElement('img');
                     img.src = `${url}${idPart}/preview-${idPart}.webp`;
+                    img.alt = `${idPart} preview image`;
                 
                     // Get the direct parent of the iframe
                     const iframeParent = iframe.parentNode;
@@ -62,15 +63,54 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                     //clearInterval(checkInterval); // Clear the interval once the replacement is done
                 }
-                // else {
-                //     console.log(
-                //         'Iframe not found within the button, checking again...'
-                //     );
-                // }
+                
+            } else {
+                // WordPress 6.5 fix
+                const previewGridDiv = document.querySelector('div.dataviews-view-grid');
+                if (!previewGridDiv) {console.log('Button not found yet, checking again...'); return;}
+
+                // Get all direct child divs with the class 'dataviews-view-grid__card'
+                const gridCards = previewGridDiv.querySelectorAll(':scope > .dataviews-view-grid__card');
+                if (!gridCards) {console.log('Button not found yet, checking again...'); return;}
+
+                gridCards.forEach(card => {
+                    const titleDiv = card.querySelector('div.edit-site-patterns__pattern-title');
+                    if (titleDiv) {
+                        // Get the text, convert to lowercase, and replace spaces with dashes
+                        const modifiedText = titleDiv.textContent.toLowerCase().replace(/\s+/g, '-');
+
+                        // Now you can manipulate the DOM as needed, for example:
+                      //  console.log(modifiedText); // Just an example of output
+
+
+                        console.log('modifiedText', modifiedText);
+                            console.log('idPart      ', idPart);
+                            console.log('======================');
+                       
+                        if(modifiedText === idPart) {
+                            card.classList.add('maxiblocks-custom-pattern');
+                            const src = `${url}${idPart}/preview-${idPart}.webp`;
+                            const alt = `${modifiedText} preview image`;
+                            const imageToReplace = card.querySelector('.maxi-blocks-pattern-preview img');
+
+                            if(imageToReplace ) {
+                                imageToReplace.src = src;
+                                imageToReplace.alt = alt;
+                            }
+                            else {
+                                iframeToReplace = card.querySelector('.block-editor-block-preview__container iframe');
+                                if(iframeToReplace) {
+                                    const img = document.createElement('img');
+                                    img.src = src;
+                                    img.alt = alt;
+                                    iframeToReplace.replaceWith(img);
+                                }
+                            }
+                        }
+                    }
+                });
             }
-            // else {
-            //     console.log('Button not found yet, checking again...');
-            // }
+        
         });
     }
 

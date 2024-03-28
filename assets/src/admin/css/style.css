@@ -1,10 +1,20 @@
-button.maxiblocks-custom-pattern .block-editor-block-preview__content {
+.maxiblocks-custom-pattern {
+  height: auto !important;
+}
+
+.maxiblocks-custom-pattern .block-editor-block-preview__content {
   transform: none !important;
   aspect-ratio: auto !important;
 }
 
-button.maxiblocks-custom-pattern .block-editor-block-preview__content img {
+.maxiblocks-custom-pattern .block-editor-block-preview__content img {
   max-width: 100%;
+  margin-bottom: -4px;
+}
+
+.maxiblocks-custom-pattern .dataviews-view-grid__media {
+  aspect-ratio: auto !important;
+  min-height: auto !important;
 }
 @charset "UTF-8";
 .mbt-notice {

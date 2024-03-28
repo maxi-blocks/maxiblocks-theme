@@ -1,9 +1,15 @@
-button.maxiblocks-custom-pattern {
-    .block-editor-block-preview__content {
-        transform: none !important;
-        aspect-ratio: auto !important;
-        img {
-            max-width: 100%;
-        }
-    }
+.maxiblocks-custom-pattern {
+	height: auto !important;
+	.block-editor-block-preview__content {
+		transform: none !important;
+		aspect-ratio: auto !important;
+		img {
+			max-width: 100%;
+			margin-bottom: -5px;
+		}
+	}
+	.dataviews-view-grid__media {
+		aspect-ratio: auto !important;
+		min-height: auto !important;
+	}
 }

@@ -305,3 +305,66 @@ function mbt_fse_admin_script()
 }
 
 add_action('admin_enqueue_scripts', 'mbt_fse_admin_script');
+
+function mbt_setup_default_menu()
+{
+    $existing_menus = wp_get_nav_menus();
+    
+    // Check if there are no menus existing on the site
+    if (empty($existing_menus)) {
+        $menu_name = 'MaxiBlocks Menu';
+        $menu_id = wp_create_nav_menu($menu_name);
+        
+        // Add default menu items here
+        wp_update_nav_menu_item($menu_id, 0, array(
+            'menu-item-title' => __('Home', 'maxiblocks'),
+            'menu-item-url' => home_url('/'),
+            'menu-item-status' => 'publish'
+        ));
+
+        // Add Features menu item and get its ID
+        $features_id = wp_update_nav_menu_item($menu_id, 0, array(
+            'menu-item-title' => __('Features', 'maxiblocks'),
+            'menu-item-url' => '#',
+            'menu-item-status' => 'publish',
+            'menu-item-type' => 'custom'
+        ));
+
+        // Add sub-menu items under Features
+        wp_update_nav_menu_item($menu_id, 0, array(
+            'menu-item-title' => __('Sub-menu #1', 'maxiblocks'),
+            'menu-item-url' => '#',
+            'menu-item-parent-id' => $features_id,
+            'menu-item-status' => 'publish',
+            'menu-item-type' => 'custom'
+        ));
+
+        wp_update_nav_menu_item($menu_id, 0, array(
+            'menu-item-title' => __('Sub-menu #2', 'maxiblocks'),
+            'menu-item-url' => '#',
+            'menu-item-parent-id' => $features_id,
+            'menu-item-status' => 'publish',
+            'menu-item-type' => 'custom'
+        ));
+
+        wp_update_nav_menu_item($menu_id, 0, array(
+            'menu-item-title' => __('How it works', 'maxiblocks'),
+            'menu-item-url' => '#',
+            'menu-item-status' => 'publish',
+            'menu-item-type' => 'custom'
+        ));
+
+        wp_update_nav_menu_item($menu_id, 0, array(
+            'menu-item-title' => __('Get in touch', 'maxiblocks'),
+            'menu-item-url' => '#',
+            'menu-item-status' => 'publish',
+            'menu-item-type' => 'custom'
+        ));
+
+        // Assign the newly created menu to a theme location
+        $locations = get_theme_mod('nav_menu_locations');
+        $locations['primary'] = $menu_id;  // 'primary' is the theme location identifier
+        set_theme_mod('nav_menu_locations', $locations);
+    }
+}
+add_action('after_setup_theme', 'mbt_setup_default_menu');
