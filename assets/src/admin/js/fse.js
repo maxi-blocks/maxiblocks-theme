@@ -74,6 +74,8 @@ document.addEventListener('DOMContentLoaded', function () {
 					const gridCards = previewGridDiv.querySelectorAll(
 						':scope > .dataviews-view-grid__card, .block-editor-block-patterns-list__list-item'
 					);
+
+					console.log('gridCards', gridCards);
 					if (!gridCards || gridCards.length === 0) {
 						return;
 					}
@@ -97,6 +99,9 @@ document.addEventListener('DOMContentLoaded', function () {
                             )?.getAttribute('aria-label')?.toLowerCase()
                             ?.replace(/\s+/g, '-');
                         }
+
+						console.log('titleId', titleId);
+						console.log('titleDiv', titleDiv);
 						if (titleDiv || titleId) {
 							// Get the text, convert to lowercase, and replace spaces with dashes
 							const modifiedText = titleDiv
@@ -105,8 +110,9 @@ document.addEventListener('DOMContentLoaded', function () {
 										?.replace(/\s+/g, '-')
 								: titleId?.replace('maxiblocks/', '');
 
+								console.log('modifiedText', modifiedText);
+
 							if (modifiedText === idPart) {
-								card.classList.add('maxiblocks-custom-pattern');
 								const src = `${url}${idPart}/preview-${idPart}.webp`;
 								const alt = `${modifiedText} preview image`;
 								const imageToReplace = card.querySelector(
@@ -114,8 +120,10 @@ document.addEventListener('DOMContentLoaded', function () {
 								);
 
 								if (imageToReplace) {
+									console.log('imageToReplace', imageToReplace);
 									imageToReplace.src = src;
 									imageToReplace.alt = alt;
+									card.classList.add('maxiblocks-custom-pattern');
 								} else {
 									iframeToReplace = card.querySelector(
 										'.block-editor-block-preview__container iframe'
@@ -126,6 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
 										img.src = src;
 										img.alt = alt;
 										iframeToReplace.replaceWith(img);
+										card.classList.add('maxiblocks-custom-pattern');
 									}
 								}
 							}
