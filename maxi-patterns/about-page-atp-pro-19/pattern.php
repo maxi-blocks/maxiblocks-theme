@@ -1,10 +1,10 @@
 <?php
 /**
- * About Page Pro ATP-PRO-19
+ * About Page ATP-PRO-19
  */
 
 return array(
-    'title'	  => __('About Page Pro ATP-PRO-19', 'maxiblocks'),
+    'title'	  => __('About Page ATP-PRO-19', 'maxiblocks'),
     'categories' => array( 'mbt-about-page' ),
     'content'    => (function () {
         ob_start();

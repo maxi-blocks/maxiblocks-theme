@@ -1,11 +1,11 @@
 <?php
 /**
- * Home Page Pro HEP-PRO-06
+ * Services Page SSP-PRO-06
  */
 
 return array(
-    'title'	  => __('Home Page Pro HEP-PRO-06', 'maxiblocks'),
-    'categories' => array( 'mbt-homepage' ),
+    'title'	  => __('Services Page SSP-PRO-06', 'maxiblocks'),
+    'categories' => array( 'mbt-services-page' ),
     'content'    => (function () {
         ob_start();
         include(__DIR__ . '/code.php');

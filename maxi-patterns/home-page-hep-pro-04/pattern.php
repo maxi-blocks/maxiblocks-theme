@@ -1,10 +1,10 @@
 <?php
 /**
- * Home Page Pro HEP-PRO-02
+ * Home Page HEP-PRO-04
  */
 
 return array(
-    'title'	  => __('Home Page Pro HEP-PRO-02', 'maxiblocks'),
+    'title'	  => __('Home Page HEP-PRO-04', 'maxiblocks'),
     'categories' => array( 'mbt-homepage' ),
     'content'    => (function () {
         ob_start();
