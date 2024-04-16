@@ -182,6 +182,7 @@ function mbt_register_maxi_block_patterns()
         'mbt-author-archive' => array('label' => __('MaxiBlocks author archive', 'maxiblocks')),
         'mbt-category-archive' => array('label' => __('MaxiBlocks category archive', 'maxiblocks')),
         'mbt-taxonomy-archive' => array('label' => __('MaxiBlocks taxonomy archive', 'maxiblocks')),
+        'mbt-search-results' => array('label' => __('MaxiBlocks search results', 'maxiblocks')),
         'mbt-comments' => array('label' => __('MaxiBlocks comments', 'maxiblocks')),
         'mbt-sidebar' => array('label' => __('MaxiBlocks sidebar', 'maxiblocks'))
     );
@@ -220,14 +221,19 @@ function mbt_register_maxi_block_patterns()
         }
     }
 
-    if(!get_option('maxiblocks_theme_db_done')) {
-        mbt_add_styles_meta_fonts_to_db();
-    }
-
 }
 
 // Hook the function to the init action.
 add_action('init', 'mbt_register_maxi_block_patterns');
+
+function mbt_after_theme_activation()
+{
+    if (!get_option('maxiblocks_theme_db_done')) {
+        mbt_add_styles_meta_fonts_to_db();
+    }
+}
+
+add_action('after_switch_theme', 'mbt_after_theme_activation');
 
 function mbt_add_styles_meta_fonts_to_db()
 {
@@ -319,7 +325,6 @@ function mbt_add_styles_meta_fonts_to_db()
 
     // Set the option to indicate that the function has run
     update_option('maxiblocks_theme_db_done', true);
-
 }
 
 function mbt_fse_admin_script()
