@@ -74,71 +74,15 @@ if (defined('MBT_DEBUG') && MBT_DEBUG) {
  * Register block styles.
  */
 
-if (! function_exists('mbt_block_styles')) :
+if (!function_exists('mbt_block_styles')) :
     /**
      * Register custom block styles
      *
-     * @since MaxiBlocks Theme 1.6.0
+     * @since MaxiBlocks Theme 1.0.0
      * @return void
      */
     function mbt_block_styles()
     {
-
-        register_block_style(
-            'core/navigation-link',
-            array(
-                'name'         => 'arrow-link',
-                'label'        => __('With arrow', 'maxiblocks'),
-                /*
-                 * Styles for the custom arrow nav link block style
-                 */
-                'inline_style' => '
-				.is-style-arrow-link .wp-block-navigation-item__label:after {
-					content: "\2197";
-					padding-inline-start: 0.25rem;
-					vertical-align: middle;
-					text-decoration: none;
-					display: inline-block;
-				}',
-            )
-        );
-        register_block_style(
-            'core/heading',
-            array(
-                'name'         => 'asterisk',
-                'label'        => __('With asterisk', 'maxiblocks'),
-                'inline_style' => "
-				.is-style-asterisk:before {
-					content: '';
-					width: 1.5rem;
-					height: 3rem;
-					background: var(--wp--preset--color--contrast-2, currentColor);
-					clip-path: path('M11.93.684v8.039l5.633-5.633 1.216 1.23-5.66 5.66h8.04v1.737H13.2l5.701 5.701-1.23 1.23-5.742-5.742V21h-1.737v-8.094l-5.77 5.77-1.23-1.217 5.743-5.742H.842V9.98h8.162l-5.701-5.7 1.23-1.231 5.66 5.66V.684h1.737Z');
-					display: block;
-				}
-
-				/* Hide the asterisk if the heading has no content, to avoid using empty headings to display the asterisk only, which is an A11Y issue */
-				.is-style-asterisk:empty:before {
-					content: none;
-				}
-
-				.is-style-asterisk:-moz-only-whitespace:before {
-					content: none;
-				}
-
-				.is-style-asterisk.has-text-align-center:before {
-					margin: 0 auto;
-				}
-
-				.is-style-asterisk.has-text-align-right:before {
-					margin-left: auto;
-				}
-
-				.rtl .is-style-asterisk.has-text-align-left:before {
-					margin-right: auto;
-				}",
-            )
-        );
     }
 endif;
 
@@ -224,7 +168,6 @@ function mbt_register_maxi_block_patterns()
     $block_pattern_categories = array(
         'mbt-about-page' => array('label' => __('MaxiBlocks about page', 'maxiblocks')),
         'mbt-author-bio' => array('label' => __('MaxiBlocks author bio', 'maxiblocks')),
-        'mbt-author-archive' => array('label' => __('MaxiBlocks author archive', 'maxiblocks')),
         'mbt-post-single' => array('label' => __('MaxiBlocks post single', 'maxiblocks')),
         'mbt-homepage' => array('label' => __('MaxiBlocks homepage', 'maxiblocks')),
         'mbt-services-page' => array('label' => __('MaxiBlocks services page', 'maxiblocks')),
@@ -233,8 +176,10 @@ function mbt_register_maxi_block_patterns()
         'mbt-header-navigation' => array('label' => __('MaxiBlocks header navigation', 'maxiblocks')),
         'mbt-blog-index' => array('label' => __('MaxiBlocks blog index', 'maxiblocks')),
         'mbt-not-found-404' => array('label' => __('MaxiBlocks not found 404', 'maxiblocks')),
+        'mbt-all-archives' => array('label' => __('MaxiBlocks all archives', 'maxiblocks')),
         'mbt-date-archive' => array('label' => __('MaxiBlocks date archive', 'maxiblocks')),
         'mbt-tag-archive' => array('label' => __('MaxiBlocks tag archive', 'maxiblocks')),
+        'mbt-author-archive' => array('label' => __('MaxiBlocks author archive', 'maxiblocks')),
         'mbt-category-archive' => array('label' => __('MaxiBlocks category archive', 'maxiblocks')),
         'mbt-taxonomy-archive' => array('label' => __('MaxiBlocks taxonomy archive', 'maxiblocks')),
         'mbt-comments' => array('label' => __('MaxiBlocks comments', 'maxiblocks')),
@@ -271,13 +216,111 @@ function mbt_register_maxi_block_patterns()
                 require $pattern_file_path
             );
         } else {
-            error_log("Block pattern file not found: $pattern_file_path");
+            error_log(__('MaxiBlocks Theme: Block pattern file not found:', 'maxiblocks').' '. $pattern_file_path);
         }
     }
+
+    if(!get_option('maxiblocks_theme_db_done')) {
+        mbt_add_styles_meta_fonts_to_db();
+    }
+
 }
 
 // Hook the function to the init action.
 add_action('init', 'mbt_register_maxi_block_patterns');
+
+function mbt_add_styles_meta_fonts_to_db()
+{
+    global $wpdb;
+
+    // Check if the function has already run
+    if (get_option('maxiblocks_theme_db_done')) {
+        return;
+    }
+
+    // Check if the necessary tables exist
+    $styles_table = "{$wpdb->prefix}maxi_blocks_styles_blocks";
+    $custom_data_table = "{$wpdb->prefix}maxi_blocks_custom_data_blocks";
+
+    if ($wpdb->get_var("SHOW TABLES LIKE '$styles_table'") != $styles_table ||
+        $wpdb->get_var("SHOW TABLES LIKE '$custom_data_table'") != $custom_data_table) {
+        return;
+    }
+
+    $db_folder = get_template_directory() . '/db/';
+
+    // Check if the 'db' folder exists
+    if (is_dir($db_folder)) {
+        // Get all JSON files in the 'db' folder
+        $json_files = glob($db_folder . '*.json');
+
+        foreach ($json_files as $json_file) {
+            // Read the JSON file contents
+            $json_data = file_get_contents($json_file);
+
+            // Decode the JSON data
+            $data = json_decode($json_data, true);
+
+            // Extract the necessary information from the decoded data
+            $unique_id = $data['block_style_id'] ?? '';
+            if ($unique_id === '') {
+                continue;
+            }
+            
+            $css_value = $data['css_value'] ?? '';
+            $fonts_value = $data['fonts_value'] ?? '';
+            if ($css_value === '' && $fonts_value === '') {
+                continue;
+            }
+
+            $active_custom_data = $data['active_custom_data'] ?? 0;
+            $custom_data_value = $data['custom_data_value'] ?? '';
+
+            if ($custom_data_value === '' || $custom_data_value === '[]') {
+                $custom_data_value = '';
+            }
+
+            // Check if a row with the same unique_id already exists
+            $exists = $wpdb->get_row(
+                $wpdb->prepare(
+                    "SELECT * FROM $styles_table WHERE block_style_id = %s",
+                    $unique_id
+                ),
+                OBJECT
+            );
+
+            if (empty($exists)) {
+                // Insert a new row into the styles table
+                $wpdb->insert(
+                    $styles_table,
+                    array(
+                        'block_style_id' => $unique_id,
+                        'css_value' => $css_value,
+                        'fonts_value' => $fonts_value,
+                        'active_custom_data' => $active_custom_data,
+                    ),
+                    array('%s', '%s', '%s', '%d')
+                );
+
+                // Insert a new row into the custom data table if custom_data_value is not empty or '[]'
+                if ($custom_data_value !== '') {
+                    $wpdb->insert(
+                        $custom_data_table,
+                        array(
+                            'block_style_id' => $unique_id,
+                            'custom_data_value' => $custom_data_value,
+                        ),
+                        array('%s', '%s')
+                    );
+                }
+            }
+        }
+    }
+
+    // Set the option to indicate that the function has run
+    update_option('maxiblocks_theme_db_done', true);
+
+}
 
 function mbt_fse_admin_script()
 {

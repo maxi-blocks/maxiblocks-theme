@@ -1,35 +1,17 @@
-<!-- wp:pattern {"slug":"maxiblocks/template-home"} /-->
+<!-- wp:template-part {"slug":"header"} /-->
 
-<!-- wp:template-part {"slug":"header","theme":"maxiblocks"} /-->
-
-<!-- wp:group {"style":{"spacing":{"padding":{"right":"15%","left":"15%"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group" style="padding-right: 15%; padding-left: 15%">
-    <!-- wp:query {"queryId":43,"query":{"perPage":10,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"exclude","inherit":true}} -->
-    <div class="wp-block-query">
-        <!-- wp:post-template {"style":{"spacing":{"blockGap":"0px"}},"layout":{"type":"grid","columnCount":3}} -->
-        <!-- wp:group {"style":{"spacing":{"padding":{"top":"15px","right":"15px","bottom":"15px","left":"15px"}}},"layout":{"inherit":false}} -->
-        <div
-            class="wp-block-group"
-            style="
-                padding-top: 15px;
-                padding-right: 15px;
-                padding-bottom: 15px;
-                padding-left: 15px;
-            "
-        >
-            <!-- wp:post-featured-image {"isLink":true,"aspectRatio":"3/2"} /-->
-
-            <!-- wp:post-title {"isLink":true} /-->
-
-            <!-- wp:post-date /-->
-
-            <!-- wp:post-excerpt {"moreText":"Read more"} /-->
-        </div>
-        <!-- /wp:group -->
-        <!-- /wp:post-template -->
-    </div>
-    <!-- /wp:query -->
-</div>
+<!-- wp:group {"tagName":"main","align":"full","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0%","right":"0%"}}},"layout":{"type":"constrained"}} -->
+<main
+	class="wp-block-group alignfull"
+	style="
+		padding-top: 0;
+		padding-right: 0%;
+		padding-bottom: 0;
+		padding-left: 0%;
+	"
+>
+	<!-- wp:post-content {"style":{"spacing":{"blockGap":"0"}}} /-->
+</main>
 <!-- /wp:group -->
 
-<!-- wp:template-part {"slug":"footer","theme":"maxiblocks","area":"footer"} /-->
+<!-- wp:template-part {"slug":"footer","tagName":"footer","area":"footer"} /-->

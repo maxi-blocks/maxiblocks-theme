@@ -75,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function () {
 						':scope > .dataviews-view-grid__card, .block-editor-block-patterns-list__list-item'
 					);
 
-					console.log('gridCards', gridCards);
 					if (!gridCards || gridCards.length === 0) {
 						return;
 					}
@@ -100,8 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             ?.replace(/\s+/g, '-');
                         }
 
-						console.log('titleId', titleId);
-						console.log('titleDiv', titleDiv);
+						
 						if (titleDiv || titleId) {
 							// Get the text, convert to lowercase, and replace spaces with dashes
 							const modifiedText = titleDiv
@@ -109,8 +107,6 @@ document.addEventListener('DOMContentLoaded', function () {
 										?.toLowerCase()
 										?.replace(/\s+/g, '-')
 								: titleId?.replace('maxiblocks/', '');
-
-								console.log('modifiedText', modifiedText);
 
 							if (modifiedText === idPart) {
 								const src = `${url}${idPart}/preview-${idPart}.webp`;
@@ -120,7 +116,6 @@ document.addEventListener('DOMContentLoaded', function () {
 								);
 
 								if (imageToReplace) {
-									console.log('imageToReplace', imageToReplace);
 									imageToReplace.src = src;
 									imageToReplace.alt = alt;
 									card.classList.add('maxiblocks-custom-pattern');
