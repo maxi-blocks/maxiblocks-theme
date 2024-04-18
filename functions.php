@@ -9,7 +9,7 @@
  */
 
 if (!defined('MBT_DEBUG')) {  // Set to false in production
-    define('MBT_DEBUG', true);
+    define('MBT_DEBUG', false);
 }
 if (!defined('MBT_VERSION')) {
     define('MBT_VERSION', wp_get_theme()->get('Version'));
@@ -296,6 +296,9 @@ function mbt_add_styles_meta_fonts_to_db()
             );
 
             if (empty($exists)) {
+                if (strpos($css_value, '_path_to_replace_') !== false) {
+                    $css_value = str_replace('_path_to_replace_', MBT_MAXI_PATTERNS_URL, $css_value);
+                }
                 // Insert a new row into the styles table
                 $wpdb->insert(
                     $styles_table,
@@ -353,6 +356,27 @@ function mbt_fse_admin_script()
 }
 
 add_action('admin_enqueue_scripts', 'mbt_fse_admin_script');
+
+function mbt_frontend_script()
+{
+    $frontend_js_url = defined('MBT_DEBUG') && MBT_DEBUG ?
+        MBT_URL_SRC_FRONTEND . '/js/maxiblocks-theme.js' :
+        MBT_URL_BUILD_FRONTEND . '/js/scripts.min.js';
+
+    $slug = MBT_PREFIX . 'frontend-scripts';
+    
+    wp_enqueue_script(
+        $slug,
+        $frontend_js_url,
+        [],
+        MBT_VERSION,
+        true
+    );
+
+
+}
+
+add_action('wp_enqueue_scripts', 'mbt_frontend_script');
 
 function mbt_setup_default_menu()
 {
