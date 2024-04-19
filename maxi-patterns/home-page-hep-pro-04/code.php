@@ -430,7 +430,7 @@ $path_to_images = MBT_MAXI_PATTERNS_URL . $current_folder_name . '/images/';?>
                         class="maxi-components-button components-button maxi-button-block__button maxi-button-block__button--icon-left">
                         <div class="maxi-button-block__icon">
                             <div>
-                                <?xml version="1.0" encoding="UTF-8"?><svg class="x-line-maxi-svg" width="64px"
+                                <svg class="x-line-maxi-svg" width="64px"
                                     height="64px" viewBox="0 0 24 24" fill="none" data-stroke
                                     stroke="var(--maxi-dark-icon-stroke,rgba(var(--maxi-dark-color-1,0,0,0),1))"
                                     stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10">
@@ -522,7 +522,7 @@ $path_to_images = MBT_MAXI_PATTERNS_URL . $current_folder_name . '/images/';?>
                         class="maxi-components-button components-button maxi-button-block__button maxi-button-block__button--icon-left">
                         <div class="maxi-button-block__icon">
                             <div>
-                                <?xml version="1.0" encoding="UTF-8"?><svg class="x-line-maxi-svg" width="64px"
+                                <svg class="x-line-maxi-svg" width="64px"
                                     height="64px" viewBox="0 0 24 24" fill="none" data-stroke
                                     stroke="var(--maxi-dark-icon-stroke,rgba(var(--maxi-dark-color-1,0,0,0),1))"
                                     stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10">
@@ -614,7 +614,7 @@ $path_to_images = MBT_MAXI_PATTERNS_URL . $current_folder_name . '/images/';?>
                         class="maxi-components-button components-button maxi-button-block__button maxi-button-block__button--icon-left">
                         <div class="maxi-button-block__icon">
                             <div>
-                                <?xml version="1.0" encoding="UTF-8"?><svg class="x-line-maxi-svg" width="64px"
+                                <svg class="x-line-maxi-svg" width="64px"
                                     height="64px" viewBox="0 0 24 24" fill="none" data-stroke
                                     stroke="var(--maxi-dark-icon-stroke,rgba(var(--maxi-dark-color-1,0,0,0),1))"
                                     stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10">
@@ -706,7 +706,7 @@ $path_to_images = MBT_MAXI_PATTERNS_URL . $current_folder_name . '/images/';?>
                         class="maxi-components-button components-button maxi-button-block__button maxi-button-block__button--icon-left">
                         <div class="maxi-button-block__icon">
                             <div>
-                                <?xml version="1.0" encoding="UTF-8"?><svg class="x-line-maxi-svg" width="64px"
+                                <svg class="x-line-maxi-svg" width="64px"
                                     height="64px" viewBox="0 0 24 24" fill="none" data-stroke
                                     stroke="var(--maxi-dark-icon-stroke,rgba(var(--maxi-dark-color-1,0,0,0),1))"
                                     stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10">
@@ -798,7 +798,7 @@ $path_to_images = MBT_MAXI_PATTERNS_URL . $current_folder_name . '/images/';?>
                         class="maxi-components-button components-button maxi-button-block__button maxi-button-block__button--icon-left">
                         <div class="maxi-button-block__icon">
                             <div>
-                                <?xml version="1.0" encoding="UTF-8"?><svg class="x-line-maxi-svg" width="64px"
+                                <svg class="x-line-maxi-svg" width="64px"
                                     height="64px" viewBox="0 0 24 24" fill="none" data-stroke
                                     stroke="var(--maxi-dark-icon-stroke,rgba(var(--maxi-dark-color-1,0,0,0),1))"
                                     stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10">
@@ -890,7 +890,7 @@ $path_to_images = MBT_MAXI_PATTERNS_URL . $current_folder_name . '/images/';?>
                         class="maxi-components-button components-button maxi-button-block__button maxi-button-block__button--icon-left">
                         <div class="maxi-button-block__icon">
                             <div>
-                                <?xml version="1.0" encoding="UTF-8"?><svg class="x-line-maxi-svg" width="64px"
+                                <svg class="x-line-maxi-svg" width="64px"
                                     height="64px" viewBox="0 0 24 24" fill="none" data-stroke
                                     stroke="var(--maxi-dark-icon-stroke,rgba(var(--maxi-dark-color-1,0,0,0),1))"
                                     stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10">
@@ -982,7 +982,7 @@ $path_to_images = MBT_MAXI_PATTERNS_URL . $current_folder_name . '/images/';?>
                         class="maxi-components-button components-button maxi-button-block__button maxi-button-block__button--icon-left">
                         <div class="maxi-button-block__icon">
                             <div>
-                                <?xml version="1.0" encoding="UTF-8"?><svg class="x-line-maxi-svg" width="64px"
+                                <svg class="x-line-maxi-svg" width="64px"
                                     height="64px" viewBox="0 0 24 24" fill="none" data-stroke
                                     stroke="var(--maxi-dark-icon-stroke,rgba(var(--maxi-dark-color-1,0,0,0),1))"
                                     stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10">
@@ -1074,7 +1074,7 @@ $path_to_images = MBT_MAXI_PATTERNS_URL . $current_folder_name . '/images/';?>
                         class="maxi-components-button components-button maxi-button-block__button maxi-button-block__button--icon-left">
                         <div class="maxi-button-block__icon">
                             <div>
-                                <?xml version="1.0" encoding="UTF-8"?><svg class="x-line-maxi-svg" width="64px"
+                                <svg class="x-line-maxi-svg" width="64px"
                                     height="64px" viewBox="0 0 24 24" fill="none" data-stroke
                                     stroke="var(--maxi-dark-icon-stroke,rgba(var(--maxi-dark-color-1,0,0,0),1))"
                                     stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10">
