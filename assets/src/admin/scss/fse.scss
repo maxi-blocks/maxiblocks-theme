@@ -13,3 +13,8 @@
 		min-height: auto !important;
 	}
 }
+
+// fix for the grey area while scrolling in the site editor
+body.maxi-blocks--active.site-editor-php .components-resizable-box__container {
+	overflow: visible;
+}
