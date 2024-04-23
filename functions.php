@@ -113,6 +113,7 @@ function mbt_customize_register($wp_customize)
         'code_type'   => 'text/css',
     )));
 }
+
 add_action('customize_register', 'mbt_customize_register');
 
 include_once(ABSPATH . 'wp-admin/includes/plugin.php');
@@ -328,6 +329,11 @@ function mbt_add_styles_meta_fonts_to_db()
 
     // Set the option to indicate that the function has run
     update_option('maxiblocks_theme_db_done', true);
+}
+
+/** Add widgets support for Customizer **/
+if(is_customize_preview() && ! current_theme_supports('widgets')) {
+    add_theme_support('widgets');
 }
 
 function mbt_fse_admin_script()
