@@ -29,6 +29,10 @@ body.maxi-blocks--active .wp-block-post-content > p {
   padding-left: 30px;
 }
 
+body.maxi-blocks--active .wp-block-post-content > div div p.block-editor-default-block-appender__content {
+  padding-left: 30px;
+}
+
 body.maxi-blocks--active .editor-styles-wrapper.block-editor-writing-flow {
   overflow-x: hidden;
 }

@@ -28,6 +28,13 @@ body.maxi-blocks--active {
 		p {
 			padding-left: 30px;
 		}
+		div {
+			div {
+				p.block-editor-default-block-appender__content {
+					padding-left: 30px;
+				}
+			}
+		}
 	}
 
 	.editor-styles-wrapper.block-editor-writing-flow {
