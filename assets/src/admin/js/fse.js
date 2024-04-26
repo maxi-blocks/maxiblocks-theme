@@ -34,17 +34,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
 				if (iframe || image) {
                     button.classList.add('maxiblocks-custom-pattern');
-					const img = document.createElement('img');
+					const img = new Image();
 					img.src = imgSrc;
 					img.alt = imgAlt;
+					img.classList.add('maxiblocks-pattern-preview-image');
+
 
 					// Get the direct parent of the iframe
 					if (iframe) {
-						const iframeParent = iframe.parentNode;
+						const iframeParent = iframe?.parentNode;
+						if(!iframeParent) {return;}
 						
 						try {
-							// Use the direct parent to replace the iframe with the image
-							iframeParent.replaceChild(img, iframe);
+							iframeParent.insertBefore(img, iframe);
+							iframe.style.display = 'none';
+							iframeParent.querySelector('img.maxi-blocks-pattern-preview-image')?.style?.display = 'none';
 						} catch (error) {
 							console.error(
 								'Error replacing iframe with image:',
@@ -56,6 +60,8 @@ document.addEventListener('DOMContentLoaded', function () {
 						if (image) {
 							image.src = imgSrc;
 							image.alt = imgAlt;
+							image.classList.add('maxiblocks-pattern-preview-image');
+
 						}
 					}
 					//clearInterval(checkInterval); // Clear the interval once the replacement is done
@@ -118,17 +124,21 @@ document.addEventListener('DOMContentLoaded', function () {
 								if (imageToReplace) {
 									imageToReplace.src = src;
 									imageToReplace.alt = alt;
+									imageToReplace.classList.add('maxiblocks-pattern-preview-image');
 									card.classList.add('maxiblocks-custom-pattern');
 								} else {
 									iframeToReplace = card.querySelector(
 										'.block-editor-block-preview__container iframe'
 									);
 									if (iframeToReplace) {
-										const img =
-											document.createElement('img');
+										if(!iframeToReplace?.parentNode) {return;}
+										const img = new Image();
 										img.src = src;
 										img.alt = alt;
-										iframeToReplace.replaceWith(img);
+										img.classList.add('maxiblocks-pattern-preview-image');
+										iframeToReplace.parentNode?.insertBefore(img, iframeToReplace);
+										iframeToReplace.style.display = 'none';
+										iframeToReplace.parentNode?.querySelector('img.maxi-blocks-pattern-preview-image')?.style?.display = 'none';
 										card.classList.add('maxiblocks-custom-pattern');
 									}
 								}
