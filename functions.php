@@ -116,6 +116,24 @@ function mbt_customize_register($wp_customize)
 
 add_action('customize_register', 'mbt_customize_register');
 
+/**
+ * Renames the 'Customize' menu item to 'Classic customizer' in the WordPress admin sidebar menu.
+ */
+function mbt_rename_customize_menu_item_in_sidebar()
+{
+    global $submenu;
+
+    if (isset($submenu['themes.php'])) {
+        foreach ($submenu['themes.php'] as $index => $item) {
+            if ($item[1] === 'customize') {
+                $submenu['themes.php'][$index][0] = __('Classic customizer', 'maxiblocks');
+                break;
+            }
+        }
+    }
+}
+add_action('admin_menu', 'mbt_rename_customize_menu_item_in_sidebar', 999);
+
 include_once(ABSPATH . 'wp-admin/includes/plugin.php');
 
 if (!is_plugin_active(MBT_PLUGIN_PATH)) {
@@ -146,6 +164,22 @@ function mbt_enqueue_admin_styles()
 }
 add_action('admin_enqueue_scripts', 'mbt_enqueue_admin_styles');
 
+function mbt_enqueue_frontend_styles()
+{
+    // Check if we are in debug mode
+    if (defined('MBT_DEBUG') && MBT_DEBUG) {
+        // Use the unminified CSS file in the SRC directory
+        $frontend_css_url = MBT_URL_SRC_FRONTEND . '/css/style.css';
+    } else {
+        // Use the minified CSS file in the BUILD directory
+        $frontend_css_url = MBT_URL_BUILD_FRONTEND . '/css/styles.min.css';
+    }
+
+    // Enqueue the admin stylesheet.
+    wp_enqueue_style(MBT_PREFIX . 'frontend-styles', $frontend_css_url, array(), MBT_VERSION, 'all');
+}
+add_action('wp_enqueue_scripts', 'mbt_enqueue_frontend_styles');
+
 function mbt_custom_theme_css()
 {
     $custom_css = get_theme_mod('mbt_custom_theme_css');
@@ -165,6 +199,15 @@ function mbt_get_maxi_patterns()
  */
 function mbt_register_maxi_block_patterns()
 {
+    // Avoid running during REST API requests and admin non-ajax requests
+    if (defined('REST_REQUEST') && REST_REQUEST) {
+        return;
+    }
+
+    if (is_admin() && !wp_doing_ajax()) {
+        return;
+    }
+    
     // Define block pattern categories with labels.
     $block_pattern_categories = array(
         'mbt-about-page' => array('label' => __('MaxiBlocks about page', 'maxiblocks')),
@@ -193,7 +236,9 @@ function mbt_register_maxi_block_patterns()
 
     // Register each block pattern category.
     foreach ($block_pattern_categories as $name => $properties) {
-        register_block_pattern_category($name, $properties);
+        if (!has_registered_block_pattern_category($name)) {
+            register_block_pattern_category($name, $properties);
+        }
     }
 
     // Get a list of directories inside the maxi-patterns directory.
@@ -212,20 +257,47 @@ function mbt_register_maxi_block_patterns()
 
         // Check if the pattern file exists.
         if (file_exists($pattern_file_path)) {
-            // Register the block pattern.
-            register_block_pattern(
-                'maxiblocks/' . $block_pattern_name,
-                require $pattern_file_path
-            );
+            // Check if the block pattern is already registered
+            if (!has_registered_block_pattern('maxiblocks/' . $block_pattern_name)) {
+                // Register the block pattern.
+                register_block_pattern(
+                    'maxiblocks/' . $block_pattern_name,
+                    require $pattern_file_path
+                );
+            }
         } else {
-            error_log(__('MaxiBlocks Theme: Block pattern file not found:', 'maxiblocks').' '. $pattern_file_path);
+            error_log(__('MaxiBlocks Theme: Block pattern file not found:', 'maxiblocks') . ' ' . $pattern_file_path);
         }
     }
 
 }
 
+/**
+ * Check if a block pattern category is already registered.
+ *
+ * @param string $name The name of the block pattern category.
+ * @return bool True if the block pattern category is registered, false otherwise.
+ */
+function has_registered_block_pattern_category($name)
+{
+    $categories = WP_Block_Pattern_Categories_Registry::get_instance()->get_all_registered();
+    return array_key_exists($name, $categories);
+}
+
+/**
+ * Check if a block pattern is already registered.
+ *
+ * @param string $name The name of the block pattern.
+ * @return bool True if the block pattern is registered, false otherwise.
+ */
+function has_registered_block_pattern($name)
+{
+    $patterns = WP_Block_Patterns_Registry::get_instance()->get_all_registered();
+    return array_key_exists($name, $patterns);
+}
+
 // Hook the function to the init action.
-add_action('init', 'mbt_register_maxi_block_patterns');
+add_action('init', 'mbt_register_maxi_block_patterns', 100);
 
 function mbt_after_theme_activation()
 {
@@ -446,3 +518,20 @@ function mbt_setup_default_menu()
     }
 }
 add_action('after_setup_theme', 'mbt_setup_default_menu');
+
+/**
+ * Adds default content to new templates of the 'wp_template' post type.
+ *
+ * @param string $content Default content for the template.
+ * @param WP_Post $post Post object.
+ * @return string Modified content.
+ */
+function mbt_default_template_content($content, $post)
+{
+    if ($post->post_type === 'wp_template' && empty($content)) {
+        $default_content = '<!-- wp:paragraph --><p>Add your default template content here...</p><!-- /wp:paragraph -->';
+        $content = $default_content;
+    }
+    return $content;
+}
+add_filter('default_content', 'mbt_default_template_content', 10, 2);
