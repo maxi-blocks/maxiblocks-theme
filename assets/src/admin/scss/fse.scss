@@ -23,4 +23,10 @@ body.maxi-blocks--active {
 	.editor-styles-wrapper.block-editor-writing-flow {
 		overflow-x: hidden;
 	}
+
+	.block-editor-block-preview__container:has(.maxi-blocks-pattern-preview)
+		~ .block-editor-patterns__pattern-details
+		.block-editor-block-patterns-list__item-title {
+		display: block !important;
+	}
 }

@@ -153,12 +153,5 @@ document.addEventListener('DOMContentLoaded', function () {
 	// Set an interval to periodically check for the button and the iframe
 	const checkInterval = setInterval(checkAndReplaceIframe, 500); // Check every 500 milliseconds
 
-	// Optionally, you can also set a timeout to stop checking after a certain period
-	// const timeout = 30000; // Stop checking after 30 seconds
-	// const timeoutId = setTimeout(() => {
-	//     clearInterval(checkInterval);
-	//     console.error(
-	//         'Timeout reached, stopped checking for the button and iframe.'
-	//     );
-	// }, timeout);
+	
 });

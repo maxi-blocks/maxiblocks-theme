@@ -199,6 +199,7 @@ function mbt_get_maxi_patterns()
  */
 function mbt_register_maxi_block_patterns()
 {
+    
     // Avoid running during REST API requests and admin non-ajax requests
     if (defined('REST_REQUEST') && REST_REQUEST) {
         return;
@@ -236,9 +237,7 @@ function mbt_register_maxi_block_patterns()
 
     // Register each block pattern category.
     foreach ($block_pattern_categories as $name => $properties) {
-        if (!has_registered_block_pattern_category($name)) {
-            register_block_pattern_category($name, $properties);
-        }
+        register_block_pattern_category($name, $properties);
     }
 
     // Get a list of directories inside the maxi-patterns directory.
@@ -258,42 +257,16 @@ function mbt_register_maxi_block_patterns()
         // Check if the pattern file exists.
         if (file_exists($pattern_file_path)) {
             // Check if the block pattern is already registered
-            if (!has_registered_block_pattern('maxiblocks/' . $block_pattern_name)) {
-                // Register the block pattern.
-                register_block_pattern(
-                    'maxiblocks/' . $block_pattern_name,
-                    require $pattern_file_path
-                );
-            }
+            // Register the block pattern.
+            register_block_pattern(
+                'maxiblocks/' . $block_pattern_name,
+                require $pattern_file_path
+            );
         } else {
             error_log(__('MaxiBlocks Theme: Block pattern file not found:', 'maxiblocks') . ' ' . $pattern_file_path);
         }
     }
 
-}
-
-/**
- * Check if a block pattern category is already registered.
- *
- * @param string $name The name of the block pattern category.
- * @return bool True if the block pattern category is registered, false otherwise.
- */
-function has_registered_block_pattern_category($name)
-{
-    $categories = WP_Block_Pattern_Categories_Registry::get_instance()->get_all_registered();
-    return array_key_exists($name, $categories);
-}
-
-/**
- * Check if a block pattern is already registered.
- *
- * @param string $name The name of the block pattern.
- * @return bool True if the block pattern is registered, false otherwise.
- */
-function has_registered_block_pattern($name)
-{
-    $patterns = WP_Block_Patterns_Registry::get_instance()->get_all_registered();
-    return array_key_exists($name, $patterns);
 }
 
 // Hook the function to the init action.

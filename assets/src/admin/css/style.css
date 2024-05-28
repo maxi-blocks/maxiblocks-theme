@@ -24,6 +24,12 @@ body.maxi-blocks--active .site-editor-php .components-resizable-box__container {
 body.maxi-blocks--active .editor-styles-wrapper.block-editor-writing-flow {
   overflow-x: hidden;
 }
+
+body.maxi-blocks--active .block-editor-block-preview__container:has(.maxi-blocks-pattern-preview)
+~ .block-editor-patterns__pattern-details
+.block-editor-block-patterns-list__item-title {
+  display: block !important;
+}
 @charset "UTF-8";
 .mbt-notice {
   font-family: 'Roboto', sans-serif;
