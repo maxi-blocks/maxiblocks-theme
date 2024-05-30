@@ -17,6 +17,13 @@ body.maxi-blocks--active .maxiblocks-custom-pattern .dataviews-view-grid__media 
   min-height: auto !important;
 }
 
+body.maxi-blocks--active .dataviews-view-grid
+.dataviews-view-grid__card:has(
+~ .maxi-blocks-pattern-preview-grid__card
+) {
+  height: auto;
+}
+
 body.maxi-blocks--active .site-editor-php .components-resizable-box__container {
   overflow: visible;
 }

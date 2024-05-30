@@ -15,6 +15,14 @@ body.maxi-blocks--active {
 		}
 	}
 
+	// fix for default patterns preview when a maxi pattern is a sibling
+	.dataviews-view-grid
+		.dataviews-view-grid__card:has(
+			~ .maxi-blocks-pattern-preview-grid__card
+		) {
+		height: auto;
+	}
+
 	// fix for the grey area while scrolling in the site editor
 	.site-editor-php .components-resizable-box__container {
 		overflow: visible;
