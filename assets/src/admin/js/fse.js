@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			return;
 		}
 
-		const version = '1.0.0'; // increment this version if you want to reset preview images cache
+		const version = '1.0.1'; // increment this version if you want to reset preview images cache
 
 		// Loop through the directories to extract the IDs and get the buttons
 		directories.forEach(directory => {

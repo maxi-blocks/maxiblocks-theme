@@ -517,5 +517,5 @@ $path_to_images = MBT_MAXI_PATTERNS_URL . $current_folder_name . '/images/';?>
 <!-- /wp:maxi-blocks/row-maxi --></div>
 <!-- /wp:maxi-blocks/group-maxi --></div>
 <!-- /wp:maxi-blocks/column-maxi --></div>
-<!-- /wp:maxi-blocks/row-maxi --></section>over the world
+<!-- /wp:maxi-blocks/row-maxi --></section>
 <!-- /wp:maxi-blocks/container-maxi -->
