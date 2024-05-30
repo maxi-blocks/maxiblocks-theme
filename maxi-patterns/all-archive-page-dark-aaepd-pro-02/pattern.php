@@ -8,9 +8,5 @@ return array(
     'slug' => 'maxiblocks/all-archive-page-dark-aaepd-pro-02',
     'categories' => array( 'mbt-all-archives' ),
     'templateTypes' => array('author', 'category', 'tag', 'date', 'archive', 'taxonomy'),
-    'content'    => (function () {
-        ob_start();
-        include(__DIR__ . '/code.php');
-        return ob_get_clean();
-    })(),
+    'filePath' => __DIR__ . '/code.php',
 );

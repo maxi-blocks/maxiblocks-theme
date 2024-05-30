@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			return;
 		}
 
+		const version = '1.0.0'; // increment this version if you want to reset preview images cache
+
 		// Loop through the directories to extract the IDs and get the buttons
 		directories.forEach(directory => {
 			// Extract the ID part from the URL
@@ -35,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				if (iframe || image) {
                     button.classList.add('maxiblocks-custom-pattern');
 					const img = new Image();
-					img.src = imgSrc;
+					img.src = `${imgSrt}?ver=${version}`;
 					img.alt = imgAlt;
 					img.classList.add('maxiblocks-pattern-preview-image');
 
@@ -165,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function () {
 									if (iframeToReplace) {
 										if(!iframeToReplace?.parentNode) {return;}
 										const img = new Image();
-										img.src = src;
+										img.src = `${src}?ver=${version}`;
 										img.alt = alt;
 										img.classList.add('maxiblocks-pattern-preview-image');
 										iframeToReplace.parentNode?.insertBefore(img, iframeToReplace);

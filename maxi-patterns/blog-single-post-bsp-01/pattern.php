@@ -8,9 +8,5 @@ return array(
     'slug' => 'maxiblocks/blog-single-post-bsp-01',
     'categories' => array( 'mbt-post-single' ),
     'templateTypes' => array('single'),
-    'content'    => (function () {
-        ob_start();
-        include(__DIR__ . '/code.php');
-        return ob_get_clean();
-    })(),
+    'filePath' => __DIR__ . '/code.php',
 );

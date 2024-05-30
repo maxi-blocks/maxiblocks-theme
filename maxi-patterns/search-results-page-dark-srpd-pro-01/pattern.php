@@ -8,9 +8,5 @@ return array(
     'slug' => 'maxiblocks/search-results-page-dark-srpd-pro-01',
     'categories' => array( 'mbt-search-results' ),
     'templateTypes' => array('search'),
-    'content'    => (function () {
-        ob_start();
-        include(__DIR__ . '/code.php');
-        return ob_get_clean();
-    })(),
+    'filePath' => __DIR__ . '/code.php',
 );

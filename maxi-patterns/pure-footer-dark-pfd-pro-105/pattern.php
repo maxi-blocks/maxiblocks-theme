@@ -7,6 +7,5 @@ return array(
     'slug' => 'maxiblocks/pure-footer-dark-pfd-pro-105',
     'categories' => array( 'mbt-footer' ),
     'blockTypes' => array( 'core/template-part/footer' ),
-    //'content'	=> file_get_contents(__DIR__ . '/code.html'),
     'filePath'	=> __DIR__ . '/code.html',
 );
