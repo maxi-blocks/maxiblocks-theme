@@ -3,8 +3,8 @@
 Contributors: ckp267, kyrapieterse, svitlana41319, olekrut, rustamsamsonyan, andriivalenia, dashaversha, myroslavv, maxiblocks
 Tags: fse, block-editor, responsive, business, blog, e-commerce, full-site-editing, custom-colours, patterns, headers, footers
 Donate link: https://ko-fi.com/maxiblocks
-Requires at least: 6.3.1
-Tested up to: 6.4
+Requires at least: 6.5
+Tested up to: 6.5
 Requires PHP: 8.0
 Stable tag: 1.5.0
 License: GNU General Public License as published by the Free Software Foundation; either version 2 of the License or (at your option) any later version and the Mozilla Public License, Version 2.0

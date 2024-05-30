@@ -48,7 +48,10 @@ document.addEventListener('DOMContentLoaded', function () {
 						try {
 							iframeParent.insertBefore(img, iframe);
 							iframe.style.display = 'none';
-							iframeParent.querySelector('img.maxi-blocks-pattern-preview-image')?.style?.display = 'none';
+							let previewImageToHide = iframeParent.querySelector('img.maxi-blocks-pattern-preview-image')
+							if (previewImageToHide) {
+								previewImageToHide.style.display = 'none';
+							}
 						} catch (error) {
 							console.error(
 								'Error replacing iframe with image:',
@@ -64,7 +67,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 						}
 					}
-					//clearInterval(checkInterval); // Clear the interval once the replacement is done
 				}
 			} else {
 				// WordPress 6.5 fix
@@ -76,6 +78,35 @@ document.addEventListener('DOMContentLoaded', function () {
 					return;
 				}
 
+				function getTemplateName(currentTemplateSlug) {
+					// Determine the template name based on currentTemplateSlug
+					let templateName;
+				
+					if (
+						currentTemplateSlug.includes('category') ||
+						currentTemplateSlug.includes('tag') ||
+						currentTemplateSlug.includes('author') ||
+						currentTemplateSlug.includes('taxonomy') ||
+						currentTemplateSlug.includes('date')
+					) {
+						templateName = 'Archive';
+					} else if (currentTemplateSlug.includes('404')) {
+						templateName = '404 Not Found';
+					} else if (currentTemplateSlug.includes('home')) {
+						templateName = 'Blog Home';
+					} else if (currentTemplateSlug.includes('front-page')) {
+						templateName = 'Front Page';
+					} else if (currentTemplateSlug.includes('search')) {
+						templateName = 'Search';
+					} else if (currentTemplateSlug.includes('single')) {
+						templateName = 'Single Post';
+					} else {
+						templateName = 'Index';
+					}
+				
+					return templateName;
+				}
+
 				previewGridsDiv.forEach(previewGridDiv => {
 					const gridCards = previewGridDiv.querySelectorAll(
 						':scope > .dataviews-view-grid__card, .block-editor-block-patterns-list__list-item'
@@ -85,12 +116,12 @@ document.addEventListener('DOMContentLoaded', function () {
 						return;
 					}
 
-
+					let isFirstCard = true;
 					gridCards.forEach(card => {
 						if (
 							card.classList.contains('maxiblocks-custom-pattern')
 						)
-							return;
+							{isFirstCard = false; return;}
 						
 						const titleDiv = card.querySelector(
 							'div.edit-site-patterns__pattern-title'
@@ -115,6 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
 								: titleId?.replace('maxiblocks/', '');
 
 							if (modifiedText === idPart) {
+								isFirstCard = false;
 								const src = `${url}${idPart}/preview-${idPart}.webp`;
 								const alt = `${modifiedText} preview image`;
 								const imageToReplace = card.querySelector(
@@ -138,9 +170,33 @@ document.addEventListener('DOMContentLoaded', function () {
 										img.classList.add('maxiblocks-pattern-preview-image');
 										iframeToReplace.parentNode?.insertBefore(img, iframeToReplace);
 										iframeToReplace.style.display = 'none';
-										iframeToReplace.parentNode?.querySelector('img.maxi-blocks-pattern-preview-image')?.style?.display = 'none';
+										let previewImageToHide = iframeToReplace.parentNode?.querySelector('img.maxi-blocks-pattern-preview-image');
+										if (previewImageToHide) {
+											previewImageToHide.style.display = 'none';
+										}
 										card.classList.add('maxiblocks-custom-pattern');
 									}
+								}
+							} else {
+								if (isFirstCard) {
+									isFirstCard = false;
+									const popUpSelectTemplate = document.querySelector('.edit-site-start-template-options__modal');
+									if(!popUpSelectTemplate) return;
+									let currentTemplateSlug =
+										wp.data.select('core/edit-site')?.getEditedPostContext()
+											?.templateSlug ||
+										wp.data.select('core/edit-site')?.getEditedPostId();
+									if(!currentTemplateSlug.includes('maxiblocks//')) return;
+
+									const finalTemplateName = `MaxiBlocks template type: ${getTemplateName(currentTemplateSlug.replace('maxiblocks//', ''))}`;
+								
+									const titleToReplace = card.querySelector('.block-editor-block-patterns-list__item-title');
+									if(!titleToReplace) return;
+
+									titleToReplace.textContent = finalTemplateName;
+									card.classList.add('maxiblocks-custom-pattern');
+
+									
 								}
 							}
 						}
