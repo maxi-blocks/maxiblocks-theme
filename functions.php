@@ -427,7 +427,7 @@ function mbt_frontend_script()
 
 }
 
-add_action('wp_enqueue_scripts', 'mbt_frontend_script');
+//add_action('wp_enqueue_scripts', 'mbt_frontend_script');
 
 function mbt_setup_default_menu()
 {
