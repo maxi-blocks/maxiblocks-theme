@@ -486,6 +486,9 @@ function mbt_setup_default_menu()
 
         // Assign the newly created menu to a theme location
         $locations = get_theme_mod('nav_menu_locations');
+        if (!is_array($locations)) {
+            $locations = array();
+        }
         $locations['primary'] = $menu_id;  // 'primary' is the theme location identifier
         set_theme_mod('nav_menu_locations', $locations);
     }
