@@ -37,6 +37,10 @@ body.maxi-blocks--active .block-editor-block-preview__container:has(.maxi-blocks
 .block-editor-block-patterns-list__item-title {
   display: block !important;
 }
+
+body.maxi-blocks--active :where(.wp-site-blocks) > * {
+  margin-block-start: 0 !important;
+}
 @charset "UTF-8";
 .mbt-notice {
   font-family: 'Roboto', sans-serif;

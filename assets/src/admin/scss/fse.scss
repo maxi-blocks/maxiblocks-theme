@@ -37,4 +37,8 @@ body.maxi-blocks--active {
 		.block-editor-block-patterns-list__item-title {
 		display: block !important;
 	}
+
+	:where(.wp-site-blocks) > * {
+		margin-block-start: 0 !important;
+	}
 }
