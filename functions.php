@@ -202,25 +202,15 @@ function mbt_register_maxi_block_categories()
     
     // Define block pattern categories with labels.
     $block_pattern_categories = array(
-        'mbt-about-page' => array('label' => __('MaxiBlocks about page', 'maxiblocks')),
         'mbt-author-bio' => array('label' => __('MaxiBlocks author bio', 'maxiblocks')),
         'mbt-post-single' => array('label' => __('MaxiBlocks post single', 'maxiblocks')),
         'mbt-homepage' => array('label' => __('MaxiBlocks homepage', 'maxiblocks')),
-        'mbt-services-page' => array('label' => __('MaxiBlocks services page', 'maxiblocks')),
-        'mbt-faq-page' => array('label' => __('MaxiBlocks faq page', 'maxiblocks')),
         'mbt-footer' => array('label' => __('MaxiBlocks footer', 'maxiblocks')),
         'mbt-header-navigation' => array('label' => __('MaxiBlocks header navigation', 'maxiblocks')),
         'mbt-blog-index' => array('label' => __('MaxiBlocks blog index', 'maxiblocks')),
         'mbt-not-found-404' => array('label' => __('MaxiBlocks not found 404', 'maxiblocks')),
         'mbt-all-archives' => array('label' => __('MaxiBlocks all archives', 'maxiblocks')),
-        'mbt-date-archive' => array('label' => __('MaxiBlocks date archive', 'maxiblocks')),
-        'mbt-tag-archive' => array('label' => __('MaxiBlocks tag archive', 'maxiblocks')),
-        'mbt-author-archive' => array('label' => __('MaxiBlocks author archive', 'maxiblocks')),
-        'mbt-category-archive' => array('label' => __('MaxiBlocks category archive', 'maxiblocks')),
-        'mbt-taxonomy-archive' => array('label' => __('MaxiBlocks taxonomy archive', 'maxiblocks')),
         'mbt-search-results' => array('label' => __('MaxiBlocks search results', 'maxiblocks')),
-        'mbt-comments' => array('label' => __('MaxiBlocks comments', 'maxiblocks')),
-        'mbt-sidebar' => array('label' => __('MaxiBlocks sidebar', 'maxiblocks'))
     );
 
     // Allow filtering the block pattern categories.
