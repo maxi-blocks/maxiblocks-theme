@@ -21,10 +21,10 @@ if (!defined('MBT_PATH')) { // path to the root theme folder
     define('MBT_PATH', get_template_directory());
 }
 if (!defined('MBT_MAXI_PATTERNS_PATH')) { // path to the .maxi-patterns folder
-    define('MBT_MAXI_PATTERNS_PATH', get_template_directory() . '/maxi-patterns/');
+    define('MBT_MAXI_PATTERNS_PATH', get_template_directory() . '/patterns/');
 }
 if (!defined('MBT_MAXI_PATTERNS_URL')) {
-    define('MBT_MAXI_PATTERNS_URL', get_template_directory_uri() . '/maxi-patterns/');
+    define('MBT_MAXI_PATTERNS_URL', get_template_directory_uri() . '/patterns/');
 }
 if (!defined('MBT_PATH_BUILD_ADMIN_PHP')) { // path to the /assets/build/admin/php theme folder
     define('MBT_PATH_BUILD_ADMIN_PHP', get_template_directory() . '/assets/build/admin/php');
@@ -240,32 +240,31 @@ function mbt_register_maxi_block_patterns()
         register_block_pattern_category($name, $properties);
     }
 
-    // Get a list of directories inside the maxi-patterns directory.
-    $pattern_directories = mbt_get_maxi_patterns();
+    // // Get a list of directories inside the maxi-patterns directory.
+    // $pattern_directories = mbt_get_maxi_patterns();
 
-    // Allow filtering the block patterns directories.
-    $pattern_directories = apply_filters('mbt_block_pattern_directories', $pattern_directories);
+    // // Allow filtering the block patterns directories.
+    // $pattern_directories = apply_filters('mbt_block_pattern_directories', $pattern_directories);
 
-    // Register each block pattern.
-    foreach ($pattern_directories as $directory_path) {
-        // Extract the block pattern name from the directory path.
-        $block_pattern_name = basename($directory_path);
-
-        // Construct the path to the pattern file.
-        $pattern_file_path = $directory_path . '/pattern.php';
-
-        // Check if the pattern file exists.
-        if (file_exists($pattern_file_path)) {
-            // Check if the block pattern is already registered
-            // Register the block pattern.
-            register_block_pattern(
-                'maxiblocks/' . $block_pattern_name,
-                require $pattern_file_path
-            );
-        } else {
-            error_log(__('MaxiBlocks Theme: Block pattern file not found:', 'maxiblocks') . ' ' . $pattern_file_path);
-        }
-    }
+    // // Register each block pattern.
+    // foreach ($pattern_directories as $directory_path) {
+    //     $pattern_start_time = microtime(true);
+    
+    //     $block_pattern_name = basename($directory_path);
+    //     $pattern_file_path = $directory_path . '/pattern.php';
+    
+    //     if (file_exists($pattern_file_path)) {
+    //         register_block_pattern(
+    //             'maxiblocks/' . $block_pattern_name,
+    //             require $pattern_file_path
+    //         );
+    //     } else {
+    //         error_log(__('MaxiBlocks Theme: Block pattern file not found:', 'maxiblocks') . ' ' . $pattern_file_path);
+    //     }
+    
+    //     $pattern_end_time = microtime(true);
+    //     error_log('Time to load pattern ' . $block_pattern_name . ': ' . round(($pattern_end_time - $pattern_start_time) * 1000, 3) . ' ms');
+    // }
 
 }
 
