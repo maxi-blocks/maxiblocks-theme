@@ -193,21 +193,12 @@ function mbt_get_maxi_patterns()
 }
 
 /**
- * Registers custom block pattern categories and block patterns for MaxiBlocks.
+ * Registers custom block pattern categories for MaxiBlocks.
  *
  * @since MaxiBlocks Theme 1.6.0
  */
-function mbt_register_maxi_block_patterns()
+function mbt_register_maxi_block_categories()
 {
-    
-    // Avoid running during REST API requests and admin non-ajax requests
-    if (defined('REST_REQUEST') && REST_REQUEST) {
-        return;
-    }
-
-    if (is_admin() && !wp_doing_ajax()) {
-        return;
-    }
     
     // Define block pattern categories with labels.
     $block_pattern_categories = array(
@@ -239,37 +230,10 @@ function mbt_register_maxi_block_patterns()
     foreach ($block_pattern_categories as $name => $properties) {
         register_block_pattern_category($name, $properties);
     }
-
-    // // Get a list of directories inside the maxi-patterns directory.
-    // $pattern_directories = mbt_get_maxi_patterns();
-
-    // // Allow filtering the block patterns directories.
-    // $pattern_directories = apply_filters('mbt_block_pattern_directories', $pattern_directories);
-
-    // // Register each block pattern.
-    // foreach ($pattern_directories as $directory_path) {
-    //     $pattern_start_time = microtime(true);
-    
-    //     $block_pattern_name = basename($directory_path);
-    //     $pattern_file_path = $directory_path . '/pattern.php';
-    
-    //     if (file_exists($pattern_file_path)) {
-    //         register_block_pattern(
-    //             'maxiblocks/' . $block_pattern_name,
-    //             require $pattern_file_path
-    //         );
-    //     } else {
-    //         error_log(__('MaxiBlocks Theme: Block pattern file not found:', 'maxiblocks') . ' ' . $pattern_file_path);
-    //     }
-    
-    //     $pattern_end_time = microtime(true);
-    //     error_log('Time to load pattern ' . $block_pattern_name . ': ' . round(($pattern_end_time - $pattern_start_time) * 1000, 3) . ' ms');
-    // }
-
 }
 
 // Hook the function to the init action.
-add_action('init', 'mbt_register_maxi_block_patterns', 100);
+add_action('init', 'mbt_register_maxi_block_categories', 100);
 
 function mbt_after_theme_activation()
 {
