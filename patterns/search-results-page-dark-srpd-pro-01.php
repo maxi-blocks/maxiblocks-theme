@@ -3,7 +3,7 @@
   * Title: Search Results Page Dark SRPD-PRO-01
   * Slug: maxiblocks/search-results-page-dark-srpd-pro-01
   * Categories: mbt-search-results
-  * Template Types: page
+  * Template Types: search
 */
 $path_to_images = MBT_MAXI_PATTERNS_URL . 'search-results-page-dark-srpd-pro-01/images/';?>
 
