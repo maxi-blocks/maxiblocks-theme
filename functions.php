@@ -225,23 +225,12 @@ function mbt_register_maxi_block_categories()
 // Hook the function to the init action.
 add_action('init', 'mbt_register_maxi_block_categories', 100);
 
-function mbt_after_theme_activation()
-{
-    if (!get_option('maxiblocks_theme_db_done')) {
-        mbt_add_styles_meta_fonts_to_db();
-    }
-}
-
-add_action('after_switch_theme', 'mbt_after_theme_activation');
+add_action('after_switch_theme', 'mbt_add_styles_meta_fonts_to_db');
+add_action('activated_plugin', 'mbt_add_styles_meta_fonts_to_db_after_plugin_activation', 10, 2);
 
 function mbt_add_styles_meta_fonts_to_db()
 {
     global $wpdb;
-
-    // Check if the function has already run
-    if (get_option('maxiblocks_theme_db_done')) {
-        return;
-    }
 
     // Check if the necessary tables exist
     $styles_table = "{$wpdb->prefix}maxi_blocks_styles_blocks";
@@ -294,39 +283,48 @@ function mbt_add_styles_meta_fonts_to_db()
                 OBJECT
             );
 
-            if (empty($exists)) {
-                if (strpos($css_value, '_path_to_replace_') !== false) {
-                    $css_value = str_replace('_path_to_replace_', MBT_MAXI_PATTERNS_URL, $css_value);
-                }
-                // Insert a new row into the styles table
+            if (!empty($exists)) {
+                return; // Exit the function if the row already exists
+            }
+
+           
+            if (strpos($css_value, '_path_to_replace_') !== false) {
+                $css_value = str_replace('_path_to_replace_', MBT_MAXI_PATTERNS_URL, $css_value);
+            }
+            // Insert a new row into the styles table
+            $wpdb->insert(
+                $styles_table,
+                array(
+                    'block_style_id' => $unique_id,
+                    'css_value' => $css_value,
+                    'fonts_value' => $fonts_value,
+                    'active_custom_data' => $active_custom_data,
+                ),
+                array('%s', '%s', '%s', '%d')
+            );
+
+            // Insert a new row into the custom data table if custom_data_value is not empty or '[]'
+            if ($custom_data_value !== '') {
                 $wpdb->insert(
-                    $styles_table,
+                    $custom_data_table,
                     array(
                         'block_style_id' => $unique_id,
-                        'css_value' => $css_value,
-                        'fonts_value' => $fonts_value,
-                        'active_custom_data' => $active_custom_data,
+                        'custom_data_value' => $custom_data_value,
                     ),
-                    array('%s', '%s', '%s', '%d')
+                    array('%s', '%s')
                 );
-
-                // Insert a new row into the custom data table if custom_data_value is not empty or '[]'
-                if ($custom_data_value !== '') {
-                    $wpdb->insert(
-                        $custom_data_table,
-                        array(
-                            'block_style_id' => $unique_id,
-                            'custom_data_value' => $custom_data_value,
-                        ),
-                        array('%s', '%s')
-                    );
-                }
             }
+            
         }
     }
 
-    // Set the option to indicate that the function has run
-    update_option('maxiblocks_theme_db_done', true);
+}
+
+function mbt_add_styles_meta_fonts_to_db_after_plugin_activation($plugin, $network_activation)
+{
+    if ($plugin === 'maxi-blocks/plugin.php') {
+        mbt_add_styles_meta_fonts_to_db();
+    }
 }
 
 /** Add widgets support for Customizer **/
