@@ -46,9 +46,13 @@ body.maxi-blocks--active {
 	:where(body .is-layout-constrained) > * {
 		margin-block-start: 0 !important;
 	}
-	.editor-styles-wrapper
+	.editor-styles-wrapper {
 		.is-layout-constrained
-		> :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
-		max-width: 100%;
+			> :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+			max-width: 100%;
+		}
+		.is-root-container > div.wp-block:has(.maxi-block) {
+			max-width: 100%;
+		}
 	}
 }

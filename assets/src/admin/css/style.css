@@ -50,9 +50,12 @@ body.maxi-blocks--active :where(body .is-layout-constrained) > * {
   margin-block-start: 0 !important;
 }
 
-body.maxi-blocks--active .editor-styles-wrapper
-.is-layout-constrained
+body.maxi-blocks--active .editor-styles-wrapper .is-layout-constrained
 > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+  max-width: 100%;
+}
+
+body.maxi-blocks--active .editor-styles-wrapper .is-root-container > div.wp-block:has(.maxi-block) {
   max-width: 100%;
 }
 @charset "UTF-8";
