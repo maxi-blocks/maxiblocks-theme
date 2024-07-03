@@ -55,4 +55,7 @@ body.maxi-blocks--active {
 			max-width: 100%;
 		}
 	}
+	.block-editor-iframe__container:has(.maxiblocks-pattern-preview-image) {
+		overflow: visible;
+	}
 }

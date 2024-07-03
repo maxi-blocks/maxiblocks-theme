@@ -58,6 +58,10 @@ body.maxi-blocks--active .editor-styles-wrapper .is-layout-constrained
 body.maxi-blocks--active .editor-styles-wrapper .is-root-container > div.wp-block:has(.maxi-block) {
   max-width: 100%;
 }
+
+body.maxi-blocks--active .block-editor-iframe__container:has(.maxiblocks-pattern-preview-image) {
+  overflow: visible;
+}
 @charset "UTF-8";
 .mbt-notice {
   font-family: 'Roboto', sans-serif;
