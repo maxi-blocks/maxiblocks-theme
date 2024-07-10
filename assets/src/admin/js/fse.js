@@ -1,4 +1,32 @@
 document.addEventListener('DOMContentLoaded', function () {
+	function getTemplateName(currentTemplateSlug) {
+		// Determine the template name based on currentTemplateSlug
+		let templateName;
+
+		if (
+			currentTemplateSlug.includes('category') ||
+			currentTemplateSlug.includes('tag') ||
+			currentTemplateSlug.includes('author') ||
+			currentTemplateSlug.includes('taxonomy') ||
+			currentTemplateSlug.includes('date')
+		) {
+			templateName = 'Archive';
+		} else if (currentTemplateSlug.includes('404')) {
+			templateName = '404 Not Found';
+		} else if (currentTemplateSlug.includes('home')) {
+			templateName = 'Blog Home';
+		} else if (currentTemplateSlug.includes('front-page')) {
+			templateName = 'Front Page';
+		} else if (currentTemplateSlug.includes('search')) {
+			templateName = 'Search';
+		} else if (currentTemplateSlug.includes('single')) {
+			templateName = 'Single Post';
+		} else {
+			templateName = 'Index';
+		}
+
+		return templateName;
+	}
 	function checkAndReplaceIframe() {
 		const editorPrefix = 'edit-site-patterns-maxiblocks/';
 
@@ -20,39 +48,52 @@ document.addEventListener('DOMContentLoaded', function () {
 			// Construct the full ID by prefixing the editorPrefix
 			const fullId = `${editorPrefix}${idPart}`;
 
+			if (idPart === 'search-results') console.log('Full ID:', fullId);
+
 			// Get the button by ID
-			const button = document.getElementById(fullId);
+			const button = document.getElementById(fullId) || document.getElementById(idPart);
+
+			if (idPart === 'search-results') console.log('Button:', button);
 
 			// If the button exists, add it to the buttons array
 			if (
 				button &&
-				!button.classList.contains('maxiblocks-custom-pattern')
+				!button.classList.contains('maxiblocks-custom-pattern') &&
+				!button.classList.contains('query-results')
 			) {
 				const iframe = button.querySelector('iframe');
 				const image = button.querySelector(
 					'.maxi-blocks-pattern-preview img'
 				);
-                
+
 				const imgSrc = `${url}${idPart}/preview-${idPart}.webp`;
 				const imgAlt = `${idPart} preview image`;
 
+				if (idPart === 'search-results') {
+					console.log('Image:', image);
+					console.log('Iframe:', iframe);
+				}
+
 				if (iframe || image) {
-                    button.classList.add('maxiblocks-custom-pattern');
+					button.classList.add('maxiblocks-custom-pattern');
 					const img = new Image();
 					img.src = `${imgSrt}?ver=${version}`;
 					img.alt = imgAlt;
 					img.classList.add('maxiblocks-pattern-preview-image');
 
-
 					// Get the direct parent of the iframe
 					if (iframe) {
 						const iframeParent = iframe?.parentNode;
-						if(!iframeParent) {return;}
-						
+						if (!iframeParent) {
+							return;
+						}
+
 						try {
 							iframeParent.insertBefore(img, iframe);
 							iframe.style.display = 'none';
-							let previewImageToHide = iframeParent.querySelector('img.maxi-blocks-pattern-preview-image')
+							let previewImageToHide = iframeParent.querySelector(
+								'img.maxi-blocks-pattern-preview-image'
+							);
 							if (previewImageToHide) {
 								previewImageToHide.style.display = 'none';
 							}
@@ -61,14 +102,14 @@ document.addEventListener('DOMContentLoaded', function () {
 								'Error replacing iframe with image:',
 								error
 							);
-							
 						}
 					} else {
 						if (image) {
 							image.src = imgSrc;
 							image.alt = imgAlt;
-							image.classList.add('maxiblocks-pattern-preview-image');
-
+							image.classList.add(
+								'maxiblocks-pattern-preview-image'
+							);
 						}
 					}
 				}
@@ -80,35 +121,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 				if (!previewGridsDiv || previewGridsDiv.length === 0) {
 					return;
-				}
-
-				function getTemplateName(currentTemplateSlug) {
-					// Determine the template name based on currentTemplateSlug
-					let templateName;
-				
-					if (
-						currentTemplateSlug.includes('category') ||
-						currentTemplateSlug.includes('tag') ||
-						currentTemplateSlug.includes('author') ||
-						currentTemplateSlug.includes('taxonomy') ||
-						currentTemplateSlug.includes('date')
-					) {
-						templateName = 'Archive';
-					} else if (currentTemplateSlug.includes('404')) {
-						templateName = '404 Not Found';
-					} else if (currentTemplateSlug.includes('home')) {
-						templateName = 'Blog Home';
-					} else if (currentTemplateSlug.includes('front-page')) {
-						templateName = 'Front Page';
-					} else if (currentTemplateSlug.includes('search')) {
-						templateName = 'Search';
-					} else if (currentTemplateSlug.includes('single')) {
-						templateName = 'Single Post';
-					} else {
-						templateName = 'Index';
-					}
-				
-					return templateName;
 				}
 
 				previewGridsDiv.forEach(previewGridDiv => {
@@ -124,23 +136,28 @@ document.addEventListener('DOMContentLoaded', function () {
 					gridCards.forEach(card => {
 						if (
 							card.classList.contains('maxiblocks-custom-pattern')
-						)
-							{isFirstCard = false; return;}
-						
+						) {
+							isFirstCard = false;
+							return;
+						}
+
 						const titleDiv = card.querySelector(
 							'div.edit-site-patterns__pattern-title'
-						);
+						) || card.querySelector('div.dataviews-view-grid__title-actions');
 						let titleId = card.querySelector(
 							'div.block-editor-block-patterns-list__item'
 						)?.id;
-                        if (titleId && !titleId.includes('maxiblocks/')) {
-                            titleId = card.querySelector(
-                                'div.block-editor-block-patterns-list__item'
-                            )?.getAttribute('aria-label')?.toLowerCase()
-                            ?.replace(/\s+/g, '-');
-                        }
+						if (idPart === 'search-results') console.log('Title ID:', titleId);
+						if (titleId && !titleId.includes('maxiblocks/')) {
+							titleId = card
+								.querySelector(
+									'div.block-editor-block-patterns-list__item'
+								)
+								?.getAttribute('aria-label')
+								?.toLowerCase()
+								?.replace(/\s+/g, '-');
+						}
 
-						
 						if (titleDiv || titleId) {
 							// Get the text, convert to lowercase, and replace spaces with dashes
 							const modifiedText = titleDiv
@@ -148,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function () {
 										?.toLowerCase()
 										?.replace(/\s+/g, '-')
 								: titleId?.replace('maxiblocks/', '');
-
+								if (idPart === 'search-results') console.log('Modified text:', modifiedText);
 							if (modifiedText === idPart) {
 								isFirstCard = false;
 								const src = `${url}${idPart}/preview-${idPart}.webp`;
@@ -160,47 +177,84 @@ document.addEventListener('DOMContentLoaded', function () {
 								if (imageToReplace) {
 									imageToReplace.src = src;
 									imageToReplace.alt = alt;
-									imageToReplace.classList.add('maxiblocks-pattern-preview-image');
-									card.classList.add('maxiblocks-custom-pattern');
+									imageToReplace.classList.add(
+										'maxiblocks-pattern-preview-image'
+									);
+									card.classList.add(
+										'maxiblocks-custom-pattern'
+									);
 								} else {
 									iframeToReplace = card.querySelector(
 										'.block-editor-block-preview__container iframe'
 									);
 									if (iframeToReplace) {
-										if(!iframeToReplace?.parentNode) {return;}
+										if (!iframeToReplace?.parentNode) {
+											return;
+										}
 										const img = new Image();
 										img.src = `${src}?ver=${version}`;
 										img.alt = alt;
-										img.classList.add('maxiblocks-pattern-preview-image');
-										iframeToReplace.parentNode?.insertBefore(img, iframeToReplace);
+										img.classList.add(
+											'maxiblocks-pattern-preview-image'
+										);
+										iframeToReplace.parentNode?.insertBefore(
+											img,
+											iframeToReplace
+										);
 										iframeToReplace.style.display = 'none';
-										let previewImageToHide = iframeToReplace.parentNode?.querySelector('img.maxi-blocks-pattern-preview-image');
+										let previewImageToHide =
+											iframeToReplace.parentNode?.querySelector(
+												'img.maxi-blocks-pattern-preview-image'
+											);
 										if (previewImageToHide) {
-											previewImageToHide.style.display = 'none';
+											previewImageToHide.style.display =
+												'none';
 										}
-										card.classList.add('maxiblocks-custom-pattern');
+										card.classList.add(
+											'maxiblocks-custom-pattern'
+										);
 									}
 								}
 							} else {
 								if (isFirstCard) {
 									isFirstCard = false;
-									const popUpSelectTemplate = document.querySelector('.edit-site-start-template-options__modal');
-									if(!popUpSelectTemplate) return;
+									const popUpSelectTemplate =
+										document.querySelector(
+											'.edit-site-start-template-options__modal'
+										);
+									if (!popUpSelectTemplate) return;
 									let currentTemplateSlug =
-										wp.data.select('core/edit-site')?.getEditedPostContext()
+										wp.data
+											.select('core/edit-site')
+											?.getEditedPostContext()
 											?.templateSlug ||
-										wp.data.select('core/edit-site')?.getEditedPostId();
-									if(!currentTemplateSlug.includes('maxiblocks//')) return;
+										wp.data
+											.select('core/edit-site')
+											?.getEditedPostId();
+									if (
+										!currentTemplateSlug.includes(
+											'maxiblocks//'
+										)
+									)
+										return;
 
-									const finalTemplateName = `MaxiBlocks template type: ${getTemplateName(currentTemplateSlug.replace('maxiblocks//', ''))}`;
-								
-									const titleToReplace = card.querySelector('.block-editor-block-patterns-list__item-title');
-									if(!titleToReplace) return;
+									const finalTemplateName = `MaxiBlocks template type: ${getTemplateName(
+										currentTemplateSlug.replace(
+											'maxiblocks//',
+											''
+										)
+									)}`;
 
-									titleToReplace.textContent = finalTemplateName;
-									card.classList.add('maxiblocks-custom-pattern');
+									const titleToReplace = card.querySelector(
+										'.block-editor-block-patterns-list__item-title'
+									);
+									if (!titleToReplace) return;
 
-									
+									titleToReplace.textContent =
+										finalTemplateName;
+									card.classList.add(
+										'maxiblocks-custom-pattern'
+									);
 								}
 							}
 						}
@@ -212,6 +266,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	// Set an interval to periodically check for the button and the iframe
 	const checkInterval = setInterval(checkAndReplaceIframe, 500); // Check every 500 milliseconds
-
-	
 });
