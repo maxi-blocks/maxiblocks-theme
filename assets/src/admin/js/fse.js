@@ -36,8 +36,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			return;
 		}
 
-		console.log('Directories:', directories);
-
 		const version = '1.0.1'; // increment this version if you want to reset preview images cache
 
 		// Loop through the directories to extract the IDs and get the buttons
@@ -48,12 +46,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			// Construct the full ID by prefixing the editorPrefix
 			const fullId = `${editorPrefix}${idPart}`;
 
-			if (idPart === 'search-results') console.log('Full ID:', fullId);
-
 			// Get the button by ID
 			const button = document.getElementById(fullId) || document.getElementById(idPart);
-
-			if (idPart === 'search-results') console.log('Button:', button);
 
 			// If the button exists, add it to the buttons array
 			if (
@@ -68,11 +62,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 				const imgSrc = `${url}${idPart}/preview-${idPart}.webp`;
 				const imgAlt = `${idPart} preview image`;
-
-				if (idPart === 'search-results') {
-					console.log('Image:', image);
-					console.log('Iframe:', iframe);
-				}
 
 				if (iframe || image) {
 					button.classList.add('maxiblocks-custom-pattern');
@@ -147,7 +136,6 @@ document.addEventListener('DOMContentLoaded', function () {
 						let titleId = card.querySelector(
 							'div.block-editor-block-patterns-list__item'
 						)?.id;
-						if (idPart === 'search-results') console.log('Title ID:', titleId);
 						if (titleId && !titleId.includes('maxiblocks/')) {
 							titleId = card
 								.querySelector(
@@ -165,7 +153,6 @@ document.addEventListener('DOMContentLoaded', function () {
 										?.toLowerCase()
 										?.replace(/\s+/g, '-')
 								: titleId?.replace('maxiblocks/', '');
-								if (idPart === 'search-results') console.log('Modified text:', modifiedText);
 							if (modifiedText === idPart) {
 								isFirstCard = false;
 								const src = `${url}${idPart}/preview-${idPart}.webp`;

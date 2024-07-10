@@ -9,7 +9,7 @@
  */
 
 if (!defined('MBT_DEBUG')) {  // Set to false in production
-    define('MBT_DEBUG', true);
+    define('MBT_DEBUG', false);
 }
 if (!defined('MBT_VERSION')) {
     define('MBT_VERSION', wp_get_theme()->get('Version'));
