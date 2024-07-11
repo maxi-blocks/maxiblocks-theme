@@ -1,47 +1,51 @@
 {
-    "name": "maxiblocks",
-    "version": "1.0.0",
-    "description": "=== MaxiBlocks Theme ===",
-    "main": "index.js",
-    "scripts": {
-        "build-frontend-scss": "node-sass --output-style expanded assets/src/frontend/scss/ -o assets/build/frontend/css/",
-        "combine-frontend-css": "cat assets/build/frontend/css/*.css > assets/build/frontend/css/temp_frontend_combined.css",
-        "minify-frontend-css": "cleancss -o assets/build/frontend/css/styles.min.css assets/build/frontend/css/temp_frontend_combined.css && rm assets/build/frontend/css/temp_frontend_combined.css",
-        "combine-frontend-js": "cat assets/src/frontend/js/*.js > assets/build/frontend/js/temp_frontend_combined.js",
-        "minify-frontend-js": "terser assets/build/frontend/js/temp_frontend_combined.js --output assets/build/frontend/js/scripts.min.js && rm assets/build/frontend/js/temp_frontend_combined.js",
-        "copy-frontend-php": "cp -R assets/src/frontend/php/* assets/build/frontend/php/",
-        "copy-frontend-images": "cp -R assets/src/frontend/images/* assets/build/frontend/images/",
-        "build-frontend": "npm run build-frontend-scss && npm run combine-frontend-css && npm run minify-frontend-css && npm run combine-frontend-js && npm run minify-frontend-js && npm run copy-frontend-php && npm run copy-frontend-images",
-        "build-admin-scss": "node-sass --output-style expanded assets/src/admin/scss/ -o assets/build/admin/css/",
-        "combine-admin-css": "cat assets/build/admin/css/*.css > assets/build/admin/css/temp_admin_combined.css",
-        "combine-admin-scss": "node-sass --output-style expanded assets/src/admin/scss/ -o assets/temp/admin/css/ && cat assets/temp/admin/css/*.css > assets/src/admin/css/style.css && rm -r assets/temp/admin",
-        "minify-admin-css": "cleancss -o assets/build/admin/css/styles.min.css assets/build/admin/css/temp_admin_combined.css && rm assets/build/admin/css/temp_admin_combined.css",
-        "minify-admin-js": "for file in assets/src/admin/js/*.js; do terser \"$file\" --compress --mangle --output \"assets/build/admin/js/$(basename $file)\"; done",
-        "copy-admin-php": "cp -R assets/src/admin/php/* assets/build/admin/php/",
-        "copy-admin-images": "cp -R assets/src/admin/images/* assets/build/admin/images/",
-        "build-admin": "npm run build-admin-scss && npm run combine-admin-css && npm run minify-admin-css && npm run combine-admin-scss && npm run minify-admin-js && npm run copy-admin-php && npm run copy-admin-images",
-        "build": "npm run build-frontend && npm run build-admin",
-        "start-frontend": "concurrently \"nodemon --watch assets/src/frontend/scss/ --ext scss --exec 'npm run build-frontend'\" \"nodemon --watch assets/src/frontend/js/ --ext js --exec 'npm run build-frontend'\" \"nodemon --watch assets/src/frontend/php/ --ext php --exec 'npm run build-frontend'\" \"nodemon --watch assets/src/frontend/images/ --exec 'npm run build-frontend'\"",
-        "start-admin": "concurrently \"nodemon --watch assets/src/admin/scss/ --ext scss --exec 'npm run build-admin'\" \"nodemon --watch assets/src/admin/js/ --ext js --exec 'npm run build-admin'\" \"nodemon --watch assets/src/admin/php/ --ext php --exec 'npm run build-admin'\" \"nodemon --watch assets/src/admin/images/ --exec 'npm run build-admin'\"",
-        "start": "concurrently \"npm run start-frontend\" \"npm run start-admin\""
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/maxi-blocks/maxiblocks-theme.git"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/maxi-blocks/maxiblocks-theme/issues"
-    },
-    "homepage": "https://github.com/maxi-blocks/maxiblocks-theme#readme",
-    "devDependencies": {
-        "clean-css-cli": "^5.6.3",
-        "concurrently": "^8.2.2",
-        "node-sass": "^9.0.0",
-        "nodemon": "^3.0.2",
-        "terser": "^5.26.0",
-        "uglify-js": "^3.17.4"
-    }
+	"name": "maxiblocks",
+	"version": "1.0.0",
+	"description": "=== MaxiBlocks Theme ===",
+	"main": "index.js",
+	"scripts": {
+		"build-frontend-scss": "node-sass --output-style expanded assets/src/frontend/scss/ -o assets/build/frontend/css/",
+		"combine-frontend-css": "concat assets/build/frontend/css/*.css > assets/build/frontend/css/temp_frontend_combined.css",
+		"minify-frontend-css": "cleancss -o assets/build/frontend/css/styles.min.css assets/build/frontend/css/temp_frontend_combined.css && rimraf assets/build/frontend/css/temp_frontend_combined.css",
+		"combine-frontend-js": "node -e \"const glob = require('glob'); const fs = require('fs'); const files = glob.sync('assets/src/frontend/js/*.js'); if (files.length > 0) { const concatenated = files.map(file => fs.readFileSync(file, 'utf8')).join('\\n'); fs.writeFileSync('assets/build/frontend/js/temp_frontend_combined.js', concatenated); console.log('Frontend JavaScript files concatenated.'); } else { console.log('No frontend JavaScript files found. Skipping concatenation.'); }\"",
+		"minify-frontend-js": "node -e \"const fs = require('fs'); const terser = require('terser'); if (fs.existsSync('assets/build/frontend/js/temp_frontend_combined.js')) { const code = fs.readFileSync('assets/build/frontend/js/temp_frontend_combined.js', 'utf8'); const minified = terser.minify(code); if (minified.error) { console.error('Error during minification:', minified.error); process.exit(1); } else if (minified.code) { fs.writeFileSync('assets/build/frontend/js/scripts.min.js', minified.code); fs.unlinkSync('assets/build/frontend/js/temp_frontend_combined.js'); console.log('Frontend JavaScript files minified.'); } else { console.log('No frontend JavaScript files found. Skipping minification.'); } } else { console.log('No frontend JavaScript files found. Skipping minification.'); }\"",
+		"copy-frontend-php": "copyfiles -u 3 assets/src/frontend/php/**/* assets/build/frontend/php/",
+		"copy-frontend-images": "copyfiles -u 3 assets/src/frontend/images/**/* assets/build/frontend/images/",
+		"build-frontend": "npm run build-frontend-scss && npm run combine-frontend-css && npm run minify-frontend-css && npm run combine-frontend-js && npm run minify-frontend-js && npm run copy-frontend-php && npm run copy-frontend-images",
+		"build-admin-scss": "node-sass --output-style expanded assets/src/admin/scss/ -o assets/build/admin/css/",
+		"combine-admin-css": "concat assets/build/admin/css/*.css > assets/build/admin/css/temp_admin_combined.css",
+		"combine-admin-scss": "node-sass --output-style expanded assets/src/admin/scss/ -o assets/temp/admin/css/ && concat assets/temp/admin/css/*.css > assets/src/admin/css/style.css && rimraf assets/temp/admin",
+		"minify-admin-css": "cleancss -o assets/build/admin/css/styles.min.css assets/build/admin/css/temp_admin_combined.css && rimraf assets/build/admin/css/temp_admin_combined.css",
+		"minify-admin-js": "for file in assets/src/admin/js/*.js; do terser \"$file\" --compress --mangle --output \"assets/build/admin/js/$(basename $file)\"; done",
+		"copy-admin-php": "copyfiles -u 3 assets/src/admin/php/**/* assets/build/admin/php/",
+		"copy-admin-images": "copyfiles -u 3 assets/src/admin/images/**/* assets/build/admin/images/",
+		"build-admin": "npm run build-admin-scss && npm run combine-admin-css && npm run minify-admin-css && npm run combine-admin-scss && npm run minify-admin-js && npm run copy-admin-php && npm run copy-admin-images",
+		"build": "npm run build-frontend && npm run build-admin",
+		"start-frontend": "concurrently \"nodemon --watch assets/src/frontend/scss/ --ext scss --exec 'npm run build-frontend'\" \"nodemon --watch assets/src/frontend/js/ --ext js --exec 'npm run build-frontend'\" \"nodemon --watch assets/src/frontend/php/ --ext php --exec 'npm run build-frontend'\" \"nodemon --watch assets/src/frontend/images/ --exec 'npm run build-frontend'\"",
+		"start-admin": "concurrently \"nodemon --watch assets/src/admin/scss/ --ext scss --exec 'npm run build-admin'\" \"nodemon --watch assets/src/admin/js/ --ext js --exec 'npm run build-admin'\" \"nodemon --watch assets/src/admin/php/ --ext php --exec 'npm run build-admin'\" \"nodemon --watch assets/src/admin/images/ --exec 'npm run build-admin'\"",
+		"start": "concurrently \"npm run start-frontend\" \"npm run start-admin\""
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/maxi-blocks/maxiblocks-theme.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/maxi-blocks/maxiblocks-theme/issues"
+	},
+	"homepage": "https://github.com/maxi-blocks/maxiblocks-theme#readme",
+	"devDependencies": {
+		"clean-css-cli": "^5.6.3",
+		"concat": "^1.0.3",
+		"concurrently": "^8.2.2",
+		"copyfiles": "^2.4.1",
+		"glob": "^11.0.0",
+		"node-sass": "^9.0.0",
+		"nodemon": "^3.0.2",
+		"rimraf": "^6.0.1",
+		"terser": "^5.26.0",
+		"uglify-js": "^3.17.4"
+	}
 }

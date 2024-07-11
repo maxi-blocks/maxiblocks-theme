@@ -62,6 +62,7 @@ body.maxi-blocks--active .editor-styles-wrapper .is-root-container > div.wp-bloc
 body.maxi-blocks--active .block-editor-iframe__container:has(.maxiblocks-pattern-preview-image) {
   overflow: visible;
 }
+
 @charset "UTF-8";
 .mbt-notice {
   font-family: 'Roboto', sans-serif;
@@ -300,3 +301,4 @@ body.maxi-blocks--active .block-editor-iframe__container:has(.maxiblocks-pattern
     line-height: normal;
   }
 }
+
