@@ -4,7 +4,7 @@
  *
  * @package MaxiBlocks Theme
  * @author MaxiBlocks Team
- * @since 1.6.0
+ * @since 1.0.0
  */
 
 if (! defined('ABSPATH')) {
@@ -29,7 +29,7 @@ add_action('wp_ajax_maxiblocks-theme-dismiss-plugin-notice', 'mbt_close_install_
  * and then enqueues the necessary JavaScript file (minified or unminified based on the debug mode).
  * It also outputs HTML markup for the notice, including dynamic text and URLs.
  *
- * @since 1.6.0
+ * @since 1.0.0
  * @return void
  */
 function mbt_render_install_plugin_notice()
@@ -98,7 +98,7 @@ function mbt_render_install_plugin_notice()
 /**
  * Close install notice.
  *
- * @since 1.6.0
+ * @since 1.0.0
  */
 function mbt_close_install_plugin_notice()
 {
@@ -122,7 +122,7 @@ function mbt_close_install_plugin_notice()
  * - Ensures the notice is only shown on specific admin pages (dashboard and themes).
  * - Excludes AJAX requests, network admin, users without specific capabilities, and block editor context.
  *
- * @since 1.6.0
+ * @since 1.0.0
  * @return bool True if the notice should be displayed, false otherwise.
  */
 function mbt_plugin_notice_display()
@@ -157,7 +157,7 @@ function mbt_plugin_notice_display()
  * - 'installed' if the plugin is installed but not active.
  * - 'not-installed' if the plugin is not installed.
  *
- * @since 1.6.0
+ * @since 1.0.0
  * @return string The status of the MaxiBlocks plugin.
  */
 function mbt_is_maxiblocks_plugin_status()
@@ -182,7 +182,7 @@ function mbt_is_maxiblocks_plugin_status()
 /**
  * Localize js.
  *
- * @since 1.6.0
+ * @since 1.0.0
  * @param string $plugin_status plugin current status.
  * @return array
  */

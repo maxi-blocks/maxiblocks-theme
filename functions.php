@@ -9,7 +9,7 @@
  */
 
 if (!defined('MBT_DEBUG')) {  // Set to false in production
-    define('MBT_DEBUG', false);
+    define('MBT_DEBUG', true);
 }
 if (!defined('MBT_VERSION')) {
     define('MBT_VERSION', wp_get_theme()->get('Version'));
@@ -20,11 +20,17 @@ if (!defined('MBT_PREFIX')) {
 if (!defined('MBT_PATH')) { // path to the root theme folder
     define('MBT_PATH', get_template_directory());
 }
-if (!defined('MBT_MAXI_PATTERNS_PATH')) { // path to the .maxi-patterns folder
-    define('MBT_MAXI_PATTERNS_PATH', get_template_directory() . '/patterns/');
+if (!defined('MBT_MAXI_PATTERNS_PATH')) { // path to the maxi/patterns folder
+    define('MBT_MAXI_PATTERNS_PATH', get_template_directory() . '/maxi/patterns/');
 }
 if (!defined('MBT_MAXI_PATTERNS_URL')) {
-    define('MBT_MAXI_PATTERNS_URL', get_template_directory_uri() . '/patterns/');
+    define('MBT_MAXI_PATTERNS_URL', get_template_directory_uri() . '/maxi/patterns/');
+}
+if (!defined('MBT_MAXI_TEMPLATES_PATH')) { // path to the maxi/templates folder
+    define('MBT_MAXI_TEMPLATES_PATH', get_template_directory() . '/maxi/templates/');
+}
+if (!defined('MBT_MAXI_PARTS_PATH')) { // path to the maxi/parts folder
+    define('MBT_MAXI_PARTS_PATH', get_template_directory() . '/maxi/parts/');
 }
 if (!defined('MBT_PATH_BUILD_ADMIN_PHP')) { // path to the /assets/build/admin/php theme folder
     define('MBT_PATH_BUILD_ADMIN_PHP', get_template_directory() . '/assets/build/admin/php');
