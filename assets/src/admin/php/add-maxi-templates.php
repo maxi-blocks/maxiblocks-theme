@@ -73,7 +73,7 @@ function mbt_render_templates_notice()
                 <?php esc_html_e('Please import MaxiBlocks templates and patterns', 'maxiblocks');?>
                 </h2>
                 <p class="mbt-notice__description">
-                    <?php esc_html_e('Important: MaxiBlocks templates and template parts will replace current MaxiTheme templates and template parts', 'maxiblocks'); ?>
+                    <?php esc_html_e('Important: MaxiBlocks templates and template parts will replace current MaxiBlocks theme templates and template parts', 'maxiblocks'); ?>
                 </p>
                 <div class="mbt-notice__actions">
                     <button id="mbt-notice-import-templates-patterns" class="mbt-button mbt-button--primary mbt-button--hero" onclick="mbt_copy_patterns()">
