@@ -167,7 +167,7 @@ function mbt_localize_templates_notice_js($plugin_status)
 }
 
 /**
- * Copies the content of a source directory to a destination directory.
+ * Copies the files from a source directory to a destination directory.
  *
  * @since 1.1.0
  * @param string $source_dir The source directory path.
@@ -180,47 +180,46 @@ function mbt_copy_directory($source_dir, $destination_dir)
 
     // Check if the source directory exists and is readable
     if (!is_dir($source_dir) || !is_readable($source_dir)) {
-        error_log("Source directory does not exist or is not readable: $source_dir");
-        wp_send_json_error("Source directory does not exist or is not readable");
+        error_log(sprintf(__("Source directory does not exist or is not readable: %s", 'maxiblocks'), $source_dir));
+        wp_send_json_error(sprintf(__("Source directory does not exist or is not readable: %s", 'maxiblocks'), $source_dir));
         return;
     }
 
     // Check if the destination directory is writable
     if (!wp_is_writable($destination_dir)) {
-        error_log("Destination directory is not writable: $destination_dir");
-        wp_send_json_error("Destination directory is not writable");
+        error_log(sprintf(__("Destination directory is not writable: %s", 'maxiblocks'), $destination_dir));
+        wp_send_json_error(sprintf(__("Destination directory is not writable: %s", 'maxiblocks'), $destination_dir));
         return;
     }
 
-    // Recursive function to copy directories and files
-    $copy_recursive = function ($src, $dst) use (&$copy_recursive) {
-        $dir = opendir($src);
-        if ($dir) {
-            wp_mkdir_p($dst);
-            while (false !== ($file = readdir($dir))) {
-                if (($file != '.') && ($file != '..')) {
-                    $source_path = $src . '/' . $file;
-                    $destination_path = $dst . '/' . $file;
-                    if (is_dir($source_path)) {
-                        $copy_recursive($source_path, $destination_path);
+    // Create the destination directory if it doesn't exist
+    wp_mkdir_p($destination_dir);
+
+    // Open the source directory
+    $dir = opendir($source_dir);
+    if ($dir) {
+        // Loop through the files in the source directory
+        while (false !== ($file = readdir($dir))) {
+            // Skip . and .. entries
+            if (($file != '.') && ($file != '..')) {
+                $source_path = $source_dir . '/' . $file;
+                $destination_path = $destination_dir . '/' . $file;
+
+                // Copy only files, ignore subdirectories
+                if (is_file($source_path)) {
+                    if (copy($source_path, $destination_path)) {
+                        error_log(sprintf(__("Copied file: %s to %s", 'maxiblocks'), $source_path, $destination_path));
                     } else {
-                        if (copy($source_path, $destination_path)) {
-                            error_log("Copied file: $source_path to $destination_path");
-                        } else {
-                            error_log("Failed to copy file: $source_path to $destination_path");
-                        }
+                        error_log(sprintf(__("Failed to copy file: %s to %s", 'maxiblocks'), $source_path, $destination_path));
                     }
                 }
             }
-            closedir($dir);
-        } else {
-            error_log("Failed to open directory: $src");
-            wp_send_json_error("Failed to open directory: $src");
         }
-    };
-
-    // Call the recursive function to copy the directory structure
-    $copy_recursive($source_dir, $destination_dir);
+        closedir($dir);
+    } else {
+        error_log(sprintf(__("Failed to open directory: %s", 'maxiblocks'), $source_dir));
+        wp_send_json_error(sprintf(__("Failed to open directory: %s", 'maxiblocks'), $source_dir));
+    }
 }
 
 /**
