@@ -140,6 +140,7 @@ body.maxi-blocks--active .block-editor-iframe__container:has(.maxiblocks-pattern
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 30px;
 }
 
 .mbt-notice__actions .mbt-button__icon {

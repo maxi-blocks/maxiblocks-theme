@@ -20,7 +20,7 @@ if (!defined('MBT_TEMPLATE_NOTICE_DISMISS')) {
 }
 
 add_action('admin_notices', 'mbt_render_templates_notice', 0);
-add_action('wp_ajax_maxiblocks-theme-dismiss-plugin-notice', 'mbt_close_templates_notice');
+add_action('wp_ajax_maxiblocks-theme-dismiss-templates-notice', 'mbt_close_templates_notice');
 
 /**
  * Renders the installation notice for the MaxiBlocks plugin.
@@ -92,8 +92,8 @@ function mbt_render_templates_notice()
 </div>
 
 <?php
-        // Output the buffered content.
-        echo wp_kses_post(ob_get_clean());
+    // Output the buffered content.
+    echo wp_kses_post(ob_get_clean());
 }
 
 /**
@@ -115,6 +115,20 @@ function mbt_close_templates_notice()
 }
 
 /**
+ * Checks if the 404.html and archive.html files exist in the /templates folder.
+ *
+ * @since 1.0.0
+ * @return bool True if both files exist, false otherwise.
+ */
+function mbt_check_template_files_exist()
+{
+    $template_404_path = get_stylesheet_directory() . '/templates/404.html';
+    $template_archive_path = get_stylesheet_directory() . '/templates/archive.html';
+
+    return file_exists($template_404_path) && file_exists($template_archive_path);
+}
+
+/**
  * Determines if a plugin notice should be displayed.
  *
  * The function checks several conditions to determine if the notice should be shown:
@@ -122,6 +136,7 @@ function mbt_close_templates_notice()
  * - Checks if the notice has been dismissed by the user.
  * - Ensures the notice is only shown on specific admin pages (dashboard and themes).
  * - Excludes AJAX requests, network admin, users without specific capabilities, and block editor context.
+ * - Checks if the 404.html and archive.html files exist in the /templates folder.
  *
  * @since 1.0.0
  * @return bool True if the notice should be displayed, false otherwise.
@@ -146,6 +161,11 @@ function mbt_templates_notice_display()
         return false;
     }
 
+    // Check if the 404.html and archive.html files exist in the /templates folder.
+    if (mbt_check_template_files_exist()) {
+        return false;
+    }
+
     return true;
 }
 
@@ -161,8 +181,10 @@ function mbt_localize_templates_notice_js($plugin_status)
 
     return array(
         'nonce'        => wp_create_nonce(MBT_TEMPLATE_NOTICE_DISMISS . '-nonce'),
-        'ajaxurl'      => admin_url('admin-ajax.php'),
+        'ajaxUrl'      => admin_url('admin-ajax.php'),
         'pluginStatus' => $plugin_status,
+        'importing'    => __('Importing..', 'maxiblocks') . ' &#9203;',
+        'done'          => __('Done', 'maxiblocks') . ' &#10003;',
     );
 }
 
@@ -177,6 +199,9 @@ function mbt_localize_templates_notice_js($plugin_status)
 function mbt_copy_directory($source_dir, $destination_dir)
 {
     require_once ABSPATH . 'wp-admin/includes/file.php';
+
+    // Remove trailing slash from source directory if it exists
+    $source_dir = rtrim($source_dir, '/');
 
     // Check if the source directory exists and is readable
     if (!is_dir($source_dir) || !is_readable($source_dir)) {
@@ -222,6 +247,157 @@ function mbt_copy_directory($source_dir, $destination_dir)
     }
 }
 
+function mbt_add_styles_meta_fonts_to_db()
+{
+    global $wpdb;
+
+    // Check if the necessary tables exist
+    $styles_table = "{$wpdb->prefix}maxi_blocks_styles_blocks";
+    $custom_data_table = "{$wpdb->prefix}maxi_blocks_custom_data_blocks";
+
+    if ($wpdb->get_var("SHOW TABLES LIKE '$styles_table'") != $styles_table ||
+        $wpdb->get_var("SHOW TABLES LIKE '$custom_data_table'") != $custom_data_table) {
+        return;
+    }
+
+    $db_folder = MBT_PATH . '/maxi/db/';
+
+    // Check if the 'db' folder exists
+    if (is_dir($db_folder)) {
+        // Get all JSON files in the 'db' folder
+        $json_files = glob($db_folder . '*.json');
+
+        foreach ($json_files as $json_file) {
+            // Read the JSON file contents
+            $json_data = file_get_contents($json_file);
+
+            // Decode the JSON data
+            $data = json_decode($json_data, true);
+
+            // Extract the necessary information from the decoded data
+            $unique_id = $data['block_style_id'] ?? '';
+            if ($unique_id === '') {
+                continue;
+            }
+            
+            $css_value = $data['css_value'] ?? '';
+            $fonts_value = $data['fonts_value'] ?? '';
+            if ($css_value === '' && $fonts_value === '') {
+                continue;
+            }
+
+            $active_custom_data = $data['active_custom_data'] ?? 0;
+            $custom_data_value = $data['custom_data_value'] ?? '';
+
+            if ($custom_data_value === '' || $custom_data_value === '[]') {
+                $custom_data_value = '';
+            }
+
+            // Check if a row with the same unique_id already exists
+            $exists = $wpdb->get_row(
+                $wpdb->prepare(
+                    "SELECT * FROM $styles_table WHERE block_style_id = %s",
+                    $unique_id
+                ),
+                OBJECT
+            );
+
+            if (!empty($exists)) {
+                return; // Exit the function if the row already exists
+            }
+
+           
+            if (strpos($css_value, '_path_to_replace_') !== false) {
+                $css_value = str_replace('_path_to_replace_', MBT_MAXI_PATTERNS_URL, $css_value);
+            }
+            // Insert a new row into the styles table
+            $wpdb->insert(
+                $styles_table,
+                array(
+                    'block_style_id' => $unique_id,
+                    'css_value' => $css_value,
+                    'fonts_value' => $fonts_value,
+                    'active_custom_data' => $active_custom_data,
+                ),
+                array('%s', '%s', '%s', '%d')
+            );
+
+            // Insert a new row into the custom data table if custom_data_value is not empty or '[]'
+            if ($custom_data_value !== '') {
+                $wpdb->insert(
+                    $custom_data_table,
+                    array(
+                        'block_style_id' => $unique_id,
+                        'custom_data_value' => $custom_data_value,
+                    ),
+                    array('%s', '%s')
+                );
+            }
+            
+        }
+    }
+
+}
+
+function mbt_register_patterns()
+{
+    $pattern_files = glob(MBT_MAXI_PATTERNS_PATH . '/*.php');
+
+    foreach ($pattern_files as $pattern_file) {
+        // Start output buffering
+        ob_start();
+
+        // Include the pattern file
+        include $pattern_file;
+
+        // Get the captured output and clean the buffer
+        $pattern_content = ob_get_clean();
+
+        // Extract pattern information from the file
+        $pattern_info = array(
+            'title' => '',
+            'slug' => '',
+            'categories' => array(),
+            'template_types' => array(),
+        );
+
+        if (preg_match('/\/\*\*(.*?)\*\//s', file_get_contents($pattern_file), $matches)) {
+            $info_block = $matches[1];
+            $info_lines = preg_split('/\r\n|\r|\n/', $info_block);
+
+            foreach ($info_lines as $line) {
+                $line = trim($line);
+                if (strpos($line, '* Title:') === 0) {
+                    $pattern_info['title'] = trim(substr($line, strlen('* Title:')));
+                } elseif (strpos($line, '* Slug:') === 0) {
+                    $pattern_info['slug'] = trim(substr($line, strlen('* Slug:')));
+                } elseif (strpos($line, '* Categories:') === 0) {
+                    $categories = explode(',', trim(substr($line, strlen('* Categories:'))));
+                    $pattern_info['categories'] = array_map('trim', $categories);
+                } elseif (strpos($line, '* Template Types:') === 0) {
+                    $template_types = explode(',', trim(substr($line, strlen('* Template Types:'))));
+                    $pattern_info['template_types'] = array_map('trim', $template_types);
+                }
+            }
+        }
+
+        // Register the pattern
+        register_block_pattern(
+            $pattern_info['slug'],
+            array(
+                'title'       => $pattern_info['title'],
+                'content'     => $pattern_content,
+                'categories'  => $pattern_info['categories'],
+                'template_types' => $pattern_info['template_types'],
+            )
+        );
+    }
+}
+
+if (mbt_check_template_files_exist()) {
+    add_action('init', 'mbt_register_patterns');
+}
+
 /**
  * Copies the content of the /maxi/patterns, /maxi/templates, and /maxi/parts folders
  * into the /patterns, /templates, and /parts folders respectively.
@@ -231,14 +407,14 @@ function mbt_copy_directory($source_dir, $destination_dir)
  */
 function mbt_copy_patterns()
 {
-    // Copy patterns
-    mbt_copy_directory(MBT_MAXI_PATTERNS_PATH, MBT_PATH . '/patterns');
 
     // Copy templates
     mbt_copy_directory(MBT_MAXI_TEMPLATES_PATH, MBT_PATH . '/templates');
 
     // Copy parts
     mbt_copy_directory(MBT_MAXI_PARTS_PATH, MBT_PATH . '/parts');
+
+    mbt_add_styles_meta_fonts_to_db();
 
     wp_send_json_success('Patterns, templates, and parts copied successfully');
 }
