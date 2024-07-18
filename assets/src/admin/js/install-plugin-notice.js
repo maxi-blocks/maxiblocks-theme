@@ -66,6 +66,8 @@ function installMaxiBlocksNotice() {
      */
     installButton?.addEventListener('click', async () => {
         installButton.classList.add('updating-message', 'disabled');
+        const importStatusIcon = installButton.querySelector('.mbt-button__icon');
+        importStatusIcon.classList.add('hidden');
 
         if (pluginStatus === 'installed') {
             await activateMaxi();
