@@ -174,8 +174,8 @@ function mbt_enqueue_frontend_styles()
 {
     // Check if we are in debug mode
     if (defined('MBT_DEBUG') && MBT_DEBUG) {
-        // Use the unminified CSS file in the SRC directory
-        $frontend_css_url = MBT_URL_SRC_FRONTEND . '/css/style.css';
+        // Use the unminified CSS file in the build directory
+        $frontend_css_url = MBT_URL_BUILD_FRONTEND . '/css/styles.css';
     } else {
         // Use the minified CSS file in the BUILD directory
         $frontend_css_url = MBT_URL_BUILD_FRONTEND . '/css/styles.min.css';
