@@ -185,6 +185,7 @@ function mbt_localize_templates_notice_js($plugin_status)
         'pluginStatus' => $plugin_status,
         'importing'    => __('Importing..', 'maxiblocks') . ' &#9203;',
         'done'          => __('Done', 'maxiblocks') . ' &#10003;',
+        'error'          => __('Error', 'maxiblocks') . ' !',
     );
 }
 
@@ -381,16 +382,22 @@ function mbt_register_patterns()
             }
         }
 
-        // Register the pattern
-        register_block_pattern(
-            $pattern_info['slug'],
-            array(
-                'title'       => $pattern_info['title'],
-                'content'     => $pattern_content,
-                'categories'  => $pattern_info['categories'],
-                'template_types' => $pattern_info['template_types'],
-            )
-        );
+        // Get the block patterns registry
+        $registry = WP_Block_Patterns_Registry::get_instance();
+
+        // Check if the pattern with the same slug is already registered
+        if (!$registry->is_registered($pattern_info['slug'])) {
+            // Register the pattern
+            register_block_pattern(
+                $pattern_info['slug'],
+                array(
+                    'title'          => $pattern_info['title'],
+                    'content'        => $pattern_content,
+                    'categories'     => $pattern_info['categories'],
+                    'template_types' => $pattern_info['template_types'],
+                )
+            );
+        }
     }
 }
 
