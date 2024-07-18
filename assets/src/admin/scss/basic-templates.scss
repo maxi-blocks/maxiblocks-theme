@@ -1,16 +1,3 @@
-body.maxi-blocks--active {
-	--wp--style--global--content-size: 100%;
-	--wp--style--global--wide-size: 100%;
-	&:where(.wp-site-blocks) > *,
-	&:where(body .is-layout-constrained) > *,
-	:where(.wp-site-blocks) > *,
-	:where(body .is-layout-constrained) > * {
-		margin-block-start: 0 !important;
-	}
-}
-
-/* for basic templates */
-
 .wp-site-blocks {
 	overflow: hidden;
 }
