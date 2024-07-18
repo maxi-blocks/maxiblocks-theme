@@ -414,9 +414,11 @@ if (mbt_check_template_files_exist()) {
  */
 function mbt_copy_patterns()
 {
-
     // Copy templates
     mbt_copy_directory(MBT_MAXI_TEMPLATES_PATH, MBT_PATH . '/templates');
+
+    // Copy templates
+    mbt_copy_directory(MBT_MAXI_PATTERNS_PATH, MBT_PATH . '/patterns');
 
     // Copy parts
     mbt_copy_directory(MBT_MAXI_PARTS_PATH, MBT_PATH . '/parts');
