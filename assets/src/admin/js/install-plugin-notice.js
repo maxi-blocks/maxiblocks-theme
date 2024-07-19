@@ -57,7 +57,10 @@ function installMaxiBlocksNotice() {
         await activatePluginUrl(activationUrl);
         installButton.classList.replace('updating-message', 'updated-message');
         installStatusText.textContent = done;
-        setTimeout(hideAndRemoveNotice, 1000);
+        setTimeout(() => {
+            hideAndRemoveNotice();
+            window.location.reload();
+        }, 1000);
     };
 
     /**
