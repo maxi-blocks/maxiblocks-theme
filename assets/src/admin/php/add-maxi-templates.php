@@ -206,15 +206,31 @@ function mbt_copy_directory($source_dir, $destination_dir)
 
     // Check if the source directory exists and is readable
     if (!is_dir($source_dir) || !is_readable($source_dir)) {
-        error_log(sprintf(__("Source directory does not exist or is not readable: %s", 'maxiblocks'), $source_dir));
-        wp_send_json_error(sprintf(__("Source directory does not exist or is not readable: %s", 'maxiblocks'), $source_dir));
+        error_log(sprintf(
+            /* translators: %s: Source directory path */
+            __("Source directory does not exist or is not readable: %s", 'maxiblocks'),
+            $source_dir
+        ));
+        wp_send_json_error(sprintf(
+            /* translators: %s: Source directory path */
+            __("Source directory does not exist or is not readable: %s", 'maxiblocks'),
+            $source_dir
+        ));
         return;
     }
 
     // Check if the destination directory is writable
     if (!wp_is_writable($destination_dir)) {
-        error_log(sprintf(__("Destination directory is not writable: %s", 'maxiblocks'), $destination_dir));
-        wp_send_json_error(sprintf(__("Destination directory is not writable: %s", 'maxiblocks'), $destination_dir));
+        error_log(sprintf(
+            /* translators: %s: Destination directory path */
+            __("Destination directory is not writable: %s", 'maxiblocks'),
+            $destination_dir
+        ));
+        wp_send_json_error(sprintf(
+            /* translators: %s: Destination directory path */
+            __("Destination directory is not writable: %s", 'maxiblocks'),
+            $destination_dir
+        ));
         return;
     }
 
@@ -233,18 +249,29 @@ function mbt_copy_directory($source_dir, $destination_dir)
 
                 // Copy only files, ignore subdirectories
                 if (is_file($source_path)) {
-                    if (copy($source_path, $destination_path)) {
-                        error_log(sprintf(__("Copied file: %s to %s", 'maxiblocks'), $source_path, $destination_path));
-                    } else {
-                        error_log(sprintf(__("Failed to copy file: %s to %s", 'maxiblocks'), $source_path, $destination_path));
+                    if (!copy($source_path, $destination_path)) {
+                        error_log(sprintf(
+                            /* translators: 1: Source file path, 2: Destination file path */
+                            __("Failed to copy file: %1$s to %2$s", 'maxiblocks'),
+                            $source_path,
+                            $destination_path
+                        ));
                     }
                 }
             }
         }
         closedir($dir);
     } else {
-        error_log(sprintf(__("Failed to open directory: %s", 'maxiblocks'), $source_dir));
-        wp_send_json_error(sprintf(__("Failed to open directory: %s", 'maxiblocks'), $source_dir));
+        error_log(sprintf(
+            /* translators: %s: Source directory path */
+            __("Failed to open directory: %s", 'maxiblocks'),
+            $source_dir
+        ));
+        wp_send_json_error(sprintf(
+            /* translators: %s: Source directory path */
+            __("Failed to open directory: %s", 'maxiblocks'),
+            $source_dir
+        ));
     }
 }
 

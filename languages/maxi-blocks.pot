@@ -1,0 +1,245 @@
+# Copyright (C) 2024 MaxiBlocks
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: MaxiBlocks 1.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/maxiblocks\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-07-22T12:47:29+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.7.1\n"
+"X-Domain: maxiblocks\n"
+
+#. Theme Name of the theme
+#. Author of the theme
+msgid "MaxiBlocks"
+msgstr ""
+
+#. Theme URI of the theme
+msgid "https://maxiblocks.com/go/theme"
+msgstr ""
+
+#. Description of the theme
+msgid "The MaxiBlocks Theme, designed for versatility and innovation provides a wide array of templates and patterns suited for diverse website needs, including business showcases, blogs, and portfolios. The theme features style variations and full-page designs, speeding up site-building and compatibility with the latest WordPress features."
+msgstr ""
+
+#. Author URI of the theme
+msgid "https://maxiblocks.com/go/theme-author"
+msgstr ""
+
+#: assets/build/admin/php/install-maxi-plugin.php:69
+#: assets/build/admin/php/php/add-maxi-templates.php:70
+#: assets/build/admin/php/php/install-maxi-plugin.php:69
+#: assets/src/admin/php/add-maxi-templates.php:70
+#: assets/src/admin/php/install-maxi-plugin.php:69
+msgid "Thanks for choosing the MaxiBlocks theme"
+msgstr ""
+
+#: assets/build/admin/php/install-maxi-plugin.php:72
+#: assets/build/admin/php/php/install-maxi-plugin.php:72
+#: assets/src/admin/php/install-maxi-plugin.php:72
+msgid "Please activate the MaxiBlocks builder"
+msgstr ""
+
+#: assets/build/admin/php/install-maxi-plugin.php:72
+#: assets/build/admin/php/php/install-maxi-plugin.php:72
+#: assets/src/admin/php/install-maxi-plugin.php:72
+msgid "Please install the MaxiBlocks builder"
+msgstr ""
+
+#: assets/build/admin/php/install-maxi-plugin.php:75
+#: assets/build/admin/php/php/install-maxi-plugin.php:75
+#: assets/src/admin/php/install-maxi-plugin.php:75
+msgid "Our builder plugin is packed with advanced block editing tools, interactions, and hover effects. Use 100 complimentary style cards, 13K free icons, and thousands of designer templates to help you work faster."
+msgstr ""
+
+#: assets/build/admin/php/install-maxi-plugin.php:80
+#: assets/build/admin/php/php/install-maxi-plugin.php:80
+#: assets/src/admin/php/install-maxi-plugin.php:80
+msgid "Activate MaxiBlocks builder"
+msgstr ""
+
+#: assets/build/admin/php/install-maxi-plugin.php:80
+#: assets/build/admin/php/php/install-maxi-plugin.php:80
+#: assets/src/admin/php/install-maxi-plugin.php:80
+msgid "Install MaxiBlocks builder"
+msgstr ""
+
+#: assets/build/admin/php/install-maxi-plugin.php:84
+#: assets/build/admin/php/php/add-maxi-templates.php:85
+#: assets/build/admin/php/php/install-maxi-plugin.php:84
+#: assets/src/admin/php/add-maxi-templates.php:85
+#: assets/src/admin/php/install-maxi-plugin.php:84
+msgid "More info"
+msgstr ""
+
+#: assets/build/admin/php/install-maxi-plugin.php:209
+#: assets/build/admin/php/php/install-maxi-plugin.php:209
+#: assets/src/admin/php/install-maxi-plugin.php:209
+msgid "Activating"
+msgstr ""
+
+#: assets/build/admin/php/install-maxi-plugin.php:210
+#: assets/build/admin/php/php/install-maxi-plugin.php:210
+#: assets/src/admin/php/install-maxi-plugin.php:210
+msgid "Installing"
+msgstr ""
+
+#: assets/build/admin/php/install-maxi-plugin.php:211
+#: assets/build/admin/php/php/add-maxi-templates.php:187
+#: assets/build/admin/php/php/install-maxi-plugin.php:211
+#: assets/src/admin/php/add-maxi-templates.php:187
+#: assets/src/admin/php/install-maxi-plugin.php:211
+msgid "Done"
+msgstr ""
+
+#: assets/build/admin/php/php/add-maxi-templates.php:73
+#: assets/src/admin/php/add-maxi-templates.php:73
+msgid "Please import MaxiBlocks templates and patterns"
+msgstr ""
+
+#: assets/build/admin/php/php/add-maxi-templates.php:76
+#: assets/src/admin/php/add-maxi-templates.php:76
+msgid "Important: MaxiBlocks templates and template parts will replace current MaxiBlocks theme templates and template parts"
+msgstr ""
+
+#: assets/build/admin/php/php/add-maxi-templates.php:81
+#: assets/src/admin/php/add-maxi-templates.php:81
+msgid "Import"
+msgstr ""
+
+#: assets/build/admin/php/php/add-maxi-templates.php:186
+#: assets/src/admin/php/add-maxi-templates.php:186
+msgid "Importing.."
+msgstr ""
+
+#: assets/build/admin/php/php/add-maxi-templates.php:188
+#: assets/src/admin/php/add-maxi-templates.php:188
+msgid "Error"
+msgstr ""
+
+#. translators: %s: Source directory path
+#: assets/build/admin/php/php/add-maxi-templates.php:211
+#: assets/build/admin/php/php/add-maxi-templates.php:216
+#: assets/src/admin/php/add-maxi-templates.php:211
+#: assets/src/admin/php/add-maxi-templates.php:216
+msgid "Source directory does not exist or is not readable: %s"
+msgstr ""
+
+#. translators: %s: Destination directory path
+#: assets/build/admin/php/php/add-maxi-templates.php:226
+#: assets/build/admin/php/php/add-maxi-templates.php:231
+#: assets/src/admin/php/add-maxi-templates.php:226
+#: assets/src/admin/php/add-maxi-templates.php:231
+msgid "Destination directory is not writable: %s"
+msgstr ""
+
+#. translators: %s: Source directory path
+#: assets/build/admin/php/php/add-maxi-templates.php:267
+#: assets/build/admin/php/php/add-maxi-templates.php:272
+#: assets/src/admin/php/add-maxi-templates.php:267
+#: assets/src/admin/php/add-maxi-templates.php:272
+msgid "Failed to open directory: %s"
+msgstr ""
+
+#: functions.php:116
+msgid "Custom Theme CSS"
+msgstr ""
+
+#: functions.php:135
+msgid "Classic customizer"
+msgstr ""
+
+#: functions.php:211
+msgid "MaxiBlocks author bio"
+msgstr ""
+
+#: functions.php:212
+msgid "MaxiBlocks post single"
+msgstr ""
+
+#: functions.php:213
+msgid "MaxiBlocks homepage"
+msgstr ""
+
+#: functions.php:214
+msgid "MaxiBlocks footer"
+msgstr ""
+
+#: functions.php:215
+msgid "MaxiBlocks header navigation"
+msgstr ""
+
+#: functions.php:216
+msgid "MaxiBlocks blog index"
+msgstr ""
+
+#: functions.php:217
+msgid "MaxiBlocks not found 404"
+msgstr ""
+
+#: functions.php:218
+msgid "MaxiBlocks all archives"
+msgstr ""
+
+#: functions.php:219
+msgid "MaxiBlocks search results"
+msgstr ""
+
+#: functions.php:298
+msgid "Home"
+msgstr ""
+
+#: functions.php:305
+msgid "Features"
+msgstr ""
+
+#: functions.php:313
+msgid "Sub-menu #1"
+msgstr ""
+
+#: functions.php:321
+msgid "Sub-menu #2"
+msgstr ""
+
+#: functions.php:329
+msgid "How it works"
+msgstr ""
+
+#: functions.php:336
+msgid "Get in touch"
+msgstr ""
+
+#: patterns/basic-blog-home.php
+msgctxt "Pattern title"
+msgid "Basic Blog Home"
+msgstr ""
+
+#: patterns/basic-footer.php
+msgctxt "Pattern title"
+msgid "Basic Footer"
+msgstr ""
+
+#: patterns/basic-header.php
+msgctxt "Pattern title"
+msgid "Basic Header"
+msgstr ""
+
+#: patterns/basic-single-post.php
+msgctxt "Pattern title"
+msgid "Basic Single Post"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Header"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Footer"
+msgstr ""
