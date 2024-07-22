@@ -5,7 +5,7 @@
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
  * @package MaxiBlocks Theme
- * @since MaxiBlocks Theme 1.6.0
+ * @since MaxiBlocks Theme 1.0.1
  */
 
 if (!defined('MBT_DEBUG')) {  // Set to false in production
@@ -60,6 +60,15 @@ if (!defined('MBT_FSE_JS')) {
     define('MBT_FSE_JS', MBT_PREFIX . 'fse');
 }
 
+/**
+ * Load the theme's translated strings.
+ */
+function mbt_load_theme_textdomain()
+{
+    load_theme_textdomain('maxiblocks', get_template_directory() . '/languages');
+}
+add_action('after_setup_theme', 'mbt_load_theme_textdomain');
+
 function mbt_include_php_files($directory)
 {
     foreach (glob("{$directory}/*.php") as $file) {
@@ -74,25 +83,6 @@ if (defined('MBT_DEBUG') && MBT_DEBUG) {
     // Include files from the BUILD directory for production
     mbt_include_php_files(MBT_PATH_BUILD_ADMIN_PHP);
 }
-
-
-/**
- * Register block styles.
- */
-
-if (!function_exists('mbt_block_styles')) :
-    /**
-     * Register custom block styles
-     *
-     * @since MaxiBlocks Theme 1.0.0
-     * @return void
-     */
-    function mbt_block_styles()
-    {
-    }
-endif;
-
-add_action('init', 'mbt_block_styles');
 
 /**
  * Registers customization options for the theme.
@@ -201,11 +191,10 @@ function mbt_get_maxi_patterns()
 /**
  * Registers custom block pattern categories for MaxiBlocks.
  *
- * @since MaxiBlocks Theme 1.6.0
+ * @since MaxiBlocks Theme 1.0.1
  */
 function mbt_register_maxi_block_categories()
 {
-    
     // Define block pattern categories with labels.
     $block_pattern_categories = array(
         'mbt-author-bio' => array('label' => __('MaxiBlocks author bio', 'maxiblocks')),
