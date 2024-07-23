@@ -25,3 +25,7 @@
 <!-- /wp:buttons --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
+
+<!-- wp:separator {"className":"mbt","style":{"spacing":{"margin":{"top":"0","bottom":"0"}},"color":{"background":"#f4f9fd"}}} -->
+<hr class="wp-block-separator has-text-color has-alpha-channel-opacity has-background mbt" style="margin-top:0;margin-bottom:0;background-color:#f4f9fd;color:#f4f9fd"/>
+<!-- /wp:separator -->

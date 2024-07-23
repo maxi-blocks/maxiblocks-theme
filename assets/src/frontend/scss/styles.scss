@@ -35,6 +35,9 @@ body.maxi-blocks--active {
 			color: #000;
 		}
 	}
+	&.wp-block-separator {
+		border-top: 4px solid !important;
+	}
 	h1,
 	h2,
 	h3,
@@ -107,24 +110,6 @@ body.maxi-blocks--active {
 		border-width: 0 0 4px 0;
 		border-color: #f4f9fd;
 	}
-	&.post_group,
-	&.post_group_landing {
-		&::after {
-			content: '';
-			display: block;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			height: calc(100% - 8px);
-			width: 500%;
-			border-style: solid;
-			border-width: 4px 0;
-			border-color: #f4f9fd;
-			z-index: -1;
-		}
-		position: relative;
-	}
 	&.post_group_landing {
 		.wp-block-post-template {
 			gap: 20px;
@@ -141,6 +126,13 @@ body.maxi-blocks--active {
 			max-width: 1690px;
 		}
 		&_main_group {
+			.wp-block-navigation-item__label,
+			p {
+				font-size: 20px !important;
+			}
+		}
+		&_header_columns,
+		&_footer_columns {
 			.wp-block-navigation-item__label,
 			p {
 				font-size: 20px !important;
@@ -175,9 +167,15 @@ body.maxi-blocks--active {
 			.wp-block-post-title {
 				font-size: 110px !important;
 			}
+			p {
+				font-size: 20px !important;
+			}
 			padding: 200px 0 !important;
 		}
 		&_group_landing {
+			p {
+				font-size: 20px !important;
+			}
 			padding: 200px 0 !important;
 		}
 	}
