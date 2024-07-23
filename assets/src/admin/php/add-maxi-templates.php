@@ -249,6 +249,10 @@ function mbt_copy_directory($source_dir, $destination_dir)
 
                 // Copy only files, ignore subdirectories
                 if (is_file($source_path)) {
+                    // Overwrite the file if it already exists in the destination
+                    if (file_exists($destination_path)) {
+                        unlink($destination_path);
+                    }
                     if (!copy($source_path, $destination_path)) {
                         error_log(sprintf(
                             /* translators: 1: Source file path, 2: Destination file path */
