@@ -6,9 +6,9 @@
   * Block Types: core/template-part/footer
   */
 ?>
-<!-- wp:group {"className":"template_footer_columns template_width","layout":{"type":"default"}} -->
-<div class="wp-block-group template_footer_columns template_width"><!-- wp:columns {"className":"template_footer_columns","style":{"spacing":{"margin":{"top":"60px","bottom":"0"},"padding":{"bottom":"30px"}}}} -->
-<div class="wp-block-columns template_footer_columns" style="margin-top:60px;margin-bottom:0;padding-bottom:30px"><!-- wp:column {"width":"300px"} -->
+<!-- wp:group {"className":"mbt template_footer_columns template_width","layout":{"type":"default"}} -->
+<div class="wp-block-group mbt template_footer_columns template_width"><!-- wp:columns {"className":"mbt template_footer_columns","style":{"spacing":{"margin":{"top":"60px","bottom":"0"},"padding":{"bottom":"30px"}}}} -->
+<div class="wp-block-columns mbt template_footer_columns" style="margin-top:60px;margin-bottom:0;padding-bottom:30px"><!-- wp:column {"width":"300px"} -->
 <div class="wp-block-column" style="flex-basis:300px"><!-- wp:heading -->
 <h2 class="wp-block-heading">Have any questions?</h2>
 <!-- /wp:heading --></div>

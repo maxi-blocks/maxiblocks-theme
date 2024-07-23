@@ -6,8 +6,8 @@
   * Block Types: core/template-part/header
   */
 ?>
-<!-- wp:columns {"className":"template_header_columns template_width","style":{"spacing":{"padding":{"top":"20px","bottom":"20px"},"margin":{"top":"0","bottom":"0"}}}} -->
-<div class="wp-block-columns template_header_columns template_width" style="margin-top:0;margin-bottom:0;padding-top:20px;padding-bottom:20px"><!-- wp:column {"verticalAlignment":"center","width":"390px"} -->
+<!-- wp:columns {"className":"mbt template_header_columns template_width","style":{"spacing":{"padding":{"top":"20px","bottom":"20px"},"margin":{"top":"0","bottom":"0"}}}} -->
+<div class="wp-block-columns mbt template_header_columns template_width" style="margin-top:0;margin-bottom:0;padding-top:20px;padding-bottom:20px"><!-- wp:column {"verticalAlignment":"center","width":"390px"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:390px"><!-- wp:image {"id":631,"scale":"cover","sizeSlug":"full","linkDestination":"none","align":"center","className":"is-style-default"} -->
 <figure class="wp-block-image aligncenter size-full is-style-default"><img src="https://maxithemedev.dev600.com/wp-content/uploads/2024/07/maxi-logo.webp" alt="" class="wp-image-631" style="object-fit:cover"/></figure>
 <!-- /wp:image --></div>
