@@ -1,6 +1,47 @@
-body.maxi-blocks--active {
-	--wp--style--global--content-size: 100%;
-	--wp--style--global--wide-size: 100%;
+body {
+	.maxi-blocks--active {
+		--wp--style--global--content-size: 100%;
+		--wp--style--global--wide-size: 100%;
+
+		// fix for default patterns preview when a maxi pattern is a sibling
+		.dataviews-view-grid
+			.dataviews-view-grid__card:has(
+				~ .maxi-blocks-pattern-preview-grid__card
+			) {
+			height: auto;
+		}
+
+		// fix for the grey area while scrolling in the site editor
+		.site-editor-php .components-resizable-box__container {
+			overflow: visible;
+		}
+
+		.editor-styles-wrapper.block-editor-writing-flow {
+			overflow-x: hidden;
+		}
+
+		.block-editor-block-preview__container:has(.maxi-blocks-pattern-preview)
+			~ .block-editor-patterns__pattern-details
+			.block-editor-block-patterns-list__item-title {
+			display: block !important;
+		}
+
+		&:where(.wp-site-blocks) > *,
+		&:where(body .is-layout-constrained) > *,
+		:where(.wp-site-blocks) > *,
+		:where(body .is-layout-constrained) > * {
+			margin-block-start: 0 !important;
+		}
+		.editor-styles-wrapper {
+			.is-layout-constrained
+				> :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+				max-width: 100%;
+			}
+			.is-root-container > div.wp-block:has(.maxi-block) {
+				max-width: 100%;
+			}
+		}
+	}
 	.maxiblocks-custom-pattern {
 		height: auto !important;
 		.block-editor-block-preview__content {
@@ -14,45 +55,6 @@ body.maxi-blocks--active {
 		.dataviews-view-grid__media {
 			aspect-ratio: auto !important;
 			min-height: auto !important;
-		}
-	}
-
-	// fix for default patterns preview when a maxi pattern is a sibling
-	.dataviews-view-grid
-		.dataviews-view-grid__card:has(
-			~ .maxi-blocks-pattern-preview-grid__card
-		) {
-		height: auto;
-	}
-
-	// fix for the grey area while scrolling in the site editor
-	.site-editor-php .components-resizable-box__container {
-		overflow: visible;
-	}
-
-	.editor-styles-wrapper.block-editor-writing-flow {
-		overflow-x: hidden;
-	}
-
-	.block-editor-block-preview__container:has(.maxi-blocks-pattern-preview)
-		~ .block-editor-patterns__pattern-details
-		.block-editor-block-patterns-list__item-title {
-		display: block !important;
-	}
-
-	&:where(.wp-site-blocks) > *,
-	&:where(body .is-layout-constrained) > *,
-	:where(.wp-site-blocks) > *,
-	:where(body .is-layout-constrained) > * {
-		margin-block-start: 0 !important;
-	}
-	.editor-styles-wrapper {
-		.is-layout-constrained
-			> :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
-			max-width: 100%;
-		}
-		.is-root-container > div.wp-block:has(.maxi-block) {
-			max-width: 100%;
 		}
 	}
 	.block-editor-iframe__container:has(.maxiblocks-pattern-preview-image) {
