@@ -252,7 +252,7 @@ function mbt_copy_directory($source_dir, $destination_dir)
                     if (!copy($source_path, $destination_path)) {
                         error_log(sprintf(
                             /* translators: 1: Source file path, 2: Destination file path */
-                            __("Failed to copy file: %1$s to %2$s", 'maxiblocks'),
+                            __("Failed to copy file: %s to %s", 'maxiblocks'),
                             $source_path,
                             $destination_path
                         ));
