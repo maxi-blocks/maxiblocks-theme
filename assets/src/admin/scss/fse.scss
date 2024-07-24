@@ -61,3 +61,7 @@ body {
 		overflow: visible;
 	}
 }
+
+:root :where(.wp-site-blocks) > *:has(.maxi-block) {
+	margin-block-start: 0;
+}

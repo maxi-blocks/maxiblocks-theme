@@ -345,6 +345,10 @@ body .block-editor-iframe__container:has(.maxiblocks-pattern-preview-image) {
   overflow: visible;
 }
 
+:root :where(.wp-site-blocks) > *:has(.maxi-block) {
+  margin-block-start: 0;
+}
+
 @charset "UTF-8";
 .mbt-notice {
   font-family: 'Roboto', sans-serif;
