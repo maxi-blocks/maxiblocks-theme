@@ -9,7 +9,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Theme URI: https://maxiblocks.com/go/theme-author
 
-Find the perfect blend of speed, simplicity, and design with MaxiBlocks' powerful block theme
+Discover the perfect blend of speed, simplicity, and design with MaxiBlocks' powerful block theme
 
 == Description ==
 
