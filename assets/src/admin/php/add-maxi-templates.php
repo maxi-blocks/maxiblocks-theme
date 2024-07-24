@@ -23,7 +23,7 @@ add_action('admin_notices', 'mbt_render_templates_notice', 0);
 add_action('wp_ajax_maxiblocks-theme-dismiss-templates-notice', 'mbt_close_templates_notice');
 
 /**
- * Renders the installation notice for the MaxiBlocks plugin.
+ * Renders the import notice for templates, patterns, parts.
  *
  * This function checks if the notice should be displayed based on certain conditions
  * and then enqueues the necessary JavaScript file (minified or unminified based on the debug mode).
@@ -73,7 +73,7 @@ function mbt_render_templates_notice()
                 <?php esc_html_e('Please import MaxiBlocks templates and patterns', 'maxiblocks');?>
                 </h2>
                 <p class="mbt-notice__description">
-                    <?php esc_html_e('Important: MaxiBlocks templates and template parts will replace current MaxiBlocks theme templates and template parts', 'maxiblocks'); ?>
+                    <?php //esc_html_e('Important: MaxiBlocks templates and template parts will replace current MaxiBlocks theme templates and template parts', 'maxiblocks');?>
                 </p>
                 <div class="mbt-notice__actions">
                     <button id="mbt-notice-import-templates-patterns" class="mbt-button mbt-button--primary mbt-button--hero" onclick="mbt_copy_patterns()">
