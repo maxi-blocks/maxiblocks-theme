@@ -138,6 +138,11 @@
 					min-width: 300px;
 				}
 			}
+			.wp-block-image {
+				img {
+					width: 330px !important;
+				}
+			}
 			padding: 30px 0 !important;
 		}
 		&_footer_columns {
