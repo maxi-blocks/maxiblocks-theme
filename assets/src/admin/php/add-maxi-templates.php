@@ -53,24 +53,21 @@ function mbt_render_templates_notice()
     wp_localize_script(MBT_TEMPLATE_NOTICE_JS, 'maxiblocks', mbt_localize_templates_notice_js($plugin_status));
 
     // Define other variables.
-    $install_plugin_image  = MBT_URL_BUILD_ADMIN . '/images/maxiblocks-plugin-install-notice.jpg';
+    $install_plugin_image  = MBT_URL_BUILD_ADMIN . '/images/maxiblocks-templates-notice.jpg';
     $more_info_url = 'https://maxiblocks.com/go/maxi-theme-activation-more-info';
 
     // Start output buffering.
     ob_start();
     ?>
-<div class="mbt-notice mbt-notice--info" style="background-image: url(<?php echo esc_url($install_plugin_image); ?>);">
+<div class="mbt-notice mbt-notice--info mbt-notice--templates" style="background-image: url(<?php echo esc_url($install_plugin_image); ?>);">
     <button type="button" class="mbt-notice__dismiss">
         <span class="mbt-notice__dismiss-text">&#10799;</span>
     </button>
     <div class="mbt-notice__row">
         <div class="mbt-notice__col">
             <div class="mbt-notice__content">
-                <p class="mbt-notice__subtitle">
-                    <?php esc_html_e('MaxiBlocks Theme detected', 'maxiblocks');?>
-                </p>
                 <h2 class="mbt-notice__title">
-                <?php esc_html_e('Please import MaxiBlocks templates and patterns', 'maxiblocks');?>
+                <?php esc_html_e('MaxiBlocks Theme detected', 'maxiblocks');?>
                 </h2>
                 <p class="mbt-notice__description">
                     <?php esc_html_e('Now for the fun part. Let\'s import seven theme templates to showcase MaxiBlocks\' full range. These include blog home, archives, front page, index, 404, search results, and single posts.', 'maxiblocks');?>

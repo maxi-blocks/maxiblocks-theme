@@ -118,29 +118,44 @@
 	}
 }
 
-@media (min-width: 2100px) {
+@media (min-width: 2200px) {
 	.mbt-notice {
+		&:not(.mbt-notice-templates) {
+			background-position: 160%;
+		}
+		padding: 60px 67px;
 		&__subtitle {
 			font-size: 24px;
+			margin-bottom: 45px;
 		}
 		&__title {
-			font-size: 42px;
+			font-size: 48px;
 		}
 		// Description paragraph
 		&__description {
 			font-size: 24px;
 			max-width: 40%;
+			margin-top: 50px;
+			margin-bottom: 45px;
 		}
 		// Action area
 		&__actions {
 			.mbt-button {
-				padding: 15px 35px;
-				font-size: 22px !important;
+				padding: 20px 40px;
+				font-size: 24px !important;
 				&__icon {
-					font-size: 32px;
+					font-size: 36px;
 					margin-top: -5px;
 				}
 			}
+		}
+	}
+}
+
+@media (min-width: 2450px) {
+	.mbt-notice {
+		&:not(.mbt-notice-templates) {
+			background-position: 100%;
 		}
 	}
 }
@@ -151,10 +166,6 @@
 		box-sizing: border-box;
 		margin-top: 35px;
 		margin-right: 20px;
-
-		// Row inside the notice
-		&__row {
-		}
 
 		// Column styles
 		&__col {
