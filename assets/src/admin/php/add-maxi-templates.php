@@ -1,6 +1,6 @@
 <?php
 /**
- * Admin Install Plugin Notice
+ * Admin Import templates Notice
  *
  * @package MaxiBlocks Theme
  * @author MaxiBlocks Team
@@ -182,6 +182,7 @@ function mbt_localize_templates_notice_js($plugin_status)
     return array(
         'nonce'        => wp_create_nonce(MBT_TEMPLATE_NOTICE_DISMISS . '-nonce'),
         'ajaxUrl'      => admin_url('admin-ajax.php'),
+        'adminUrl' => admin_url(),
         'pluginStatus' => $plugin_status,
         'importing'    => __('Importing..', 'maxiblocks') . ' &#9203;',
         'done'          => __('Done', 'maxiblocks') . ' &#10003;',

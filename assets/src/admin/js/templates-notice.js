@@ -1,5 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
-	const { nonce, ajaxUrl, pluginStatus, importing, done, error } = maxiblocks;
+	const {
+		nonce,
+		ajaxUrl,
+		adminUrl,
+		pluginStatus,
+		importing,
+		done,
+		error,
+		view,
+	} = maxiblocks;
 	var importButton = document.getElementById(
 		'mbt-notice-import-templates-patterns'
 	);
@@ -9,6 +18,11 @@ document.addEventListener('DOMContentLoaded', function () {
 		var originalButtonText = importStatusText.textContent;
 
 		importButton.addEventListener('click', function () {
+			if (importButton.classList.contains('view-templates')) {
+				event.preventDefault();
+				window.location.href = `${adminUrl}site-editor.php?postType=wp_template&activeView=MaxiBlocks`;
+				return;
+			}
 			importButton.classList.add('updating-message', 'disabled');
 			importStatusText.textContent = importing || 'Importing...';
 			importStatusIcon.classList.add('hidden');
@@ -34,6 +48,10 @@ document.addEventListener('DOMContentLoaded', function () {
 								'updated-message',
 								'disabled'
 							);
+							importStatusText.textContent =
+								view || 'View theme templates';
+							importStatusIcon.classList.remove('hidden');
+							importButton.classList.add('view-templates');
 						}, 1000);
 					} else {
 						console.error('Error:', response.data);
