@@ -50,7 +50,7 @@
 		margin-bottom: 15px;
 		font-size: 18px;
 		line-height: 1.5;
-		max-width: 32%;
+		max-width: 47%;
 	}
 
 	// Action area
@@ -118,6 +118,33 @@
 	}
 }
 
+@media (min-width: 2100px) {
+	.mbt-notice {
+		&__subtitle {
+			font-size: 24px;
+		}
+		&__title {
+			font-size: 42px;
+		}
+		// Description paragraph
+		&__description {
+			font-size: 24px;
+			max-width: 40%;
+		}
+		// Action area
+		&__actions {
+			.mbt-button {
+				padding: 15px 35px;
+				font-size: 22px !important;
+				&__icon {
+					font-size: 32px;
+					margin-top: -5px;
+				}
+			}
+		}
+	}
+}
+
 @media (max-width: 1830px) {
 	.mbt-notice {
 		padding: 30px;
@@ -143,7 +170,7 @@
 		// Title and subtitle styles
 		&__title {
 			font-size: 30px;
-			margin: 15px 0px;
+			margin: 20px 0px !important;
 		}
 		&__subtitle {
 			font-size: 16px;
@@ -182,12 +209,20 @@
 	}
 }
 
+@media (max-width: 1600px) {
+	.mbt-notice {
+		&__title {
+			font-size: 27px;
+		}
+	}
+}
+
 @media (max-width: 1400px) {
 	.mbt-notice {
 		background-position: 130%;
 		&__title {
 			font-size: 25px;
-			margin: 10px 0px;
+			margin: 10px 0px !important;
 		}
 		&__subtitle {
 			font-size: 14px;
@@ -195,7 +230,7 @@
 
 		// Description paragraph
 		&__description {
-			max-width: 70%;
+			max-width: 52%;
 			margin-bottom: 10px;
 			font-size: 14px;
 		}
