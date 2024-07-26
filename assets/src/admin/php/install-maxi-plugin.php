@@ -66,18 +66,18 @@ function mbt_render_install_plugin_notice()
         <div class="mbt-notice__col">
             <div class="mbt-notice__content">
                 <p class="mbt-notice__subtitle">
-                    <?php esc_html_e('Thanks for choosing the MaxiBlocks theme', 'maxiblocks');?>
+                    <?php esc_html_e('Thank you for choosing the MaxiBlocks theme', 'maxiblocks');?>
                 </p>
                 <h2 class="mbt-notice__title">
-                    <?php $plugin_status === 'installed' ?  esc_html_e('Please activate the MaxiBlocks builder', 'maxiblocks') : esc_html_e('Please install the MaxiBlocks builder', 'maxiblocks'); ?>
+                    <?php $plugin_status === 'installed' ?  esc_html_e('Please activate the MaxiBlocks companion plugin', 'maxiblocks') : esc_html_e('Please install the MaxiBlocks companion plugin', 'maxiblocks'); ?>
                 </h2>
                 <p class="mbt-notice__description">
-                    <?php esc_html_e('Our builder plugin is packed with advanced block editing tools, interactions, and hover effects. Use 100 complimentary style cards, 13K free icons, and thousands of designer templates to help you work faster.', 'maxiblocks'); ?>
+                    <?php esc_html_e('Get advanced block editing features, responsive controls, interactions and hover effects. Explore 2,200+ designer-made patterns, 190 pages, 14,200 icons and 100 global style cards to speed up your design process.', 'maxiblocks'); ?>
                 </p>
                 <div class="mbt-notice__actions">
                     <button id="mbt-notice-install-maxiblocks" class="mbt-button mbt-button--primary mbt-button--hero">
                         <span class="mbt-button__text">
-                            <?php $plugin_status === 'installed' ?  esc_html_e('Activate MaxiBlocks builder', 'maxiblocks') : esc_html_e('Install MaxiBlocks builder', 'maxiblocks');?>
+                            <?php $plugin_status === 'installed' ?  esc_html_e('Activate MaxiBlocks plugin', 'maxiblocks') : esc_html_e('Install MaxiBlocks plugin', 'maxiblocks');?>
                         </span><span class="mbt-button__icon">&rsaquo;</span></button>
                     <a href="<?php echo esc_url($more_info_url); ?>" target="_blank"
                         class="mbt-button mbt-button--primary mbt-button--hero">

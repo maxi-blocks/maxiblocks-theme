@@ -67,18 +67,18 @@ function mbt_render_templates_notice()
         <div class="mbt-notice__col">
             <div class="mbt-notice__content">
                 <p class="mbt-notice__subtitle">
-                    <?php esc_html_e('Thanks for choosing the MaxiBlocks theme', 'maxiblocks');?>
+                    <?php esc_html_e('MaxiBlocks Theme detected', 'maxiblocks');?>
                 </p>
                 <h2 class="mbt-notice__title">
                 <?php esc_html_e('Please import MaxiBlocks templates and patterns', 'maxiblocks');?>
                 </h2>
                 <p class="mbt-notice__description">
-                    <?php //esc_html_e('Important: MaxiBlocks templates and template parts will replace current MaxiBlocks theme templates and template parts', 'maxiblocks');?>
+                    <?php esc_html_e('Now for the fun part. Let\'s import seven theme templates to showcase MaxiBlocks\' full range. These include blog home, archives, front page, index, 404, search results, and single posts.', 'maxiblocks');?>
                 </p>
                 <div class="mbt-notice__actions">
                     <button id="mbt-notice-import-templates-patterns" class="mbt-button mbt-button--primary mbt-button--hero" onclick="mbt_copy_patterns()">
                         <span class="mbt-button__text">
-                            <?php esc_html_e('Import', 'maxiblocks')?>
+                            <?php esc_html_e('Import theme templates', 'maxiblocks')?>
                         </span><span class="mbt-button__icon">&rsaquo;</span></button>
                     <a href="<?php echo esc_url($more_info_url); ?>" target="_blank"
                         class="mbt-button mbt-button--primary mbt-button--hero">
