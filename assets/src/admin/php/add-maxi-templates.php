@@ -423,7 +423,7 @@ function mbt_register_patterns()
                     'title'          => $pattern_info['title'],
                     'content'        => $pattern_content,
                     'categories'     => $pattern_info['categories'],
-                    'template_types' => $pattern_info['template_types'],
+                    'templateTypes' => $pattern_info['template_types'],
                 )
             );
         }
