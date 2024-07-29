@@ -60,6 +60,18 @@ body {
 	.block-editor-iframe__container:has(.maxiblocks-pattern-preview-image) {
 		overflow: visible;
 	}
+	.editor-styles-wrapper
+		.is-layout-constrained
+		> :where(:not(.alignleft):not(.alignright):not(.alignfull)),
+	.is-layout-constrained
+		> :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+		max-width: 100%;
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.editor-styles-wrapper {
+		padding-bottom: 3vh;
+	}
 }
 
 :root :where(.wp-site-blocks) > *:has(.maxi-block) {
