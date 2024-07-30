@@ -2,21 +2,20 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: MaxiBlocks 1.1.3\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/maxiblocks\n"
+"Project-Id-Version: MaxiBlocks Go 1.1.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/maxiblocks-go\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-07-29T15:56:06+00:00\n"
+"POT-Creation-Date: 2024-07-30T12:28:37+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
-"X-Domain: maxiblocks\n"
+"X-Domain: maxiblocks-go\n"
 
 #. Theme Name of the theme
-#. Author of the theme
-msgid "MaxiBlocks"
+msgid "MaxiBlocks Go"
 msgstr ""
 
 #. Theme URI of the theme
@@ -24,7 +23,11 @@ msgid "https://maxiblocks.com/go/theme"
 msgstr ""
 
 #. Description of the theme
-msgid "Create professional websites in record time with MaxiBlocks. Our designer-made block patterns, full-page templates, global style cards, and customisable SVG icons make it simple to build unique sites. Web professionals will love MaxiBlocks' extensive customisation options and advanced responsive controls. Deliver high-quality client sites more efficiently and profitably, spending less time battling code and more time growing your business. Whether you're a solo creator needing an online presence or an agency looking to improve your workflow, MaxiBlocks helps you build polished websites without the usual frustrations. Try Maxi today and experience the difference for yourself."
+msgid "Create professional websites in record time with MaxiBlocks Go. Our designer-made block patterns, full-page templates, global style cards, and customisable SVG icons make it simple to build unique sites. Web professionals will love MaxiBlocks Go' extensive customisation options and advanced responsive controls. Deliver high-quality client sites more efficiently and profitably, spending less time battling code and more time growing your business. Whether you're a solo creator needing an online presence or an agency looking to improve your workflow, MaxiBlocks Go helps you build polished websites without the usual frustrations. Try Maxi today and experience the difference for yourself."
+msgstr ""
+
+#. Author of the theme
+msgid "MaxiBlocks"
 msgstr ""
 
 #. Author URI of the theme
@@ -32,49 +35,40 @@ msgid "https://maxiblocks.com/go/theme-author"
 msgstr ""
 
 #: assets/build/admin/php/add-maxi-templates.php:70
-#: assets/build/admin/php/php/add-maxi-templates.php:70
 #: assets/src/admin/php/add-maxi-templates.php:70
-msgid "MaxiBlocks Theme detected"
+msgid "MaxiBlocks Go Theme detected"
 msgstr ""
 
 #: assets/build/admin/php/add-maxi-templates.php:73
-#: assets/build/admin/php/php/add-maxi-templates.php:73
 #: assets/src/admin/php/add-maxi-templates.php:73
-msgid "Now for the fun part. Let's import seven theme templates to showcase MaxiBlocks' full range. These include blog home, archives, front page, index, 404, search results, and single posts."
+msgid "Now for the fun part. Let's import seven theme templates to showcase MaxiBlocks' Go full range. These include blog home, archives, front page, index, 404, search results, and single posts."
 msgstr ""
 
 #: assets/build/admin/php/add-maxi-templates.php:78
-#: assets/build/admin/php/php/add-maxi-templates.php:78
 #: assets/src/admin/php/add-maxi-templates.php:78
 msgid "Import theme templates"
 msgstr ""
 
 #: assets/build/admin/php/add-maxi-templates.php:82
 #: assets/build/admin/php/install-maxi-plugin.php:84
-#: assets/build/admin/php/php/add-maxi-templates.php:82
-#: assets/build/admin/php/php/install-maxi-plugin.php:84
 #: assets/src/admin/php/add-maxi-templates.php:82
 #: assets/src/admin/php/install-maxi-plugin.php:84
 msgid "More info"
 msgstr ""
 
 #: assets/build/admin/php/add-maxi-templates.php:184
-#: assets/build/admin/php/php/add-maxi-templates.php:184
 #: assets/src/admin/php/add-maxi-templates.php:184
 msgid "Importing.."
 msgstr ""
 
 #: assets/build/admin/php/add-maxi-templates.php:185
 #: assets/build/admin/php/install-maxi-plugin.php:211
-#: assets/build/admin/php/php/add-maxi-templates.php:185
-#: assets/build/admin/php/php/install-maxi-plugin.php:211
 #: assets/src/admin/php/add-maxi-templates.php:185
 #: assets/src/admin/php/install-maxi-plugin.php:211
 msgid "Done"
 msgstr ""
 
 #: assets/build/admin/php/add-maxi-templates.php:186
-#: assets/build/admin/php/php/add-maxi-templates.php:186
 #: assets/src/admin/php/add-maxi-templates.php:186
 msgid "Error"
 msgstr ""
@@ -82,8 +76,6 @@ msgstr ""
 #. translators: %s: Source directory path
 #: assets/build/admin/php/add-maxi-templates.php:209
 #: assets/build/admin/php/add-maxi-templates.php:214
-#: assets/build/admin/php/php/add-maxi-templates.php:209
-#: assets/build/admin/php/php/add-maxi-templates.php:214
 #: assets/src/admin/php/add-maxi-templates.php:209
 #: assets/src/admin/php/add-maxi-templates.php:214
 msgid "Source directory does not exist or is not readable: %s"
@@ -92,8 +84,6 @@ msgstr ""
 #. translators: %s: Destination directory path
 #: assets/build/admin/php/add-maxi-templates.php:224
 #: assets/build/admin/php/add-maxi-templates.php:229
-#: assets/build/admin/php/php/add-maxi-templates.php:224
-#: assets/build/admin/php/php/add-maxi-templates.php:229
 #: assets/src/admin/php/add-maxi-templates.php:224
 #: assets/src/admin/php/add-maxi-templates.php:229
 msgid "Destination directory is not writable: %s"
@@ -101,7 +91,6 @@ msgstr ""
 
 #. translators: 1: Source file path, 2: Destination file path
 #: assets/build/admin/php/add-maxi-templates.php:257
-#: assets/build/admin/php/php/add-maxi-templates.php:257
 #: assets/src/admin/php/add-maxi-templates.php:257
 msgid "Failed to copy file: %s to %s"
 msgstr ""
@@ -109,57 +98,47 @@ msgstr ""
 #. translators: %s: Source directory path
 #: assets/build/admin/php/add-maxi-templates.php:269
 #: assets/build/admin/php/add-maxi-templates.php:274
-#: assets/build/admin/php/php/add-maxi-templates.php:269
-#: assets/build/admin/php/php/add-maxi-templates.php:274
 #: assets/src/admin/php/add-maxi-templates.php:269
 #: assets/src/admin/php/add-maxi-templates.php:274
 msgid "Failed to open directory: %s"
 msgstr ""
 
 #: assets/build/admin/php/install-maxi-plugin.php:69
-#: assets/build/admin/php/php/install-maxi-plugin.php:69
 #: assets/src/admin/php/install-maxi-plugin.php:69
-msgid "Thank you for choosing the MaxiBlocks theme"
+msgid "Thank you for choosing the MaxiBlocks Go theme"
 msgstr ""
 
 #: assets/build/admin/php/install-maxi-plugin.php:72
-#: assets/build/admin/php/php/install-maxi-plugin.php:72
 #: assets/src/admin/php/install-maxi-plugin.php:72
 msgid "Please activate the MaxiBlocks companion plugin"
 msgstr ""
 
 #: assets/build/admin/php/install-maxi-plugin.php:72
-#: assets/build/admin/php/php/install-maxi-plugin.php:72
 #: assets/src/admin/php/install-maxi-plugin.php:72
 msgid "Please install the MaxiBlocks companion plugin"
 msgstr ""
 
 #: assets/build/admin/php/install-maxi-plugin.php:75
-#: assets/build/admin/php/php/install-maxi-plugin.php:75
 #: assets/src/admin/php/install-maxi-plugin.php:75
 msgid "Get advanced block editing features, responsive controls, interactions and hover effects. Explore 2,200+ designer-made patterns, 190 pages, 14,200 icons and 100 global style cards to speed up your design process."
 msgstr ""
 
 #: assets/build/admin/php/install-maxi-plugin.php:80
-#: assets/build/admin/php/php/install-maxi-plugin.php:80
 #: assets/src/admin/php/install-maxi-plugin.php:80
 msgid "Activate MaxiBlocks plugin"
 msgstr ""
 
 #: assets/build/admin/php/install-maxi-plugin.php:80
-#: assets/build/admin/php/php/install-maxi-plugin.php:80
 #: assets/src/admin/php/install-maxi-plugin.php:80
 msgid "Install MaxiBlocks plugin"
 msgstr ""
 
 #: assets/build/admin/php/install-maxi-plugin.php:209
-#: assets/build/admin/php/php/install-maxi-plugin.php:209
 #: assets/src/admin/php/install-maxi-plugin.php:209
 msgid "Activating"
 msgstr ""
 
 #: assets/build/admin/php/install-maxi-plugin.php:210
-#: assets/build/admin/php/php/install-maxi-plugin.php:210
 #: assets/src/admin/php/install-maxi-plugin.php:210
 msgid "Installing"
 msgstr ""
