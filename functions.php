@@ -1,11 +1,11 @@
 <?php
 /**
- * MaxiBlocks Go Theme functions and definitions
+ * MaxiBlocks Go theme functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package MaxiBlocks Go Theme
- * @since MaxiBlocks Go Theme 1.0.1
+ * @package MaxiBlocks Go theme
+ * @since MaxiBlocks Go theme 1.0.1
  */
 
 if (!defined('MBT_DEBUG')) {  // Set to false in production
@@ -191,7 +191,7 @@ function mbt_get_maxi_patterns()
 /**
  * Registers custom block pattern categories for MaxiBlocks Go.
  *
- * @since MaxiBlocks Go Theme 1.0.1
+ * @since MaxiBlocks Go theme 1.0.1
  */
 function mbt_register_maxi_block_categories()
 {

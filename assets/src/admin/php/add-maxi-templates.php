@@ -2,7 +2,7 @@
 /**
  * Admin Import templates Notice
  *
- * @package MaxiBlocks Go Theme
+ * @package MaxiBlocks Go theme
  * @author MaxiBlocks
  * @since 1.0.0
  */
@@ -67,7 +67,7 @@ function mbt_render_templates_notice()
         <div class="mbt-notice__col">
             <div class="mbt-notice__content">
                 <h2 class="mbt-notice__title">
-                <?php esc_html_e('MaxiBlocks Go Theme detected', 'maxiblocks-go');?>
+                <?php esc_html_e('MaxiBlocks Go theme detected', 'maxiblocks-go');?>
                 </h2>
                 <p class="mbt-notice__description">
                     <?php esc_html_e('Now for the fun part. Let\'s import seven theme templates to showcase MaxiBlocks\' Go full range. These include blog home, archives, front page, index, 404, search results, and single posts.', 'maxiblocks-go');?>

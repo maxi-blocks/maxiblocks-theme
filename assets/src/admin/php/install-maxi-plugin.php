@@ -2,7 +2,7 @@
 /**
  * Admin Install Plugin Notice
  *
- * @package MaxiBlocks Go Theme
+ * @package MaxiBlocks Go theme
  * @author MaxiBlocks
  * @since 1.0.0
  */

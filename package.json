@@ -1,7 +1,7 @@
 {
 	"name": "maxiblocks-go",
 	"version": "1.0.0",
-	"description": "=== MaxiBlocks Go Theme ===",
+	"description": "=== MaxiBlocks Go theme ===",
 	"main": "index.js",
 	"scripts": {
 		"build-frontend-scss": "node-sass --output-style expanded assets/src/frontend/scss/ -o assets/build/frontend/css/",

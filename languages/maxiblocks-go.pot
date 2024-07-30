@@ -36,7 +36,7 @@ msgstr ""
 
 #: assets/build/admin/php/add-maxi-templates.php:70
 #: assets/src/admin/php/add-maxi-templates.php:70
-msgid "MaxiBlocks Go Theme detected"
+msgid "MaxiBlocks Go theme detected"
 msgstr ""
 
 #: assets/build/admin/php/add-maxi-templates.php:73
