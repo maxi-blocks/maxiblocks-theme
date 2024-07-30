@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		importButton.addEventListener('click', function () {
 			if (importButton.classList.contains('view-templates')) {
 				event.preventDefault();
-				window.location.href = `${adminUrl}site-editor.php?postType=wp_template&activeView=MaxiBlocks`;
+				window.location.href = `${adminUrl}site-editor.php?postType=wp_template&activeView=MaxiBlocks-Go`;
 				return;
 			}
 			importButton.classList.add('updating-message', 'disabled');
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
 						'Content-Type':
 							'application/x-www-form-urlencoded; charset=UTF-8',
 					},
-					body: `action=maxiblocks-theme-dismiss-templates-notice&nonce=${nonce}`,
+					body: `action=maxiblocks-go-theme-dismiss-templates-notice&nonce=${nonce}`,
 				});
 
 				if (response.status === 200) {

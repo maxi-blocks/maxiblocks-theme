@@ -1,7 +1,7 @@
 <?php
 /**
   * Title: Basic Header
-  * Slug: maxiblocks/basic-header
+  * Slug: maxiblocks-go/basic-header
   * Categories: mbt-header-navigation
   * Block Types: core/template-part/header
   */

@@ -93,7 +93,7 @@ function installMaxiBlocksNotice() {
                 'Content-Type':
                     'application/x-www-form-urlencoded; charset=UTF-8',
             },
-            body: `action=maxiblocks-theme-dismiss-plugin-notice&nonce=${nonce}`,
+            body: `action=maxiblocks-go-theme-dismiss-plugin-notice&nonce=${nonce}`,
         });
 
         if (response.status === 200) {

@@ -1,7 +1,7 @@
 <?php
 /**
   * Title: Search Results Page Dark SRPD-PRO-01
-  * Slug: maxiblocks/search-results-page-dark-srpd-pro-01
+  * Slug: maxiblocks-go/search-results-page-dark-srpd-pro-01
   * Categories: mbt-search-results
   * Template Types: search
 */

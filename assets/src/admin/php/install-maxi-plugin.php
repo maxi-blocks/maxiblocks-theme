@@ -2,8 +2,8 @@
 /**
  * Admin Install Plugin Notice
  *
- * @package MaxiBlocks Theme
- * @author MaxiBlocks Team
+ * @package MaxiBlocks Go Theme
+ * @author MaxiBlocks
  * @since 1.0.0
  */
 
@@ -20,7 +20,7 @@ if (!defined('MBT_PLUGIN_NOTICE_DISMISS')) {
 }
 
 add_action('admin_notices', 'mbt_render_install_plugin_notice', 0);
-add_action('wp_ajax_maxiblocks-theme-dismiss-plugin-notice', 'mbt_close_install_plugin_notice');
+add_action('wp_ajax_maxiblocks-go-theme-dismiss-plugin-notice', 'mbt_close_install_plugin_notice');
 
 /**
  * Renders the installation notice for the MaxiBlocks plugin.
@@ -49,7 +49,7 @@ function mbt_render_install_plugin_notice()
 
     // Enqueue the script.
     wp_enqueue_script(MBT_PLUGIN_NOTICE_JS, $notice_js_url, [], MBT_VERSION, true);
-    wp_localize_script(MBT_PLUGIN_NOTICE_JS, 'maxiblocks', mbt_localize_install_plugin_notice_js($plugin_status));
+    wp_localize_script(MBT_PLUGIN_NOTICE_JS, 'maxiblocks-go', mbt_localize_install_plugin_notice_js($plugin_status));
 
     // Define other variables.
     $install_plugin_image  = MBT_URL_BUILD_ADMIN . '/images/maxiblocks-plugin-install-notice.jpg';
@@ -66,22 +66,22 @@ function mbt_render_install_plugin_notice()
         <div class="mbt-notice__col">
             <div class="mbt-notice__content">
                 <p class="mbt-notice__subtitle">
-                    <?php esc_html_e('Thank you for choosing the MaxiBlocks theme', 'maxiblocks');?>
+                    <?php esc_html_e('Thank you for choosing the MaxiBlocks Go theme', 'maxiblocks-go');?>
                 </p>
                 <h2 class="mbt-notice__title">
-                    <?php $plugin_status === 'installed' ?  esc_html_e('Please activate the MaxiBlocks companion plugin', 'maxiblocks') : esc_html_e('Please install the MaxiBlocks companion plugin', 'maxiblocks'); ?>
+                    <?php $plugin_status === 'installed' ?  esc_html_e('Please activate the MaxiBlocks companion plugin', 'maxiblocks-go') : esc_html_e('Please install the MaxiBlocks companion plugin', 'maxiblocks-go'); ?>
                 </h2>
                 <p class="mbt-notice__description">
-                    <?php esc_html_e('Get advanced block editing features, responsive controls, interactions and hover effects. Explore 2,200+ designer-made patterns, 190 pages, 14,200 icons and 100 global style cards to speed up your design process.', 'maxiblocks'); ?>
+                    <?php esc_html_e('Get advanced block editing features, responsive controls, interactions and hover effects. Explore 2,200+ designer-made patterns, 190 pages, 14,200 icons and 100 global style cards to speed up your design process.', 'maxiblocks-go'); ?>
                 </p>
                 <div class="mbt-notice__actions">
                     <button id="mbt-notice-install-maxiblocks" class="mbt-button mbt-button--primary mbt-button--hero">
                         <span class="mbt-button__text">
-                            <?php $plugin_status === 'installed' ?  esc_html_e('Activate MaxiBlocks plugin', 'maxiblocks') : esc_html_e('Install MaxiBlocks plugin', 'maxiblocks');?>
+                            <?php $plugin_status === 'installed' ?  esc_html_e('Activate MaxiBlocks plugin', 'maxiblocks-go') : esc_html_e('Install MaxiBlocks plugin', 'maxiblocks-go');?>
                         </span><span class="mbt-button__icon">&rsaquo;</span></button>
                     <a href="<?php echo esc_url($more_info_url); ?>" target="_blank"
                         class="mbt-button mbt-button--primary mbt-button--hero">
-                        <span class="mbt-button__text"><?php esc_html_e('More info', 'maxiblocks'); ?>
+                        <span class="mbt-button__text"><?php esc_html_e('More info', 'maxiblocks-go'); ?>
                         </span><span class="mbt-button__icon">&rsaquo;</span>
                     </a>
                 </div>
@@ -206,8 +206,8 @@ function mbt_localize_install_plugin_notice_js($plugin_status)
                 admin_url('plugins.php')
             )
         ),
-        'activating'    => __('Activating', 'maxiblocks') . '&#9203;',
-        'installing'    => __('Installing', 'maxiblocks') . ' &#9203;',
-        'done'          => __('Done', 'maxiblocks') . ' &#10003;',
+        'activating'    => __('Activating', 'maxiblocks-go') . '&#9203;',
+        'installing'    => __('Installing', 'maxiblocks-go') . ' &#9203;',
+        'done'          => __('Done', 'maxiblocks-go') . ' &#10003;',
     );
 }

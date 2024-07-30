@@ -1,7 +1,7 @@
 <?php
 /**
   * Title: Basic Footer
-  * Slug: maxiblocks/basic-footer
+  * Slug: maxiblocks-go/basic-footer
   * Categories: mbt-footer
   * Block Types: core/template-part/footer
   */

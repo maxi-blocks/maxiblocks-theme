@@ -1,7 +1,7 @@
 <?php
 /**
   * Title: Blog Home Page Dark BHPD-PRO-02
-  * Slug: maxiblocks/blog-home-page-dark-bhpd-pro-02
+  * Slug: maxiblocks-go/blog-home-page-dark-bhpd-pro-02
   * Categories: mbt-homepage, mbt-blog-index
   * Template Types: home, front-page, page
   */

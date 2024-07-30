@@ -1,7 +1,7 @@
 <?php
 /**
   * Title: All Archive Page Dark AAEPD-PRO-02
-  * Slug: maxiblocks/all-archive-page-dark-aaepd-pro-02
+  * Slug: maxiblocks-go/all-archive-page-dark-aaepd-pro-02
   * Categories: mbt-all-archives
   * Template Types: author, category, tag, date, archive, taxonomy
   */

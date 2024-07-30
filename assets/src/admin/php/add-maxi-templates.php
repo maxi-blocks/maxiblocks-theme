@@ -2,8 +2,8 @@
 /**
  * Admin Import templates Notice
  *
- * @package MaxiBlocks Theme
- * @author MaxiBlocks Team
+ * @package MaxiBlocks Go Theme
+ * @author MaxiBlocks
  * @since 1.0.0
  */
 
@@ -20,7 +20,7 @@ if (!defined('MBT_TEMPLATE_NOTICE_DISMISS')) {
 }
 
 add_action('admin_notices', 'mbt_render_templates_notice', 0);
-add_action('wp_ajax_maxiblocks-theme-dismiss-templates-notice', 'mbt_close_templates_notice');
+add_action('wp_ajax_maxiblocks-go-theme-dismiss-templates-notice', 'mbt_close_templates_notice');
 
 /**
  * Renders the import notice for templates, patterns, parts.
@@ -50,7 +50,7 @@ function mbt_render_templates_notice()
 
     // Enqueue the script.
     wp_enqueue_script(MBT_TEMPLATE_NOTICE_JS, $notice_js_url, [], MBT_VERSION, true);
-    wp_localize_script(MBT_TEMPLATE_NOTICE_JS, 'maxiblocks', mbt_localize_templates_notice_js($plugin_status));
+    wp_localize_script(MBT_TEMPLATE_NOTICE_JS, 'maxiblocks-go', mbt_localize_templates_notice_js($plugin_status));
 
     // Define other variables.
     $install_plugin_image  = MBT_URL_BUILD_ADMIN . '/images/maxiblocks-templates-notice.jpg';
@@ -67,19 +67,19 @@ function mbt_render_templates_notice()
         <div class="mbt-notice__col">
             <div class="mbt-notice__content">
                 <h2 class="mbt-notice__title">
-                <?php esc_html_e('MaxiBlocks Theme detected', 'maxiblocks');?>
+                <?php esc_html_e('MaxiBlocks Go Theme detected', 'maxiblocks-go');?>
                 </h2>
                 <p class="mbt-notice__description">
-                    <?php esc_html_e('Now for the fun part. Let\'s import seven theme templates to showcase MaxiBlocks\' full range. These include blog home, archives, front page, index, 404, search results, and single posts.', 'maxiblocks');?>
+                    <?php esc_html_e('Now for the fun part. Let\'s import seven theme templates to showcase MaxiBlocks\' Go full range. These include blog home, archives, front page, index, 404, search results, and single posts.', 'maxiblocks-go');?>
                 </p>
                 <div class="mbt-notice__actions">
                     <button id="mbt-notice-import-templates-patterns" class="mbt-button mbt-button--primary mbt-button--hero" onclick="mbt_copy_patterns()">
                         <span class="mbt-button__text">
-                            <?php esc_html_e('Import theme templates', 'maxiblocks')?>
+                            <?php esc_html_e('Import theme templates', 'maxiblocks-go')?>
                         </span><span class="mbt-button__icon">&rsaquo;</span></button>
                     <a href="<?php echo esc_url($more_info_url); ?>" target="_blank"
                         class="mbt-button mbt-button--primary mbt-button--hero">
-                        <span class="mbt-button__text"><?php esc_html_e('More info', 'maxiblocks'); ?>
+                        <span class="mbt-button__text"><?php esc_html_e('More info', 'maxiblocks-go'); ?>
                         </span><span class="mbt-button__icon">&rsaquo;</span>
                     </a>
                 </div>
@@ -181,9 +181,9 @@ function mbt_localize_templates_notice_js($plugin_status)
         'ajaxUrl'      => admin_url('admin-ajax.php'),
         'adminUrl' => admin_url(),
         'pluginStatus' => $plugin_status,
-        'importing'    => __('Importing..', 'maxiblocks') . ' &#9203;',
-        'done'          => __('Done', 'maxiblocks') . ' &#10003;',
-        'error'          => __('Error', 'maxiblocks') . ' !',
+        'importing'    => __('Importing..', 'maxiblocks-go') . ' &#9203;',
+        'done'          => __('Done', 'maxiblocks-go') . ' &#10003;',
+        'error'          => __('Error', 'maxiblocks-go') . ' !',
     );
 }
 
@@ -206,12 +206,12 @@ function mbt_copy_directory($source_dir, $destination_dir)
     if (!is_dir($source_dir) || !is_readable($source_dir)) {
         error_log(sprintf(
             /* translators: %s: Source directory path */
-            __("Source directory does not exist or is not readable: %s", 'maxiblocks'),
+            __("Source directory does not exist or is not readable: %s", 'maxiblocks-go'),
             $source_dir
         ));
         wp_send_json_error(sprintf(
             /* translators: %s: Source directory path */
-            __("Source directory does not exist or is not readable: %s", 'maxiblocks'),
+            __("Source directory does not exist or is not readable: %s", 'maxiblocks-go'),
             $source_dir
         ));
         return;
@@ -221,12 +221,12 @@ function mbt_copy_directory($source_dir, $destination_dir)
     if (!wp_is_writable($destination_dir)) {
         error_log(sprintf(
             /* translators: %s: Destination directory path */
-            __("Destination directory is not writable: %s", 'maxiblocks'),
+            __("Destination directory is not writable: %s", 'maxiblocks-go'),
             $destination_dir
         ));
         wp_send_json_error(sprintf(
             /* translators: %s: Destination directory path */
-            __("Destination directory is not writable: %s", 'maxiblocks'),
+            __("Destination directory is not writable: %s", 'maxiblocks-go'),
             $destination_dir
         ));
         return;
@@ -254,7 +254,7 @@ function mbt_copy_directory($source_dir, $destination_dir)
                     if (!copy($source_path, $destination_path)) {
                         error_log(sprintf(
                             /* translators: 1: Source file path, 2: Destination file path */
-                            __("Failed to copy file: %s to %s", 'maxiblocks'),
+                            __("Failed to copy file: %s to %s", 'maxiblocks-go'),
                             $source_path,
                             $destination_path
                         ));
@@ -266,12 +266,12 @@ function mbt_copy_directory($source_dir, $destination_dir)
     } else {
         error_log(sprintf(
             /* translators: %s: Source directory path */
-            __("Failed to open directory: %s", 'maxiblocks'),
+            __("Failed to open directory: %s", 'maxiblocks-go'),
             $source_dir
         ));
         wp_send_json_error(sprintf(
             /* translators: %s: Source directory path */
-            __("Failed to open directory: %s", 'maxiblocks'),
+            __("Failed to open directory: %s", 'maxiblocks-go'),
             $source_dir
         ));
     }

@@ -1,7 +1,7 @@
 <?php
 /**
   * Title: Basic Single Post
-  * Slug: maxiblocks/basic-single-post
+  * Slug: maxiblocks-go/basic-single-post
   * Categories: mbt-post-single
   * Template Types: single
   */

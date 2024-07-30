@@ -42,7 +42,7 @@ body {
 			}
 		}
 	}
-	.maxiblocks-custom-pattern {
+	.maxiblocks-go-custom-pattern {
 		height: auto !important;
 		.block-editor-block-preview__content {
 			transform: none !important;
@@ -57,7 +57,7 @@ body {
 			min-height: auto !important;
 		}
 	}
-	.block-editor-iframe__container:has(.maxiblocks-pattern-preview-image) {
+	.block-editor-iframe__container:has(.maxiblocks-go-pattern-preview-image) {
 		overflow: visible;
 	}
 	.editor-styles-wrapper

@@ -1,11 +1,11 @@
 <?php
 /**
- * MaxiBlocks Theme functions and definitions
+ * MaxiBlocks Go Theme functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package MaxiBlocks Theme
- * @since MaxiBlocks Theme 1.0.1
+ * @package MaxiBlocks Go Theme
+ * @since MaxiBlocks Go Theme 1.0.1
  */
 
 if (!defined('MBT_DEBUG')) {  // Set to false in production
@@ -15,7 +15,7 @@ if (!defined('MBT_VERSION')) {
     define('MBT_VERSION', wp_get_theme()->get('Version'));
 }
 if (!defined('MBT_PREFIX')) {
-    define('MBT_PREFIX', 'maxiblocks-theme-');
+    define('MBT_PREFIX', 'maxiblocks-go-theme-');
 }
 if (!defined('MBT_PATH')) { // path to the root theme folder
     define('MBT_PATH', get_template_directory());
@@ -65,7 +65,7 @@ if (!defined('MBT_FSE_JS')) {
  */
 function mbt_load_theme_textdomain()
 {
-    load_theme_textdomain('maxiblocks', get_template_directory() . '/languages');
+    load_theme_textdomain('maxiblocks-go', get_template_directory() . '/languages');
 }
 add_action('after_setup_theme', 'mbt_load_theme_textdomain');
 
@@ -103,7 +103,7 @@ function mbt_customize_register($wp_customize)
 
     // Add a new control to the customizer for the custom theme CSS setting.
     $wp_customize->add_control(new WP_Customize_Code_Editor_Control($wp_customize, 'mbt_custom_theme_css', array(
-        'label'       => __('Custom Theme CSS', 'maxiblocks'),
+        'label'       => __('Custom Theme CSS', 'maxiblocks-go'),
         'section'     => 'mbt_new_section_name',
         'settings'    => 'mbt_custom_theme_css',
         'code_type'   => 'text/css',
@@ -122,7 +122,7 @@ function mbt_rename_customize_menu_item_in_sidebar()
     if (isset($submenu['themes.php'])) {
         foreach ($submenu['themes.php'] as $index => $item) {
             if ($item[1] === 'customize') {
-                $submenu['themes.php'][$index][0] = __('Classic customizer', 'maxiblocks');
+                $submenu['themes.php'][$index][0] = __('Classic customizer', 'maxiblocks-go');
                 break;
             }
         }
@@ -189,23 +189,23 @@ function mbt_get_maxi_patterns()
 }
 
 /**
- * Registers custom block pattern categories for MaxiBlocks.
+ * Registers custom block pattern categories for MaxiBlocks Go.
  *
- * @since MaxiBlocks Theme 1.0.1
+ * @since MaxiBlocks Go Theme 1.0.1
  */
 function mbt_register_maxi_block_categories()
 {
     // Define block pattern categories with labels.
     $block_pattern_categories = array(
-        'mbt-author-bio' => array('label' => __('MaxiBlocks author bio', 'maxiblocks')),
-        'mbt-post-single' => array('label' => __('MaxiBlocks post single', 'maxiblocks')),
-        'mbt-homepage' => array('label' => __('MaxiBlocks homepage', 'maxiblocks')),
-        'mbt-footer' => array('label' => __('MaxiBlocks footer', 'maxiblocks')),
-        'mbt-header-navigation' => array('label' => __('MaxiBlocks header navigation', 'maxiblocks')),
-        'mbt-blog-index' => array('label' => __('MaxiBlocks blog index', 'maxiblocks')),
-        'mbt-not-found-404' => array('label' => __('MaxiBlocks not found 404', 'maxiblocks')),
-        'mbt-all-archives' => array('label' => __('MaxiBlocks all archives', 'maxiblocks')),
-        'mbt-search-results' => array('label' => __('MaxiBlocks search results', 'maxiblocks')),
+        'mbt-author-bio' => array('label' => __('MaxiBlocks Go author bio', 'maxiblocks-go')),
+        'mbt-post-single' => array('label' => __('MaxiBlocks Go post single', 'maxiblocks-go')),
+        'mbt-homepage' => array('label' => __('MaxiBlocks Go homepage', 'maxiblocks-go')),
+        'mbt-footer' => array('label' => __('MaxiBlocks Go footer', 'maxiblocks-go')),
+        'mbt-header-navigation' => array('label' => __('MaxiBlocks Go header navigation', 'maxiblocks-go')),
+        'mbt-blog-index' => array('label' => __('MaxiBlocks Go blog index', 'maxiblocks-go')),
+        'mbt-not-found-404' => array('label' => __('MaxiBlocks Go not found 404', 'maxiblocks-go')),
+        'mbt-all-archives' => array('label' => __('MaxiBlocks Go all archives', 'maxiblocks-go')),
+        'mbt-search-results' => array('label' => __('MaxiBlocks Go search results', 'maxiblocks-go')),
     );
 
     // Allow filtering the block pattern categories.
@@ -245,7 +245,7 @@ function mbt_fse_admin_script()
         'directories' => mbt_get_maxi_patterns(),
     );
 
-    wp_localize_script(MBT_FSE_JS, 'maxiblocks', $vars);
+    wp_localize_script(MBT_FSE_JS, 'maxiblocks-go', $vars);
 
 
 }
@@ -279,19 +279,19 @@ function mbt_setup_default_menu()
     
     // Check if there are no menus existing on the site
     if (empty($existing_menus)) {
-        $menu_name = 'MaxiBlocks Menu';
+        $menu_name = 'MaxiBlocks Go Menu';
         $menu_id = wp_create_nav_menu($menu_name);
         
         // Add default menu items here
         wp_update_nav_menu_item($menu_id, 0, array(
-            'menu-item-title' => __('Home', 'maxiblocks'),
+            'menu-item-title' => __('Home', 'maxiblocks-go'),
             'menu-item-url' => home_url('/'),
             'menu-item-status' => 'publish'
         ));
 
         // Add Features menu item and get its ID
         $features_id = wp_update_nav_menu_item($menu_id, 0, array(
-            'menu-item-title' => __('Features', 'maxiblocks'),
+            'menu-item-title' => __('Features', 'maxiblocks-go'),
             'menu-item-url' => '#',
             'menu-item-status' => 'publish',
             'menu-item-type' => 'custom'
@@ -299,7 +299,7 @@ function mbt_setup_default_menu()
 
         // Add sub-menu items under Features
         wp_update_nav_menu_item($menu_id, 0, array(
-            'menu-item-title' => __('Sub-menu #1', 'maxiblocks'),
+            'menu-item-title' => __('Sub-menu #1', 'maxiblocks-go'),
             'menu-item-url' => '#',
             'menu-item-parent-id' => $features_id,
             'menu-item-status' => 'publish',
@@ -307,7 +307,7 @@ function mbt_setup_default_menu()
         ));
 
         wp_update_nav_menu_item($menu_id, 0, array(
-            'menu-item-title' => __('Sub-menu #2', 'maxiblocks'),
+            'menu-item-title' => __('Sub-menu #2', 'maxiblocks-go'),
             'menu-item-url' => '#',
             'menu-item-parent-id' => $features_id,
             'menu-item-status' => 'publish',
@@ -315,14 +315,14 @@ function mbt_setup_default_menu()
         ));
 
         wp_update_nav_menu_item($menu_id, 0, array(
-            'menu-item-title' => __('How it works', 'maxiblocks'),
+            'menu-item-title' => __('How it works', 'maxiblocks-go'),
             'menu-item-url' => '#',
             'menu-item-status' => 'publish',
             'menu-item-type' => 'custom'
         ));
 
         wp_update_nav_menu_item($menu_id, 0, array(
-            'menu-item-title' => __('Get in touch', 'maxiblocks'),
+            'menu-item-title' => __('Get in touch', 'maxiblocks-go'),
             'menu-item-url' => '#',
             'menu-item-status' => 'publish',
             'menu-item-type' => 'custom'

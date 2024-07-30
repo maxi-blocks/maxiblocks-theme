@@ -1,7 +1,7 @@
 <?php
 /**
   * Title: Navigation Menu Dark NML-PRO-14
-  * Slug: maxiblocks/navigation-menu-dark-nml-pro-14
+  * Slug: maxiblocks-go/navigation-menu-dark-nml-pro-14
   * Categories: mbt-header-navigation
 */
 $path_to_images = MBT_MAXI_PATTERNS_URL . 'navigation-menu-dark-nml-pro-14/images/';?>

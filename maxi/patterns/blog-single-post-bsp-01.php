@@ -1,7 +1,7 @@
 <?php
 /**
   * Title: Blog Single Post BSP-01
-  * Slug: maxiblocks/blog-single-post-bsp-01
+  * Slug: maxiblocks-go/blog-single-post-bsp-01
   * Categories: mbt-post-single
   * Template Types: single
   */

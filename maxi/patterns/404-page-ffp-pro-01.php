@@ -1,7 +1,7 @@
 <?php
 /**
   * Title: 404 Page FFP-PRO-01
-  * Slug: maxiblocks/404-page-ffp-pro-01
+  * Slug: maxiblocks-go/404-page-ffp-pro-01
   * Categories: mbt-not-found-404
   * Template Types: 404
   */

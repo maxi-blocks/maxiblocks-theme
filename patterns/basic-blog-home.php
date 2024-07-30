@@ -1,7 +1,7 @@
 <?php
 /**
   * Title: Basic Blog Home
-  * Slug: maxiblocks/basic-blog-home
+  * Slug: maxiblocks-go/basic-blog-home
   * Categories: mbt-homepage, mbt-blog-index
   * Template Types: home, front-page, page
   */

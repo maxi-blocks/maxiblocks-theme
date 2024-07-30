@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		return templateName;
 	}
 	function checkAndReplaceIframe() {
-		const editorPrefix = 'edit-site-patterns-maxiblocks/';
+		const editorPrefix = 'edit-site-patterns-maxiblocks-go/';
 
 		const { url, directories } = maxiblocks;
 
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			// If the button exists, add it to the buttons array
 			if (
 				button &&
-				!button.classList.contains('maxiblocks-custom-pattern') &&
+				!button.classList.contains('maxiblocks-go-custom-pattern') &&
 				!button.classList.contains('query-results')
 			) {
 				const iframe = button.querySelector('iframe');
@@ -64,11 +64,11 @@ document.addEventListener('DOMContentLoaded', function () {
 				const imgAlt = `${idPart} preview image`;
 
 				if (iframe || image) {
-					button.classList.add('maxiblocks-custom-pattern');
+					button.classList.add('maxiblocks-go-custom-pattern');
 					const img = new Image();
 					img.src = `${imgSrt}?ver=${version}`;
 					img.alt = imgAlt;
-					img.classList.add('maxiblocks-pattern-preview-image');
+					img.classList.add('maxiblocks-go-pattern-preview-image');
 
 					// Get the direct parent of the iframe
 					if (iframe) {
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
 							image.src = imgSrc;
 							image.alt = imgAlt;
 							image.classList.add(
-								'maxiblocks-pattern-preview-image'
+								'maxiblocks-go-pattern-preview-image'
 							);
 						}
 					}
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					let isFirstCard = true;
 					gridCards.forEach(card => {
 						if (
-							card.classList.contains('maxiblocks-custom-pattern')
+							card.classList.contains('maxiblocks-go-custom-pattern')
 						) {
 							isFirstCard = false;
 							return;
@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
 						let titleId = card.querySelector(
 							'div.block-editor-block-patterns-list__item'
 						)?.id;
-						if (titleId && !titleId.includes('maxiblocks/')) {
+						if (titleId && !titleId.includes('maxiblocks-go/')) {
 							titleId = card
 								.querySelector(
 									'div.block-editor-block-patterns-list__item'
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
 								? titleDiv?.textContent
 										?.toLowerCase()
 										?.replace(/\s+/g, '-')
-								: titleId?.replace('maxiblocks/', '');
+								: titleId?.replace('maxiblocks-go/', '');
 							if (modifiedText === idPart) {
 								isFirstCard = false;
 								const src = `${url}${idPart}/preview-${idPart}.webp`;
@@ -165,10 +165,10 @@ document.addEventListener('DOMContentLoaded', function () {
 									imageToReplace.src = src;
 									imageToReplace.alt = alt;
 									imageToReplace.classList.add(
-										'maxiblocks-pattern-preview-image'
+										'maxiblocks-go-pattern-preview-image'
 									);
 									card.classList.add(
-										'maxiblocks-custom-pattern'
+										'maxiblocks-go-custom-pattern'
 									);
 								} else {
 									iframeToReplace = card.querySelector(
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function () {
 										img.src = `${src}?ver=${version}`;
 										img.alt = alt;
 										img.classList.add(
-											'maxiblocks-pattern-preview-image'
+											'maxiblocks-go-pattern-preview-image'
 										);
 										iframeToReplace.parentNode?.insertBefore(
 											img,
@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function () {
 												'none';
 										}
 										card.classList.add(
-											'maxiblocks-custom-pattern'
+											'maxiblocks-go-custom-pattern'
 										);
 									}
 								}
@@ -220,14 +220,14 @@ document.addEventListener('DOMContentLoaded', function () {
 											?.getEditedPostId();
 									if (
 										!currentTemplateSlug.includes(
-											'maxiblocks//'
+											'maxiblocks-go//'
 										)
 									)
 										return;
 
-									const finalTemplateName = `MaxiBlocks template type: ${getTemplateName(
+									const finalTemplateName = `MaxiBlocks Go template type: ${getTemplateName(
 										currentTemplateSlug.replace(
-											'maxiblocks//',
+											'maxiblocks-go//',
 											''
 										)
 									)}`;
@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function () {
 									titleToReplace.textContent =
 										finalTemplateName;
 									card.classList.add(
-										'maxiblocks-custom-pattern'
+										'maxiblocks-go-custom-pattern'
 									);
 								}
 							}

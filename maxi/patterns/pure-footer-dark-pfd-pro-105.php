@@ -1,7 +1,7 @@
 <?php
 /**
   * Title: Pure Footer Dark PFD-PRO-105
-  * Slug: maxiblocks/pure-footer-dark-pfd-pro-105
+  * Slug: maxiblocks-go/pure-footer-dark-pfd-pro-105
   * Categories: mbt-footer
   * Block Types: core/template-part/footer
 */
