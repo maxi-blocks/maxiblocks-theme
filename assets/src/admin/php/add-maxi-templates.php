@@ -70,7 +70,7 @@ function mbt_render_templates_notice()
                 <?php esc_html_e('MaxiBlocks Go theme detected', 'maxiblocks-go');?>
                 </h2>
                 <p class="mbt-notice__description">
-                    <?php esc_html_e('Now for the fun part. Let\'s import seven theme templates to showcase MaxiBlocks\' Go full range. These include blog home, archives, front page, index, 404, search results, and single posts.', 'maxiblocks-go');?>
+                    <?php esc_html_e('Now for the fun part. Let\'s import seven theme templates to showcase MaxiBlocks\' full range. These include blog home, archives, pages, index, 404, search results, and single posts.', 'maxiblocks-go');?>
                 </p>
                 <div class="mbt-notice__actions">
                     <button id="mbt-notice-import-templates-patterns" class="mbt-button mbt-button--primary mbt-button--hero" onclick="mbt_copy_patterns()">
