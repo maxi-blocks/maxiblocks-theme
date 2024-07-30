@@ -197,15 +197,15 @@ function mbt_register_maxi_block_categories()
 {
     // Define block pattern categories with labels.
     $block_pattern_categories = array(
-        'mbt-author-bio' => array('label' => __('MaxiBlocks Go author bio', 'maxiblocks-go')),
-        'mbt-post-single' => array('label' => __('MaxiBlocks Go post single', 'maxiblocks-go')),
-        'mbt-homepage' => array('label' => __('MaxiBlocks Go homepage', 'maxiblocks-go')),
-        'mbt-footer' => array('label' => __('MaxiBlocks Go footer', 'maxiblocks-go')),
-        'mbt-header-navigation' => array('label' => __('MaxiBlocks Go header navigation', 'maxiblocks-go')),
-        'mbt-blog-index' => array('label' => __('MaxiBlocks Go blog index', 'maxiblocks-go')),
-        'mbt-not-found-404' => array('label' => __('MaxiBlocks Go not found 404', 'maxiblocks-go')),
-        'mbt-all-archives' => array('label' => __('MaxiBlocks Go all archives', 'maxiblocks-go')),
-        'mbt-search-results' => array('label' => __('MaxiBlocks Go search results', 'maxiblocks-go')),
+        'mbt-author-bio' => array('label' => __('MaxiBlocks author bio', 'maxiblocks-go')),
+        'mbt-post-single' => array('label' => __('MaxiBlocks post single', 'maxiblocks-go')),
+        'mbt-homepage' => array('label' => __('MaxiBlocks homepage', 'maxiblocks-go')),
+        'mbt-footer' => array('label' => __('MaxiBlocks footer', 'maxiblocks-go')),
+        'mbt-header-navigation' => array('label' => __('MaxiBlocks header navigation', 'maxiblocks-go')),
+        'mbt-blog-index' => array('label' => __('MaxiBlocks blog index', 'maxiblocks-go')),
+        'mbt-not-found-404' => array('label' => __('MaxiBlocks not found 404', 'maxiblocks-go')),
+        'mbt-all-archives' => array('label' => __('MaxiBlocks all archives', 'maxiblocks-go')),
+        'mbt-search-results' => array('label' => __('MaxiBlocks search results', 'maxiblocks-go')),
     );
 
     // Allow filtering the block pattern categories.
