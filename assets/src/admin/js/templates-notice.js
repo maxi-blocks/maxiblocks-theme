@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		importButton.addEventListener('click', function () {
 			if (importButton.classList.contains('view-templates')) {
 				event.preventDefault();
-				window.location.href = `${adminUrl}site-editor.php?postType=wp_template&activeView=MaxiBlocks-Go`;
+				window.location.href = `${adminUrl}site-editor.php?postType=wp_template&activeView=MaxiBlocks%20Go`;
 				return;
 			}
 			importButton.classList.add('updating-message', 'disabled');
