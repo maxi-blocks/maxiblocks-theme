@@ -1,4 +1,4 @@
-=== MaxiBlocks ===
+=== MaxiBlocks Go ===
 
 Contributors: ckp267, kyrapieterse, svitlana41319, serifkonjevic, olekrut, naaaaiix, rustamsamsonyan, andriivalenia, dashaversha, myroslavv, fitsedivi, maxiblocks
 Requires at least: 6.2.2
@@ -13,13 +13,13 @@ Discover the perfect blend of speed, simplicity, and design with MaxiBlocks' pow
 
 == Description ==
 
-Create professional websites in record time with MaxiBlocks. Our designer-made block patterns, full-page templates, global style cards, and customisable SVG icons make it simple to build unique sites. Web professionals will love MaxiBlocks' extensive customisation options and advanced responsive controls. Deliver high-quality client sites more efficiently and profitably, spending less time battling code and more time growing your business. Whether you're a solo creator needing an online presence or an agency looking to improve your workflow, MaxiBlocks helps you build polished websites without the usual frustrations. Try Maxi today and experience the difference for yourself.
+Create professional websites in record time with the MaxiBlocks Go theme. Our designer-made block patterns, full-page templates, global style cards, and customisable SVG icons make it simple to build unique sites. Web professionals will love MaxiBlocks' extensive customisation options and advanced responsive controls. Deliver high-quality client sites more efficiently and profitably, spending less time battling code and more time growing your business. Whether you're a solo creator needing an online presence or an agency looking to improve your workflow, MaxiBlocks helps you build polished websites without the usual frustrations. Try MaxiBlocks Go today and experience the difference for yourself.
 
 == Installation ==
 
 From the WordPress.org theme repository:
 1. In your admin panel, go to Appearance > Themes and click 'Add New'.
-2. Search for "MaxiBlocks".
+2. Search for "MaxiBlocks Go".
 3. Click 'Install', then 'Activate'.
 4. Navigate to Appearance > Editor.
 5. Edit page content as desired, adding, removing or customising blocks.
@@ -31,7 +31,7 @@ From a downloaded zip file:
 
 == Copyright ==
 
-MaxiBlocks Theme, ©2024 https://maxiblocks.com MaxiBlocks Theme is distributed under the GNU GPL.
+MaxiBlocks Go theme, ©2024 https://maxiblocks.com MaxiBlocks Go theme is distributed under the GNU GPL.
 
 This program is free software: you can redistribute it and modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 or any later version.
 
