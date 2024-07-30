@@ -49,7 +49,7 @@ function mbt_render_install_plugin_notice()
 
     // Enqueue the script.
     wp_enqueue_script(MBT_PLUGIN_NOTICE_JS, $notice_js_url, [], MBT_VERSION, true);
-    wp_localize_script(MBT_PLUGIN_NOTICE_JS, 'maxiblocks-go', mbt_localize_install_plugin_notice_js($plugin_status));
+    wp_localize_script(MBT_PLUGIN_NOTICE_JS, 'maxiblocks', mbt_localize_install_plugin_notice_js($plugin_status));
 
     // Define other variables.
     $install_plugin_image  = MBT_URL_BUILD_ADMIN . '/images/maxiblocks-plugin-install-notice.jpg';

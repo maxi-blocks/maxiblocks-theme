@@ -245,7 +245,7 @@ function mbt_fse_admin_script()
         'directories' => mbt_get_maxi_patterns(),
     );
 
-    wp_localize_script(MBT_FSE_JS, 'maxiblocks-go', $vars);
+    wp_localize_script(MBT_FSE_JS, 'maxiblocks', $vars);
 
 
 }

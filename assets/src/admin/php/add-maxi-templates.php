@@ -50,7 +50,7 @@ function mbt_render_templates_notice()
 
     // Enqueue the script.
     wp_enqueue_script(MBT_TEMPLATE_NOTICE_JS, $notice_js_url, [], MBT_VERSION, true);
-    wp_localize_script(MBT_TEMPLATE_NOTICE_JS, 'maxiblocks-go', mbt_localize_templates_notice_js($plugin_status));
+    wp_localize_script(MBT_TEMPLATE_NOTICE_JS, 'maxiblocks', mbt_localize_templates_notice_js($plugin_status));
 
     // Define other variables.
     $install_plugin_image  = MBT_URL_BUILD_ADMIN . '/images/maxiblocks-templates-notice.jpg';
