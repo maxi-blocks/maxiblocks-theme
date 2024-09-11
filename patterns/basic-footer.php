@@ -14,7 +14,7 @@
 <div class="wp-block-group mbt template_footer_columns template_width"><!-- wp:columns {"className":"mbt template_footer_columns","style":{"spacing":{"margin":{"top":"60px","bottom":"0"},"padding":{"bottom":"30px"}}}} -->
 <div class="wp-block-columns mbt template_footer_columns" style="margin-top:60px;margin-bottom:0;padding-bottom:30px"><!-- wp:column {"width":"300px"} -->
 <div class="wp-block-column" style="flex-basis:300px"><!-- wp:heading -->
-<h2 class="wp-block-heading">Have any questions?</h2>
+<h2 class="wp-block-heading"><?php esc_html_e('Have any questions?', 'maxiblocks-go'); ?></h2>
 <!-- /wp:heading --></div>
 <!-- /wp:column -->
 
@@ -24,6 +24,6 @@
 <!-- /wp:columns -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0"},"padding":{"bottom":"20px","top":"30px"}},"color":{"text":"#9b9b9b"},"elements":{"link":{"color":{"text":"#ff4a17"},":hover":{"color":{"text":"#c9340a"}}}}}} -->
-<p class="has-text-color has-link-color" style="color:#9b9b9b;margin-top:0;padding-top:30px;padding-bottom:20px">© Copyright – Made with&nbsp;<a href="https://maxiblocks.com/" target="_blank" rel="noreferrer noopener">Maxi Blocks</a></p>
+<p class="has-text-color has-link-color" style="color:#9b9b9b;margin-top:0;padding-top:30px;padding-bottom:20px"><?php esc_html_e('© Copyright – Made with', 'maxiblocks-go'); ?> <a href="https://maxiblocks.com/" target="_blank" rel="noreferrer noopener"><?php esc_html_e('MaxiBlocks', 'maxiblocks-go'); ?></a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
