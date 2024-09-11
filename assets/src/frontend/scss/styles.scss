@@ -10,6 +10,17 @@ body.maxi-blocks--active {
 }
 
 /* for basic templates */
+.entry-content,
+.comment-content,
+.widget_text {
+	a:not(.wp-block-button__link):not(.wp-block-file__button) {
+		text-decoration: underline;
+		&:hover,
+		&:focus {
+			text-decoration: none;
+		}
+	}
+}
 .mbt {
 	&h1,
 	&h2,

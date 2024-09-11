@@ -77,3 +77,15 @@ body {
 :root :where(.wp-site-blocks) > *:has(.maxi-block) {
 	margin-block-start: 0;
 }
+
+.entry-content,
+.comment-content,
+.widget_text {
+	a:not(.wp-block-button__link):not(.wp-block-file__button) {
+		text-decoration: underline;
+		&:hover,
+		&:focus {
+			text-decoration: none;
+		}
+	}
+}

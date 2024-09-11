@@ -503,6 +503,12 @@ body .editor-styles-wrapper {
   margin-block-start: 0;
 }
 
+.entry-content a:not(.wp-block-button__link):not(.wp-block-file__button),
+.comment-content a:not(.wp-block-button__link):not(.wp-block-file__button),
+.widget_text a:not(.wp-block-button__link):not(.wp-block-file__button) {
+  text-decoration: underline;
+}
+
 @charset "UTF-8";
 .mbt-notice {
   font-family: 'Roboto', sans-serif;
