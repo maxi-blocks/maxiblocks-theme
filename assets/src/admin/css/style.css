@@ -517,6 +517,29 @@ body .editor-styles-wrapper {
   text-decoration: none;
 }
 
+.wp-block-comments p,
+.wp-block-comments a {
+  color: #9b9b9b;
+}
+
+.wp-block-comments a {
+  transition: 0.3s ease;
+}
+
+.wp-block-comments a:hover, .wp-block-comments a:focus {
+  color: #c9340a;
+}
+
+.wp-block-comments .wp-element-button {
+  background-color: #000;
+  color: #fff;
+}
+
+.wp-block-comments .wp-element-button:hover, .wp-block-comments .wp-element-button:focus {
+  transition: 0.3s ease;
+  background-color: #c9340a;
+}
+
 @charset "UTF-8";
 .mbt-notice {
   font-family: 'Roboto', sans-serif;

@@ -12,8 +12,9 @@
 <!-- wp:post-featured-image {"style":{"border":{"radius":"30px"}}} /-->
 
 <!-- wp:post-content {"style":{"color":{"text":"#9b9b9b"},"elements":{"link":{"color":{"text":"#9b9b9b"},":hover":{"color":{"text":"#c9340a"}}}}}} /-->
+
 <!-- wp:comments -->
-<div class="wp-block-comments"><!-- wp:comments-title /-->
+<div class="wp-block-comments"><!-- wp:comments-title {"style":{"color":{"text":"#000000"},"elements":{"link":{"color":{"text":"#000000"}}}}} /-->
 
 <!-- wp:comment-template -->
 <!-- wp:columns -->
@@ -40,5 +41,5 @@
 <!-- wp:comments-pagination /-->
 
 <!-- wp:post-comments-form /--></div>
-<!-- /wp:comments --></div></div>
+<!-- /wp:comments --></div>
 <!-- /wp:group -->
