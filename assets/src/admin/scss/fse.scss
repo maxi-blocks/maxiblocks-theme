@@ -79,13 +79,37 @@ body {
 }
 
 .entry-content,
-.comment-content,
+.wp-block-comments,
 .widget_text {
 	a:not(.wp-block-button__link):not(.wp-block-file__button) {
 		text-decoration: underline;
 		&:hover,
 		&:focus {
 			text-decoration: none;
+		}
+	}
+}
+
+.wp-block-comments {
+	p,
+	a {
+		color: #9b9b9b;
+	}
+
+	a {
+		transition: 0.3s ease;
+		&:hover,
+		&:focus {
+			color: #c9340a;
+		}
+	}
+	.wp-element-button {
+		background-color: #000;
+		color: #fff;
+		&:hover,
+		&:focus {
+			transition: 0.3s ease;
+			background-color: #c9340a;
 		}
 	}
 }

@@ -504,9 +504,17 @@ body .editor-styles-wrapper {
 }
 
 .entry-content a:not(.wp-block-button__link):not(.wp-block-file__button),
-.comment-content a:not(.wp-block-button__link):not(.wp-block-file__button),
+.wp-block-comments a:not(.wp-block-button__link):not(.wp-block-file__button),
 .widget_text a:not(.wp-block-button__link):not(.wp-block-file__button) {
   text-decoration: underline;
+}
+
+.entry-content a:not(.wp-block-button__link):not(.wp-block-file__button):hover, .entry-content a:not(.wp-block-button__link):not(.wp-block-file__button):focus,
+.wp-block-comments a:not(.wp-block-button__link):not(.wp-block-file__button):hover,
+.wp-block-comments a:not(.wp-block-button__link):not(.wp-block-file__button):focus,
+.widget_text a:not(.wp-block-button__link):not(.wp-block-file__button):hover,
+.widget_text a:not(.wp-block-button__link):not(.wp-block-file__button):focus {
+  text-decoration: none;
 }
 
 @charset "UTF-8";
