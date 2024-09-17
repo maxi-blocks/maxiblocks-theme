@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', function () {
 		view,
 	} = maxiblocks;
 	var importButton = document.getElementById(
-		'mbt-notice-import-templates-patterns'
+		'maxiblocks-go-notice-import-templates-patterns'
 	);
 	if (importButton) {
-		var importStatusText = importButton.querySelector('.mbt-button__text');
-		var importStatusIcon = importButton.querySelector('.mbt-button__icon');
+		var importStatusText = importButton.querySelector('.maxiblocks-go-button__text');
+		var importStatusIcon = importButton.querySelector('.maxiblocks-go-button__icon');
 		var originalButtonText = importStatusText.textContent;
 
 		importButton.addEventListener('click', function () {
@@ -79,12 +79,12 @@ document.addEventListener('DOMContentLoaded', function () {
 				importStatusText.textContent = error || originalButtonText;
 				// Display error message or perform any other actions
 			};
-			var data = 'action=mbt_copy_patterns&nonce=' + nonce;
+			var data = 'action=maxiblocks_go_copy_patterns&nonce=' + nonce;
 			xhr.send(data);
 		});
 
 		const closeButton = document.querySelector(
-			'.mbt-notice .mbt-notice__dismiss'
+			'.maxiblocks-go-notice .maxiblocks-go-notice__dismiss'
 		);
 
 		/**
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		 */
 		if (closeButton) {
 			/** @var {HTMLElement} noticeContainer - Container element for the notice. */
-			const noticeContainer = document.querySelector('.mbt-notice');
+			const noticeContainer = document.querySelector('.maxiblocks-go-notice');
 
 			/**
 			 * Hides and removes the notice element from the DOM.

@@ -2,17 +2,17 @@
 /**
   * Title: Basic Footer
   * Slug: maxiblocks-go/basic-footer
-  * Categories: mbt-footer
+  * Categories: maxiblocks-go-footer
   * Block Types: core/template-part/footer
   */
 ?>
-<!-- wp:separator {"className":"mbt","style":{"spacing":{"margin":{"top":"0","bottom":"0"}},"color":{"background":"#f4f9fd"}}} -->
-<hr class="wp-block-separator has-text-color has-alpha-channel-opacity has-background mbt" style="margin-top:0;margin-bottom:0;background-color:#f4f9fd;color:#f4f9fd"/>
+<!-- wp:separator {"className":"maxiblocks-go","style":{"spacing":{"margin":{"top":"0","bottom":"0"}},"color":{"background":"#f4f9fd"}}} -->
+<hr class="wp-block-separator has-text-color has-alpha-channel-opacity has-background maxiblocks-go" style="margin-top:0;margin-bottom:0;background-color:#f4f9fd;color:#f4f9fd"/>
 <!-- /wp:separator -->
 
-<!-- wp:group {"className":"mbt template_footer_columns template_width","layout":{"type":"default"}} -->
-<div class="wp-block-group mbt template_footer_columns template_width"><!-- wp:columns {"className":"mbt template_footer_columns","style":{"spacing":{"margin":{"top":"60px","bottom":"0"},"padding":{"bottom":"30px"}}}} -->
-<div class="wp-block-columns mbt template_footer_columns" style="margin-top:60px;margin-bottom:0;padding-bottom:30px"><!-- wp:column {"width":"300px"} -->
+<!-- wp:group {"className":"maxiblocks-go template_footer_columns template_width","layout":{"type":"default"}} -->
+<div class="wp-block-group maxiblocks-go template_footer_columns template_width"><!-- wp:columns {"className":"maxiblocks-go template_footer_columns","style":{"spacing":{"margin":{"top":"60px","bottom":"0"},"padding":{"bottom":"30px"}}}} -->
+<div class="wp-block-columns maxiblocks-go template_footer_columns" style="margin-top:60px;margin-bottom:0;padding-bottom:30px"><!-- wp:column {"width":"300px"} -->
 <div class="wp-block-column" style="flex-basis:300px"><!-- wp:heading -->
 <h2 class="wp-block-heading"><?php esc_html_e('Have any questions?', 'maxiblocks-go'); ?></h2>
 <!-- /wp:heading --></div>

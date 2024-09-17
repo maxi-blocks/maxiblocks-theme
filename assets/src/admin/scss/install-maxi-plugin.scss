@@ -1,5 +1,5 @@
 // Base notice styles
-.mbt-notice {
+.maxiblocks-go-notice {
 	font-family: 'Roboto', sans-serif;
 	color: #9b9b9b;
 	font-weight: 400;
@@ -61,7 +61,7 @@
 		button {
 			margin-right: 17px;
 		}
-		.mbt-button {
+		.maxiblocks-go-button {
 			border-radius: 49px;
 			background-color: #119da4;
 			color: #fff;
@@ -119,8 +119,8 @@
 }
 
 @media (min-width: 2200px) {
-	.mbt-notice {
-		&:not(.mbt-notice-templates) {
+	.maxiblocks-go-notice {
+		&:not(.maxiblocks-go-notice-templates) {
 			background-position: 160%;
 		}
 		padding: 60px 67px;
@@ -140,7 +140,7 @@
 		}
 		// Action area
 		&__actions {
-			.mbt-button {
+			.maxiblocks-go-button {
 				padding: 20px 40px;
 				font-size: 24px !important;
 				&__icon {
@@ -153,15 +153,15 @@
 }
 
 @media (min-width: 2450px) {
-	.mbt-notice {
-		&:not(.mbt-notice-templates) {
+	.maxiblocks-go-notice {
+		&:not(.maxiblocks-go-notice-templates) {
 			background-position: 100%;
 		}
 	}
 }
 
 @media (max-width: 1830px) {
-	.mbt-notice {
+	.maxiblocks-go-notice {
 		padding: 30px;
 		box-sizing: border-box;
 		margin-top: 35px;
@@ -202,7 +202,7 @@
 			button {
 				margin-right: 17px;
 			}
-			.mbt-button {
+			.maxiblocks-go-button {
 				padding: 5px 20px;
 				font-size: 14px !important;
 				transition: all 0.5s ease;
@@ -221,7 +221,7 @@
 }
 
 @media (max-width: 1600px) {
-	.mbt-notice {
+	.maxiblocks-go-notice {
 		&__title {
 			font-size: 27px;
 		}
@@ -229,7 +229,7 @@
 }
 
 @media (max-width: 1400px) {
-	.mbt-notice {
+	.maxiblocks-go-notice {
 		background-position: 130%;
 		&__title {
 			font-size: 25px;
@@ -249,7 +249,7 @@
 }
 
 @media (max-width: 1200px) {
-	.mbt-notice {
+	.maxiblocks-go-notice {
 		background-image: none !important;
 		&__title {
 			margin: 10px 0px;
@@ -267,7 +267,7 @@
 }
 
 @media (max-width: 900px) {
-	.mbt-notice {
+	.maxiblocks-go-notice {
 		margin-top: 50px;
 
 		// Dismiss button
@@ -278,7 +278,7 @@
 }
 
 @media (max-width: 600px) {
-	.mbt-notice {
+	.maxiblocks-go-notice {
 		margin-top: 50px;
 
 		&__title {
@@ -296,7 +296,7 @@
 }
 
 @media (max-width: 480px) {
-	.mbt-notice {
+	.maxiblocks-go-notice {
 		padding: 20px;
 
 		&__title {
@@ -319,7 +319,7 @@
 				margin-right: 0;
 				margin-bottom: 10px;
 			}
-			.mbt-button {
+			.maxiblocks-go-button {
 				width: fit-content;
 				line-height: normal;
 			}

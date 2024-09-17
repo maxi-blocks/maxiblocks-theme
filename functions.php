@@ -8,80 +8,80 @@
  * @since MaxiBlocks Go theme 1.0.1
  */
 
-if (!defined('MBT_DEBUG')) {  // Set to false in production
-    define('MBT_DEBUG', false);
+if (!defined('MAXIBLOCKS_GO_DEBUG')) {  // Set to false in production
+    define('MAXIBLOCKS_GO_DEBUG', false);
 }
-if (!defined('MBT_VERSION')) {
-    define('MBT_VERSION', wp_get_theme()->get('Version'));
+if (!defined('MAXIBLOCKS_GO_VERSION')) {
+    define('MAXIBLOCKS_GO_VERSION', wp_get_theme()->get('Version'));
 }
-if (!defined('MBT_PREFIX')) {
-    define('MBT_PREFIX', 'maxiblocks-go-theme-');
+if (!defined('MAXIBLOCKS_GO_PREFIX')) {
+    define('MAXIBLOCKS_GO_PREFIX', 'maxiblocks-go-theme-');
 }
-if (!defined('MBT_PATH')) { // path to the root theme folder
-    define('MBT_PATH', get_template_directory());
+if (!defined('MAXIBLOCKS_GO_PATH')) { // path to the root theme folder
+    define('MAXIBLOCKS_GO_PATH', get_template_directory());
 }
-if (!defined('MBT_MAXI_PATTERNS_PATH')) { // path to the maxi/patterns folder
-    define('MBT_MAXI_PATTERNS_PATH', get_template_directory() . '/maxi/patterns/');
+if (!defined('MAXIBLOCKS_GO_MAXI_PATTERNS_PATH')) { // path to the maxi/patterns folder
+    define('MAXIBLOCKS_GO_MAXI_PATTERNS_PATH', get_template_directory() . '/maxi/patterns/');
 }
-if (!defined('MBT_MAXI_PATTERNS_URL')) {
-    define('MBT_MAXI_PATTERNS_URL', get_template_directory_uri() . '/maxi/patterns/');
+if (!defined('MAXIBLOCKS_GO_MAXI_PATTERNS_URL')) {
+    define('MAXIBLOCKS_GO_MAXI_PATTERNS_URL', get_template_directory_uri() . '/maxi/patterns/');
 }
-if (!defined('MBT_MAXI_TEMPLATES_PATH')) { // path to the maxi/templates folder
-    define('MBT_MAXI_TEMPLATES_PATH', get_template_directory() . '/maxi/templates/');
+if (!defined('MAXIBLOCKS_GO_MAXI_TEMPLATES_PATH')) { // path to the maxi/templates folder
+    define('MAXIBLOCKS_GO_MAXI_TEMPLATES_PATH', get_template_directory() . '/maxi/templates/');
 }
-if (!defined('MBT_MAXI_PARTS_PATH')) { // path to the maxi/parts folder
-    define('MBT_MAXI_PARTS_PATH', get_template_directory() . '/maxi/parts/');
+if (!defined('MAXIBLOCKS_GO_MAXI_PARTS_PATH')) { // path to the maxi/parts folder
+    define('MAXIBLOCKS_GO_MAXI_PARTS_PATH', get_template_directory() . '/maxi/parts/');
 }
-if (!defined('MBT_PATH_BUILD_ADMIN_PHP')) { // path to the /assets/build/admin/php theme folder
-    define('MBT_PATH_BUILD_ADMIN_PHP', get_template_directory() . '/assets/build/admin/php');
+if (!defined('MAXIBLOCKS_GO_PATH_BUILD_ADMIN_PHP')) { // path to the /assets/build/admin/php theme folder
+    define('MAXIBLOCKS_GO_PATH_BUILD_ADMIN_PHP', get_template_directory() . '/assets/build/admin/php');
 }
-if (!defined('MBT_PATH_SRC_ADMIN_PHP')) { // path to the /assets/src/admin/php theme folder
-    define('MBT_PATH_SRC_ADMIN_PHP', get_template_directory() . '/assets/src/admin/php');
+if (!defined('MAXIBLOCKS_GO_PATH_SRC_ADMIN_PHP')) { // path to the /assets/src/admin/php theme folder
+    define('MAXIBLOCKS_GO_PATH_SRC_ADMIN_PHP', get_template_directory() . '/assets/src/admin/php');
 }
-if (!defined('MBT_URL')) { // url to the root theme folder
-    define('MBT_URL', get_template_directory_uri());
+if (!defined('MAXIBLOCKS_GO_URL')) { // url to the root theme folder
+    define('MAXIBLOCKS_GO_URL', get_template_directory_uri());
 }
-if (!defined('MBT_URL_BUILD_ADMIN')) { // url to the /assets/build/admin theme folder
-    define('MBT_URL_BUILD_ADMIN', get_template_directory_uri() . '/assets/build/admin');
+if (!defined('MAXIBLOCKS_GO_URL_BUILD_ADMIN')) { // url to the /assets/build/admin theme folder
+    define('MAXIBLOCKS_GO_URL_BUILD_ADMIN', get_template_directory_uri() . '/assets/build/admin');
 }
-if (!defined('MBT_URL_BUILD_FRONTEND')) { // url to the /assets/build/frontend theme folder
-    define('MBT_URL_BUILD_FRONTEND', get_template_directory_uri() . '/assets/build/frontend');
+if (!defined('MAXIBLOCKS_GO_URL_BUILD_FRONTEND')) { // url to the /assets/build/frontend theme folder
+    define('MAXIBLOCKS_GO_URL_BUILD_FRONTEND', get_template_directory_uri() . '/assets/build/frontend');
 }
-if (!defined('MBT_URL_SRC_ADMIN')) { // url to the /assets/src/admin theme folder
-    define('MBT_URL_SRC_ADMIN', get_template_directory_uri() . '/assets/src/admin');
+if (!defined('MAXIBLOCKS_GO_URL_SRC_ADMIN')) { // url to the /assets/src/admin theme folder
+    define('MAXIBLOCKS_GO_URL_SRC_ADMIN', get_template_directory_uri() . '/assets/src/admin');
 }
-if (!defined('MBT_URL_SRC_FRONTEND')) { // url to the /assets/src/frontend theme folder
-    define('MBT_URL_SRC_FRONTEND', get_template_directory_uri() . '/assets/src/frontend');
+if (!defined('MAXIBLOCKS_GO_URL_SRC_FRONTEND')) { // url to the /assets/src/frontend theme folder
+    define('MAXIBLOCKS_GO_URL_SRC_FRONTEND', get_template_directory_uri() . '/assets/src/frontend');
 }
-if (!defined('MBT_PLUGIN_PATH')) { // maxi-blocks plugin path
-    define('MBT_PLUGIN_PATH', 'maxi-blocks/plugin.php');
+if (!defined('MAXIBLOCKS_GO_PLUGIN_PATH')) { // maxi-blocks plugin path
+    define('MAXIBLOCKS_GO_PLUGIN_PATH', 'maxi-blocks/plugin.php');
 }
-if (!defined('MBT_FSE_JS')) {
-    define('MBT_FSE_JS', MBT_PREFIX . 'fse');
+if (!defined('MAXIBLOCKS_GO_FSE_JS')) {
+    define('MAXIBLOCKS_GO_FSE_JS', MAXIBLOCKS_GO_PREFIX . 'fse');
 }
 
 /**
  * Load the theme's translated strings.
  */
-function mbt_load_theme_textdomain()
+function maxiblocks_go_load_theme_textdomain()
 {
     load_theme_textdomain('maxiblocks-go', get_template_directory() . '/languages');
 }
-add_action('after_setup_theme', 'mbt_load_theme_textdomain');
+add_action('after_setup_theme', 'maxiblocks_go_load_theme_textdomain');
 
-function mbt_include_php_files($directory)
+function maxiblocks_go_include_php_files($directory)
 {
     foreach (glob("{$directory}/*.php") as $file) {
         require_once($file);
     }
 }
 
-if (defined('MBT_DEBUG') && MBT_DEBUG) {
+if (defined('MAXIBLOCKS_GO_DEBUG') && MAXIBLOCKS_GO_DEBUG) {
     // Include files from the SRC directory for development
-    mbt_include_php_files(MBT_PATH_SRC_ADMIN_PHP);
+    maxiblocks_go_include_php_files(MAXIBLOCKS_GO_PATH_SRC_ADMIN_PHP);
 } else {
     // Include files from the BUILD directory for production
-    mbt_include_php_files(MBT_PATH_BUILD_ADMIN_PHP);
+    maxiblocks_go_include_php_files(MAXIBLOCKS_GO_PATH_BUILD_ADMIN_PHP);
 }
 
 /**
@@ -93,29 +93,29 @@ if (defined('MBT_DEBUG') && MBT_DEBUG) {
  *
  * @param WP_Customize_Manager $wp_customize WordPress Customizer object. It's used to add settings and controls to the customizer.
  */
-function mbt_customize_register($wp_customize)
+function maxiblocks_go_customize_register($wp_customize)
 {
     // Add a new setting for custom theme CSS.
-    $wp_customize->add_setting('mbt_custom_theme_css', array(
+    $wp_customize->add_setting('maxiblocks_go_custom_theme_css', array(
         'default'     => '',
         'transport'   => 'refresh',
     ));
 
     // Add a new control to the customizer for the custom theme CSS setting.
-    $wp_customize->add_control(new WP_Customize_Code_Editor_Control($wp_customize, 'mbt_custom_theme_css', array(
+    $wp_customize->add_control(new WP_Customize_Code_Editor_Control($wp_customize, 'maxiblocks_go_custom_theme_css', array(
         'label'       => __('Custom Theme CSS', 'maxiblocks-go'),
-        'section'     => 'mbt_new_section_name',
-        'settings'    => 'mbt_custom_theme_css',
+        'section'     => 'maxiblocks_go_new_section_name',
+        'settings'    => 'maxiblocks_go_custom_theme_css',
         'code_type'   => 'text/css',
     )));
 }
 
-add_action('customize_register', 'mbt_customize_register');
+add_action('customize_register', 'maxiblocks_go_customize_register', 11);
 
 /**
  * Renames the 'Customize' menu item to 'Classic customizer' in the WordPress admin sidebar menu.
  */
-function mbt_rename_customize_menu_item_in_sidebar()
+function maxiblocks_go_rename_customize_menu_item_in_sidebar()
 {
     global $submenu;
 
@@ -128,64 +128,64 @@ function mbt_rename_customize_menu_item_in_sidebar()
         }
     }
 }
-add_action('admin_menu', 'mbt_rename_customize_menu_item_in_sidebar', 999);
+add_action('admin_menu', 'maxiblocks_go_rename_customize_menu_item_in_sidebar', 999);
 
 include_once(ABSPATH . 'wp-admin/includes/plugin.php');
 
-if (!is_plugin_active(MBT_PLUGIN_PATH)) {
-    function mbt_enqueue_fonts()
+if (!is_plugin_active(MAXIBLOCKS_GO_PLUGIN_PATH)) {
+    function maxiblocks_go_enqueue_fonts()
     {
-        $font_url = MBT_URL . '/assets/fonts/roboto/roboto-font.css';
-        wp_enqueue_style(MBT_PREFIX . 'roboto-font', $font_url, array(), null);
+        $font_url = MAXIBLOCKS_GO_URL . '/assets/fonts/roboto/roboto-font.css';
+        wp_enqueue_style(MAXIBLOCKS_GO_PREFIX . 'roboto-font', $font_url, array(), null);
     }
     
     // Hook into both front-end and admin scripts
-    add_action('wp_enqueue_scripts', 'mbt_enqueue_fonts');
-    add_action('admin_enqueue_scripts', 'mbt_enqueue_fonts');
+    add_action('wp_enqueue_scripts', 'maxiblocks_go_enqueue_fonts');
+    add_action('admin_enqueue_scripts', 'maxiblocks_go_enqueue_fonts');
 }
 
-function mbt_enqueue_admin_styles()
+function maxiblocks_go_enqueue_admin_styles()
 {
     // Check if we are in debug mode
-    if (defined('MBT_DEBUG') && MBT_DEBUG) {
+    if (defined('MAXIBLOCKS_GO_DEBUG') && MAXIBLOCKS_GO_DEBUG) {
         // Use the unminified CSS file in the SRC directory
-        $admin_css_url = MBT_URL_SRC_ADMIN . '/css/style.css';
+        $admin_css_url = MAXIBLOCKS_GO_URL_SRC_ADMIN . '/css/style.css';
     } else {
         // Use the minified CSS file in the BUILD directory
-        $admin_css_url = MBT_URL_BUILD_ADMIN . '/css/styles.min.css';
+        $admin_css_url = MAXIBLOCKS_GO_URL_BUILD_ADMIN . '/css/styles.min.css';
     }
 
     // Enqueue the admin stylesheet.
-    wp_enqueue_style(MBT_PREFIX . 'admin-styles', $admin_css_url, array(), MBT_VERSION, 'all');
+    wp_enqueue_style(MAXIBLOCKS_GO_PREFIX . 'admin-styles', $admin_css_url, array(), MAXIBLOCKS_GO_VERSION, 'all');
 }
-add_action('admin_enqueue_scripts', 'mbt_enqueue_admin_styles');
+add_action('admin_enqueue_scripts', 'maxiblocks_go_enqueue_admin_styles');
 
-function mbt_enqueue_frontend_styles()
+function maxiblocks_go_enqueue_frontend_styles()
 {
     // Check if we are in debug mode
-    if (defined('MBT_DEBUG') && MBT_DEBUG) {
+    if (defined('MAXIBLOCKS_GO_DEBUG') && MAXIBLOCKS_GO_DEBUG) {
         // Use the unminified CSS file in the build directory
-        $frontend_css_url = MBT_URL_BUILD_FRONTEND . '/css/styles.css';
+        $frontend_css_url = MAXIBLOCKS_GO_URL_BUILD_FRONTEND . '/css/styles.css';
     } else {
         // Use the minified CSS file in the BUILD directory
-        $frontend_css_url = MBT_URL_BUILD_FRONTEND . '/css/styles.min.css';
+        $frontend_css_url = MAXIBLOCKS_GO_URL_BUILD_FRONTEND . '/css/styles.min.css';
     }
 
     // Enqueue the admin stylesheet.
-    wp_enqueue_style(MBT_PREFIX . 'frontend-styles', $frontend_css_url, array(), MBT_VERSION, 'all');
+    wp_enqueue_style(MAXIBLOCKS_GO_PREFIX . 'frontend-styles', $frontend_css_url, array(), MAXIBLOCKS_GO_VERSION, 'all');
 }
-add_action('wp_enqueue_scripts', 'mbt_enqueue_frontend_styles');
+add_action('wp_enqueue_scripts', 'maxiblocks_go_enqueue_frontend_styles');
 
-function mbt_custom_theme_css()
+function maxiblocks_go_custom_theme_css()
 {
-    $custom_css = get_theme_mod('mbt_custom_theme_css');
-    wp_add_inline_style(MBT_PREFIX . 'custom-styles', $custom_css);
+    $custom_css = get_theme_mod('maxiblocks_go_custom_theme_css');
+    wp_add_inline_style(MAXIBLOCKS_GO_PREFIX . 'custom-styles', $custom_css);
 }
-add_action('wp_enqueue_scripts', 'mbt_custom_theme_css');
+add_action('wp_enqueue_scripts', 'maxiblocks_go_custom_theme_css');
 
-function mbt_get_maxi_patterns()
+function maxiblocks_go_get_maxi_patterns()
 {
-    return glob(MBT_MAXI_PATTERNS_PATH . '*', GLOB_ONLYDIR);
+    return glob(MAXIBLOCKS_GO_MAXI_PATTERNS_PATH . '*', GLOB_ONLYDIR);
 }
 
 /**
@@ -193,23 +193,23 @@ function mbt_get_maxi_patterns()
  *
  * @since MaxiBlocks Go theme 1.0.1
  */
-function mbt_register_maxi_block_categories()
+function maxiblocks_go_register_maxi_block_categories()
 {
     // Define block pattern categories with labels.
     $block_pattern_categories = array(
-        'mbt-author-bio' => array('label' => __('MaxiBlocks author bio', 'maxiblocks-go')),
-        'mbt-post-single' => array('label' => __('MaxiBlocks post single', 'maxiblocks-go')),
-        'mbt-homepage' => array('label' => __('MaxiBlocks homepage', 'maxiblocks-go')),
-        'mbt-footer' => array('label' => __('MaxiBlocks footer', 'maxiblocks-go')),
-        'mbt-header-navigation' => array('label' => __('MaxiBlocks header navigation', 'maxiblocks-go')),
-        'mbt-blog-index' => array('label' => __('MaxiBlocks blog index', 'maxiblocks-go')),
-        'mbt-not-found-404' => array('label' => __('MaxiBlocks not found 404', 'maxiblocks-go')),
-        'mbt-all-archives' => array('label' => __('MaxiBlocks all archives', 'maxiblocks-go')),
-        'mbt-search-results' => array('label' => __('MaxiBlocks search results', 'maxiblocks-go')),
+        'maxiblocks-go-author-bio' => array('label' => __('MaxiBlocks author bio', 'maxiblocks-go')),
+        'maxiblocks-go-post-single' => array('label' => __('MaxiBlocks post single', 'maxiblocks-go')),
+        'maxiblocks-go-homepage' => array('label' => __('MaxiBlocks homepage', 'maxiblocks-go')),
+        'maxiblocks-go-footer' => array('label' => __('MaxiBlocks footer', 'maxiblocks-go')),
+        'maxiblocks-go-header-navigation' => array('label' => __('MaxiBlocks header navigation', 'maxiblocks-go')),
+        'maxiblocks-go-blog-index' => array('label' => __('MaxiBlocks blog index', 'maxiblocks-go')),
+        'maxiblocks-go-not-found-404' => array('label' => __('MaxiBlocks not found 404', 'maxiblocks-go')),
+        'maxiblocks-go-all-archives' => array('label' => __('MaxiBlocks all archives', 'maxiblocks-go')),
+        'maxiblocks-go-search-results' => array('label' => __('MaxiBlocks search results', 'maxiblocks-go')),
     );
 
     // Allow filtering the block pattern categories.
-    $block_pattern_categories = apply_filters('mbt_block_pattern_categories', $block_pattern_categories);
+    $block_pattern_categories = apply_filters('maxiblocks_go_block_pattern_categories', $block_pattern_categories);
 
     // Register each block pattern category.
     foreach ($block_pattern_categories as $name => $properties) {
@@ -218,62 +218,62 @@ function mbt_register_maxi_block_categories()
 }
 
 // Hook the function to the init action.
-add_action('init', 'mbt_register_maxi_block_categories', 100);
+add_action('init', 'maxiblocks_go_register_maxi_block_categories', 100);
 
 /** Add widgets support for Customizer **/
-if(is_customize_preview() && ! current_theme_supports('widgets')) {
+if (is_customize_preview() && ! current_theme_supports('widgets')) {
     add_theme_support('widgets');
 }
 
-function mbt_fse_admin_script()
+function maxiblocks_go_fse_admin_script()
 {
-    $fse_js_url = defined('MBT_DEBUG') && MBT_DEBUG ?
-        MBT_URL_SRC_ADMIN . '/js/fse.js' :
-        MBT_URL_BUILD_ADMIN . '/js/fse.js';
+    $fse_js_url = defined('MAXIBLOCKS_GO_DEBUG') && MAXIBLOCKS_GO_DEBUG ?
+        MAXIBLOCKS_GO_URL_SRC_ADMIN . '/js/fse.js' :
+        MAXIBLOCKS_GO_URL_BUILD_ADMIN . '/js/fse.js';
     
     wp_enqueue_script(
-        MBT_FSE_JS,
+        MAXIBLOCKS_GO_FSE_JS,
         $fse_js_url,
         [],
-        MBT_VERSION,
+        MAXIBLOCKS_GO_VERSION,
         true
     );
 
 
     $vars = array(
-        'url'         => MBT_MAXI_PATTERNS_URL,
-        'directories' => mbt_get_maxi_patterns(),
+        'url'         => MAXIBLOCKS_GO_MAXI_PATTERNS_URL,
+        'directories' => maxiblocks_go_get_maxi_patterns(),
     );
 
-    wp_localize_script(MBT_FSE_JS, 'maxiblocks', $vars);
+    wp_localize_script(MAXIBLOCKS_GO_FSE_JS, 'maxiblocks', $vars);
 
 
 }
 
-add_action('admin_enqueue_scripts', 'mbt_fse_admin_script');
+add_action('admin_enqueue_scripts', 'maxiblocks_go_fse_admin_script');
 
-function mbt_frontend_script()
+function maxiblocks_go_frontend_script()
 {
-    $frontend_js_url = defined('MBT_DEBUG') && MBT_DEBUG ?
-        MBT_URL_SRC_FRONTEND . '/js/maxiblocks-theme.js' :
-        MBT_URL_BUILD_FRONTEND . '/js/scripts.min.js';
+    $frontend_js_url = defined('MAXIBLOCKS_GO_DEBUG') && MAXIBLOCKS_GO_DEBUG ?
+        MAXIBLOCKS_GO_URL_SRC_FRONTEND . '/js/maxiblocks-theme.js' :
+        MAXIBLOCKS_GO_URL_BUILD_FRONTEND . '/js/scripts.min.js';
 
-    $slug = MBT_PREFIX . 'frontend-scripts';
+    $slug = MAXIBLOCKS_GO_PREFIX . 'frontend-scripts';
     
     wp_enqueue_script(
         $slug,
         $frontend_js_url,
         [],
-        MBT_VERSION,
+        MAXIBLOCKS_GO_VERSION,
         true
     );
 
 
 }
 
-//add_action('wp_enqueue_scripts', 'mbt_frontend_script');
+//add_action('wp_enqueue_scripts', 'maxiblocks_go_frontend_script');
 
-function mbt_setup_default_menu()
+function maxiblocks_go_setup_default_menu()
 {
     $existing_menus = wp_get_nav_menus();
     
@@ -337,7 +337,7 @@ function mbt_setup_default_menu()
         set_theme_mod('nav_menu_locations', $locations);
     }
 }
-add_action('after_setup_theme', 'mbt_setup_default_menu');
+add_action('after_setup_theme', 'maxiblocks_go_setup_default_menu');
 
 /**
  * Adds default content to new templates of the 'wp_template' post type.
@@ -346,12 +346,12 @@ add_action('after_setup_theme', 'mbt_setup_default_menu');
  * @param WP_Post $post Post object.
  * @return string Modified content.
  */
-function mbt_default_template_content($content, $post)
+function maxiblocks_go_default_template_content($content, $post)
 {
     if ($post->post_type === 'wp_template' && empty($content)) {
-        $default_content = '<!-- wp:paragraph --><p>Add your default template content here...</p><!-- /wp:paragraph -->';
+        $default_content = '<!-- wp:paragraph --><p>' . __('Add your default template content here...', 'maxiblocks-go') . '</p><!-- /wp:paragraph -->';
         $content = $default_content;
     }
     return $content;
 }
-add_filter('default_content', 'mbt_default_template_content', 10, 2);
+add_filter('default_content', 'maxiblocks_go_default_template_content', 10, 2);

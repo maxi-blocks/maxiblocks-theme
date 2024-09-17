@@ -28,19 +28,19 @@ function installMaxiBlocksNotice() {
 
     /** @var {HTMLElement} closeButton - Close button element for the notice. */
     const closeButton = document.querySelector(
-        '.mbt-notice .mbt-notice__dismiss'
+        '.maxiblocks-go-notice .maxiblocks-go-notice__dismiss'
     );
 
     /** @var {HTMLElement} noticeContainer - Container element for the notice. */
-    const noticeContainer = document.querySelector('.mbt-notice');
+    const noticeContainer = document.querySelector('.maxiblocks-go-notice');
 
     /** @var {HTMLElement} installButton - Install button element within the notice. */
     const installButton = document.querySelector(
-        '.mbt-notice #mbt-notice-install-maxiblocks'
+        '.maxiblocks-go-notice #maxiblocks-go-notice-install-maxiblocks'
     );
 
     if (installButton) {
-        installStatusText = installButton.querySelector('.mbt-button__text');
+        installStatusText = installButton.querySelector('.maxiblocks-go-button__text');
     }
 
     /**
@@ -69,7 +69,7 @@ function installMaxiBlocksNotice() {
      */
     installButton?.addEventListener('click', async () => {
         installButton.classList.add('updating-message', 'disabled');
-        const importStatusIcon = installButton.querySelector('.mbt-button__icon');
+        const importStatusIcon = installButton.querySelector('.maxiblocks-go-button__icon');
         importStatusIcon.classList.add('hidden');
 
         if (pluginStatus === 'installed') {

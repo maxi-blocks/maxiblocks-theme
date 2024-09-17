@@ -21,7 +21,7 @@ body.maxi-blocks--active {
 		}
 	}
 }
-.mbt {
+.maxiblocks-go {
 	&h1,
 	&h2,
 	&h3,
@@ -162,7 +162,7 @@ body.maxi-blocks--active {
 }
 
 @media only screen and (min-width: 1921px) {
-	.mbt.template {
+	.maxiblocks-go.template {
 		&_width {
 			max-width: 1690px;
 		}
@@ -208,7 +208,7 @@ body.maxi-blocks--active {
 			margin-top: 90px !important;
 		}
 	}
-	.mbt.post {
+	.maxiblocks-go.post {
 		&_group {
 			.wp-block-post-title {
 				font-size: 110px !important;
@@ -227,7 +227,7 @@ body.maxi-blocks--active {
 	}
 }
 @media only screen and (max-width: 1366px) {
-	.mbt.template {
+	.maxiblocks-go.template {
 		&_width {
 			max-width: 90%;
 		}
@@ -238,7 +238,7 @@ body.maxi-blocks--active {
 			margin-top: 30px !important;
 		}
 	}
-	.mbt.post {
+	.maxiblocks-go.post {
 		&_group {
 			.wp-block-post-title {
 				font-size: 60px !important;
@@ -251,7 +251,7 @@ body.maxi-blocks--active {
 	}
 }
 @media only screen and (max-width: 1024px) {
-	.mbt.post {
+	.maxiblocks-go.post {
 		&_group {
 			.wp-block-post-title {
 				font-size: 50px !important;
@@ -262,7 +262,7 @@ body.maxi-blocks--active {
 			padding: 60px 0 !important;
 		}
 	}
-	.mbt.template {
+	.maxiblocks-go.template {
 		&_footer_columns {
 			.wp-block-heading {
 				font-size: 32px !important;
@@ -285,7 +285,7 @@ body.maxi-blocks--active {
 	}
 }
 @media only screen and (max-width: 781px) {
-	.mbt.post {
+	.maxiblocks-go.post {
 		&_group {
 			.wp-block-post-title {
 				font-size: 40px !important;
@@ -297,7 +297,7 @@ body.maxi-blocks--active {
 			padding: 50px 0 !important;
 		}
 	}
-	.mbt.template {
+	.maxiblocks-go.template {
 		&_footer_columns {
 			.wp-block {
 				&-heading {
@@ -333,7 +333,7 @@ body.maxi-blocks--active {
 	}
 }
 @media only screen and (max-width: 599px) {
-	.mbt.template {
+	.maxiblocks-go.template {
 		&_header_columns {
 			.wp-block-column {
 				&:nth-child(1) {
@@ -365,7 +365,7 @@ body.maxi-blocks--active {
 			gap: 10px !important;
 		}
 	}
-	.mbt.post {
+	.maxiblocks-go.post {
 		&_group {
 			.wp-block-post-title {
 				font-size: 32px !important;

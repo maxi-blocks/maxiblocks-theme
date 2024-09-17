@@ -11,16 +11,16 @@ if (! defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-if (!defined('MBT_PLUGIN_NOTICE_JS')) {
-    define('MBT_PLUGIN_NOTICE_JS', MBT_PREFIX . 'install-plugin-notice');
+if (!defined('MAXIBLOCKS_GO_PLUGIN_NOTICE_JS')) {
+    define('MAXIBLOCKS_GO_PLUGIN_NOTICE_JS', MAXIBLOCKS_GO_PREFIX . 'install-plugin-notice');
 }
 
-if (!defined('MBT_PLUGIN_NOTICE_DISMISS')) {
-    define('MBT_PLUGIN_NOTICE_DISMISS', MBT_PREFIX . 'dismiss-plugin-notice');
+if (!defined('MAXIBLOCKS_GO_PLUGIN_NOTICE_DISMISS')) {
+    define('MAXIBLOCKS_GO_PLUGIN_NOTICE_DISMISS', MAXIBLOCKS_GO_PREFIX . 'dismiss-plugin-notice');
 }
 
-add_action('admin_notices', 'mbt_render_install_plugin_notice', 0);
-add_action('wp_ajax_maxiblocks-go-theme-dismiss-plugin-notice', 'mbt_close_install_plugin_notice');
+add_action('admin_notices', 'maxiblocks_go_render_install_plugin_notice', 0);
+add_action('wp_ajax_maxiblocks-go-theme-dismiss-plugin-notice', 'maxiblocks_go_close_install_plugin_notice');
 
 /**
  * Renders the installation notice for the MaxiBlocks plugin.
@@ -32,57 +32,57 @@ add_action('wp_ajax_maxiblocks-go-theme-dismiss-plugin-notice', 'mbt_close_insta
  * @since 1.0.0
  * @return void
  */
-function mbt_render_install_plugin_notice()
+function maxiblocks_go_render_install_plugin_notice()
 {
     // Check if the notice should be displayed.
-    if (!mbt_plugin_notice_display()) {
+    if (!maxiblocks_go_plugin_notice_display()) {
         return;
     }
 
     // Get the plugin status.
-    $plugin_status = mbt_is_maxiblocks_plugin_status();
+    $plugin_status = maxiblocks_go_is_maxiblocks_plugin_status();
 
     // Determine the JavaScript file URL based on the debug mode.
-    $notice_js_url = defined('MBT_DEBUG') && MBT_DEBUG ?
-                     MBT_URL_SRC_ADMIN . '/js/install-plugin-notice.js' :
-                     MBT_URL_BUILD_ADMIN . '/js/install-plugin-notice.js';
+    $notice_js_url = defined('MAXIBLOCKS_GO_DEBUG') && MAXIBLOCKS_GO_DEBUG ?
+                     MAXIBLOCKS_GO_URL_SRC_ADMIN . '/js/install-plugin-notice.js' :
+                     MAXIBLOCKS_GO_URL_BUILD_ADMIN . '/js/install-plugin-notice.js';
 
     // Enqueue the script.
-    wp_enqueue_script(MBT_PLUGIN_NOTICE_JS, $notice_js_url, [], MBT_VERSION, true);
-    wp_localize_script(MBT_PLUGIN_NOTICE_JS, 'maxiblocks', mbt_localize_install_plugin_notice_js($plugin_status));
+    wp_enqueue_script(MAXIBLOCKS_GO_PLUGIN_NOTICE_JS, $notice_js_url, [], MAXIBLOCKS_GO_VERSION, true);
+    wp_localize_script(MAXIBLOCKS_GO_PLUGIN_NOTICE_JS, 'maxiblocks', maxiblocks_go_localize_install_plugin_notice_js($plugin_status));
 
     // Define other variables.
-    $install_plugin_image  = MBT_URL_BUILD_ADMIN . '/images/maxiblocks-plugin-install-notice.jpg';
+    $install_plugin_image  = MAXIBLOCKS_GO_URL_BUILD_ADMIN . '/images/maxiblocks-plugin-install-notice.jpg';
     $more_info_url = 'https://maxiblocks.com/go/maxi-theme-activation-more-info';
 
     // Start output buffering.
     ob_start();
     ?>
-<div class="mbt-notice mbt-notice--info" style="background-image: url(<?php echo esc_url($install_plugin_image); ?>);">
-    <button type="button" class="mbt-notice__dismiss">
-        <span class="mbt-notice__dismiss-text">&#10799;</span>
+<div class="maxiblocks-go-notice maxiblocks-go-notice--info" style="background-image: url(<?php echo esc_url($install_plugin_image); ?>);">
+    <button type="button" class="maxiblocks-go-notice__dismiss">
+        <span class="maxiblocks-go-notice__dismiss-text">&#10799;</span>
     </button>
-    <div class="mbt-notice__row">
-        <div class="mbt-notice__col">
-            <div class="mbt-notice__content">
-                <p class="mbt-notice__subtitle">
+    <div class="maxiblocks-go-notice__row">
+        <div class="maxiblocks-go-notice__col">
+            <div class="maxiblocks-go-notice__content">
+                <p class="maxiblocks-go-notice__subtitle">
                     <?php esc_html_e('Thank you for choosing the MaxiBlocks Go theme', 'maxiblocks-go');?>
                 </p>
-                <h2 class="mbt-notice__title">
+                <h2 class="maxiblocks-go-notice__title">
                     <?php $plugin_status === 'installed' ?  esc_html_e('Please activate the MaxiBlocks companion plugin', 'maxiblocks-go') : esc_html_e('Please install the MaxiBlocks companion plugin', 'maxiblocks-go'); ?>
                 </h2>
-                <p class="mbt-notice__description">
+                <p class="maxiblocks-go-notice__description">
                     <?php esc_html_e('Get advanced block editing features, responsive controls, interactions and hover effects. Explore 2,200+ designer-made patterns, 190 pages, 14,200 icons and 100 global style cards to speed up your design process.', 'maxiblocks-go'); ?>
                 </p>
-                <div class="mbt-notice__actions">
-                    <button id="mbt-notice-install-maxiblocks" class="mbt-button mbt-button--primary mbt-button--hero">
-                        <span class="mbt-button__text">
+                <div class="maxiblocks-go-notice__actions">
+                    <button id="maxiblocks-go-notice-install-maxiblocks" class="maxiblocks-go-button maxiblocks-go-button--primary maxiblocks-go-button--hero">
+                        <span class="maxiblocks-go-button__text">
                             <?php $plugin_status === 'installed' ?  esc_html_e('Activate MaxiBlocks plugin', 'maxiblocks-go') : esc_html_e('Install MaxiBlocks plugin', 'maxiblocks-go');?>
-                        </span><span class="mbt-button__icon">&rsaquo;</span></button>
+                        </span><span class="maxiblocks-go-button__icon">&rsaquo;</span></button>
                     <a href="<?php echo esc_url($more_info_url); ?>" target="_blank"
-                        class="mbt-button mbt-button--primary mbt-button--hero">
-                        <span class="mbt-button__text"><?php esc_html_e('More info', 'maxiblocks-go'); ?>
-                        </span><span class="mbt-button__icon">&rsaquo;</span>
+                        class="maxiblocks-go-button maxiblocks-go-button--primary maxiblocks-go-button--hero">
+                        <span class="maxiblocks-go-button__text"><?php esc_html_e('More info', 'maxiblocks-go'); ?>
+                        </span><span class="maxiblocks-go-button__icon">&rsaquo;</span>
                     </a>
                 </div>
             </div>
@@ -100,16 +100,16 @@ function mbt_render_install_plugin_notice()
  *
  * @since 1.0.0
  */
-function mbt_close_install_plugin_notice()
+function maxiblocks_go_close_install_plugin_notice()
 {
     if (!isset($_POST['nonce'])) {
         return;
     }
 
-    if (isset($_POST['nonce']) && is_string($_POST['nonce']) && !wp_verify_nonce(sanitize_text_field($_POST['nonce']), MBT_PLUGIN_NOTICE_DISMISS . '-nonce')) {
+    if (isset($_POST['nonce']) && is_string($_POST['nonce']) && !wp_verify_nonce(sanitize_text_field($_POST['nonce']), MAXIBLOCKS_GO_PLUGIN_NOTICE_DISMISS . '-nonce')) {
         return;
     }
-    update_option(MBT_PLUGIN_NOTICE_DISMISS, 'yes');
+    update_option(MAXIBLOCKS_GO_PLUGIN_NOTICE_DISMISS, 'yes');
     wp_die();
 }
 
@@ -125,13 +125,13 @@ function mbt_close_install_plugin_notice()
  * @since 1.0.0
  * @return bool True if the notice should be displayed, false otherwise.
  */
-function mbt_plugin_notice_display()
+function maxiblocks_go_plugin_notice_display()
 {
     $screen = get_current_screen();
 
     // Check if plugin is active, if notice was dismissed, or if current user lacks required capabilities.
-    if (is_plugin_active(MBT_PLUGIN_PATH) ||
-        'yes' === get_option(MBT_PLUGIN_NOTICE_DISMISS, 'no') ||
+    if (is_plugin_active(MAXIBLOCKS_GO_PLUGIN_PATH) ||
+        'yes' === get_option(MAXIBLOCKS_GO_PLUGIN_NOTICE_DISMISS, 'no') ||
         !current_user_can('manage_options') ||
         !current_user_can('install_plugins')) {
         return false;
@@ -160,9 +160,9 @@ function mbt_plugin_notice_display()
  * @since 1.0.0
  * @return string The status of the MaxiBlocks plugin.
  */
-function mbt_is_maxiblocks_plugin_status()
+function maxiblocks_go_is_maxiblocks_plugin_status()
 {
-    $plugin_slug = MBT_PLUGIN_PATH;
+    $plugin_slug = MAXIBLOCKS_GO_PLUGIN_PATH;
 
     // Check if the plugin is active.
     if (is_plugin_active($plugin_slug)) {
@@ -186,11 +186,11 @@ function mbt_is_maxiblocks_plugin_status()
  * @param string $plugin_status plugin current status.
  * @return array
  */
-function mbt_localize_install_plugin_notice_js($plugin_status)
+function maxiblocks_go_localize_install_plugin_notice_js($plugin_status)
 {
 
     return array(
-        'nonce'         => wp_create_nonce(MBT_PLUGIN_NOTICE_DISMISS . '-nonce'),
+        'nonce'         => wp_create_nonce(MAXIBLOCKS_GO_PLUGIN_NOTICE_DISMISS . '-nonce'),
         'ajaxUrl'       => esc_url(admin_url('admin-ajax.php')),
         'pluginStatus'  => $plugin_status,
         'pluginSlug'    => 'maxi-blocks',
@@ -200,7 +200,7 @@ function mbt_localize_install_plugin_notice_js($plugin_status)
                     'plugin_status' => 'all',
                     'paged'         => '1',
                     'action'        => 'activate',
-                    'plugin'        => rawurlencode(MBT_PLUGIN_PATH),
+                    'plugin'        => rawurlencode(MAXIBLOCKS_GO_PLUGIN_PATH),
                     '_wpnonce'      => wp_create_nonce('activate-plugin_maxi-blocks/plugin.php'),
                 ),
                 admin_url('plugins.php')
