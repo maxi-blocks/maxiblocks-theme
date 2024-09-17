@@ -52,7 +52,7 @@ Image Credits:
 404 page: https://stocksnap.io/photo/white-sand-G87AL8KRMW
 Woman: https://www.rawpixel.com/image/5925937/photo-image-public-domain-person-woman
 Blog posts:
-https://stocksnap.io/photo/family-breakfast-QDTSSMHRMW
+https://stocksnap.io/photo/family-breakfast-QDTSSMHRMN
 https://stocksnap.io/photo/business-working-RRJH1KMRMW
 https://stocksnap.io/photo/business-man-NHW7CBJDFM
 https://stocksnap.io/photo/business-woman-O2KAZO8QFM
