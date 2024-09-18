@@ -4,10 +4,9 @@ Contributors: ckp267, kyrapieterse, svitlana41319, serifkonjevic, olekrut, naaaa
 Requires at least: 6.2.2
 Tested up to: 6.6
 Requires PHP: 8.0
-Stable tag: 1.1.1
+Stable tag: 1.1.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Theme URI: https://maxiblocks.com/go/theme-author
 
 Discover the perfect blend of speed, simplicity, and design with MaxiBlocks' powerful block theme
 
