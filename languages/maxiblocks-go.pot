@@ -2,24 +2,20 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: MaxiBlocks Go 1.1.6\n"
+"Project-Id-Version: MaxiBlocks Go 1.1.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/maxiblocks-go\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-09-11T15:57:18+00:00\n"
+"POT-Creation-Date: 2024-09-18T14:56:57+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: maxiblocks-go\n"
 
 #. Theme Name of the theme
 msgid "MaxiBlocks Go"
-msgstr ""
-
-#. Theme URI of the theme
-msgid "https://maxiblocks.com/"
 msgstr ""
 
 #. Description of the theme
@@ -210,6 +206,10 @@ msgstr ""
 
 #: functions.php:325
 msgid "Get in touch"
+msgstr ""
+
+#: functions.php:352
+msgid "Add your default template content here..."
 msgstr ""
 
 #: patterns/basic-blog-home.php
