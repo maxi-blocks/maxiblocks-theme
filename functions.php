@@ -355,3 +355,39 @@ function maxiblocks_go_default_template_content($content, $post)
     return $content;
 }
 add_filter('default_content', 'maxiblocks_go_default_template_content', 10, 2);
+
+/**
+ * Check and update templates if necessary
+ */
+function maxiblocks_go_check_and_update_templates()
+{
+    $templates_imported = get_option('maxiblocks_go_templates_imported', false);
+    
+    if ($templates_imported) {
+        $current_version = get_option('maxiblocks_go_templates_version', '0');
+        $theme_version = wp_get_theme('maxiblocks-go')->get('Version');
+
+        if (version_compare($current_version, $theme_version, '<')) {
+            maxiblocks_go_import_templates();
+            update_option('maxiblocks_go_templates_version', $theme_version);
+        }
+    }
+}
+add_action('init', 'maxiblocks_go_check_and_update_templates', 1);
+
+/**
+ * Import templates
+ */
+function maxiblocks_go_import_templates()
+{
+    // Copy templates
+    maxiblocks_go_copy_directory(MAXIBLOCKS_GO_MAXI_TEMPLATES_PATH, MAXIBLOCKS_GO_PATH . '/templates');
+
+    // Copy patterns
+    maxiblocks_go_copy_directory(MAXIBLOCKS_GO_MAXI_PATTERNS_PATH, MAXIBLOCKS_GO_PATH . '/patterns');
+
+    // Copy parts
+    maxiblocks_go_copy_directory(MAXIBLOCKS_GO_MAXI_PARTS_PATH, MAXIBLOCKS_GO_PATH . '/parts');
+
+    maxiblocks_go_add_styles_meta_fonts_to_db();
+}

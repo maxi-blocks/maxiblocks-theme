@@ -443,17 +443,10 @@ if (maxiblocks_go_check_template_files_exist()) {
  */
 function maxiblocks_go_copy_patterns()
 {
-    // Copy templates
-    maxiblocks_go_copy_directory(MAXIBLOCKS_GO_MAXI_TEMPLATES_PATH, MAXIBLOCKS_GO_PATH . '/templates');
-
-    // Copy templates
-    maxiblocks_go_copy_directory(MAXIBLOCKS_GO_MAXI_PATTERNS_PATH, MAXIBLOCKS_GO_PATH . '/patterns');
-
-    // Copy parts
-    maxiblocks_go_copy_directory(MAXIBLOCKS_GO_MAXI_PARTS_PATH, MAXIBLOCKS_GO_PATH . '/parts');
-
-    maxiblocks_go_add_styles_meta_fonts_to_db();
-
+    maxiblocks_go_import_templates();
+    $theme_version = wp_get_theme('maxiblocks-go')->get('Version');
+    update_option('maxiblocks_go_templates_version', $theme_version);
+    update_option('maxiblocks_go_templates_imported', true);
     wp_send_json_success('Patterns, templates, and parts copied successfully');
 }
 
