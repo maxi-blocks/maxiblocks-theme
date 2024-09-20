@@ -10,9 +10,9 @@ body.maxi-blocks--active {
 }
 
 /* for basic templates */
-.entry-content,
-.wp-block-comments,
-.widget_text {
+.entry-content :not(.maxi-block),
+:not(.maxi-block) .wp-block-comments,
+:not(.maxi-block) .widget_text {
 	a:not(.wp-block-button__link):not(.wp-block-file__button) {
 		text-decoration: underline;
 		&:hover,
