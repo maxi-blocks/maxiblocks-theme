@@ -33,6 +33,8 @@ body.maxi-blocks--active {
 	&.wp-block-button__link,
 	&.wp-block-navigation-item__label,
 	&.wp-block-navigation-submenu,
+	&.wp-block-pages-list__item__link,
+	&.wp-block-navigation-item__content.wp-block-navigation-item__content,
 	&.wp-block-post-date,
 	&.wp-block-query-pagination-next,
 	&.wp-block-query-pagination-previous,
@@ -70,7 +72,9 @@ body.maxi-blocks--active {
 		font-family: 'Roboto', sans-serif;
 	}
 	.wp-block-navigation-item__label,
-	.wp-block-navigation-submenu {
+	.wp-block-navigation-submenu,
+	.wp-block-pages-list__item__link,
+	.wp-block-navigation-item__content.wp-block-navigation-item__content {
 		color: #9b9b9b;
 		transition: 0.3s ease;
 		&:hover {
