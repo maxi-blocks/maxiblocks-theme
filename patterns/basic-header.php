@@ -5,6 +5,7 @@
   * Categories: maxiblocks-go-header-navigation
   * Block Types: core/template-part/header
   */
+?>
 <!-- wp:columns {"className":"maxiblocks-go template_header_columns template_width","style":{"spacing":{"padding":{"top":"20px","bottom":"20px"},"margin":{"top":"0","bottom":"0"}}}} -->
 <div class="wp-block-columns maxiblocks-go template_header_columns template_width" style="margin-top:0;margin-bottom:0;padding-top:20px;padding-bottom:20px"><!-- wp:column {"verticalAlignment":"center","width":"390px"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:390px"><!-- wp:site-title {"isLink":false} /--></div>
