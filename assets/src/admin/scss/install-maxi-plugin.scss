@@ -8,7 +8,7 @@
 	background-position: right;
 	background-repeat: no-repeat;
 	border: 1px solid #ddd;
-	padding: 42px 67px;
+	padding: 30px 35px;
 	box-sizing: border-box;
 	margin-top: 35px;
 	margin-right: 25px;
@@ -32,10 +32,10 @@
 
 	// Title and subtitle styles
 	&__title {
-		font-size: 36px;
+		font-size: 28px;
 		color: #000000;
 		font-weight: 700;
-		margin: 26px 2px 33px !important;
+		margin: 20px 2px 20px !important;
 	}
 	&__subtitle {
 		margin: 0;
@@ -56,7 +56,7 @@
 	// Action area
 	&__actions {
 		display: flex;
-		margin-top: 40px;
+		margin-top: 20px;
 		// Primary button styles
 		button {
 			margin-right: 17px;
@@ -66,7 +66,7 @@
 			background-color: #119da4;
 			color: #fff;
 			border: none;
-			padding: 10px 26px;
+			padding: 7px 22px;
 			text-align: center;
 			display: inline-block;
 			text-decoration: none;
@@ -121,28 +121,28 @@
 @media (min-width: 2200px) {
 	.maxiblocks-go-notice {
 		&:not(.maxiblocks-go-notice-templates) {
-			background-position: 160%;
+			background-position: 130%;
 		}
-		padding: 60px 67px;
+		padding: 30px 37px;
 		&__subtitle {
 			font-size: 24px;
-			margin-bottom: 45px;
+			margin-bottom: 20px;
 		}
 		&__title {
-			font-size: 48px;
+			font-size: 38px;
 		}
 		// Description paragraph
 		&__description {
 			font-size: 24px;
 			max-width: 40%;
-			margin-top: 50px;
-			margin-bottom: 45px;
+			margin-top: 20px;
+			margin-bottom: 25px;
 		}
 		// Action area
 		&__actions {
 			.maxiblocks-go-button {
-				padding: 20px 40px;
-				font-size: 24px !important;
+				padding: 15px 35px;
+				font-size: 23px !important;
 				&__icon {
 					font-size: 36px;
 					margin-top: -5px;
