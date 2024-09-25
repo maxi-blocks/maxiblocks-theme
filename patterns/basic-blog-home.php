@@ -6,8 +6,8 @@
   * Template Types: home, front-page, page
   */
 ?>
-<!-- wp:group {"className":"maxiblocks-go post_group_landing template_width","style":{"spacing":{"padding":{"top":"150px","bottom":"150px"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"default"}} -->
-<div class="wp-block-group maxiblocks-go post_group_landing template_width" style="margin-top:0;margin-bottom:0;padding-top:150px;padding-bottom:150px"><!-- wp:query {"className":"maxiblocks-go","queryId":12,"query":{"perPage":10,"pages":0,"offset":"0","postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false},"align":"wide","layout":{"type":"default"}} -->
+<!-- wp:group {"tagName":"main","className":"maxiblocks-go post_group_landing template_width","style":{"spacing":{"padding":{"top":"150px","bottom":"150px"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"default"}} -->
+<main class="wp-block-group maxiblocks-go post_group_landing template_width" style="margin-top:0;margin-bottom:0;padding-top:150px;padding-bottom:150px"><!-- wp:query {"className":"maxiblocks-go","queryId":12,"query":{"perPage":10,"pages":0,"offset":"0","postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false},"align":"wide","layout":{"type":"default"}} -->
 <div class="wp-block-query alignwide maxiblocks-go"><!-- wp:query-no-results -->
 <!-- wp:paragraph -->
 <p>No posts were found.</p>
@@ -37,5 +37,5 @@
 <!-- wp:query-pagination-next /-->
 <!-- /wp:query-pagination --></div>
 <!-- /wp:group --></div>
-<!-- /wp:query --></div>
+<!-- /wp:query --></main>
 <!-- /wp:group -->
