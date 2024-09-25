@@ -5,12 +5,9 @@
   * Categories: maxiblocks-go-header-navigation
   * Block Types: core/template-part/header
   */
-$path_to_images = MAXIBLOCKS_GO_MAXI_PATTERNS_URL . 'header/images/';?>
 <!-- wp:columns {"className":"maxiblocks-go template_header_columns template_width","style":{"spacing":{"padding":{"top":"20px","bottom":"20px"},"margin":{"top":"0","bottom":"0"}}}} -->
 <div class="wp-block-columns maxiblocks-go template_header_columns template_width" style="margin-top:0;margin-bottom:0;padding-top:20px;padding-bottom:20px"><!-- wp:column {"verticalAlignment":"center","width":"390px"} -->
-<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:390px"><!-- wp:image {"id":631,"width":"233px","sizeSlug":"full","linkDestination":"none","align":"center","className":"is-style-default"} -->
-<figure class="wp-block-image aligncenter size-full is-resized is-style-default"><img src="<?php echo $path_to_images; ?>maxiblocks-logo.svg" alt="" class="wp-image-631" style="width:233px"/></figure>
-<!-- /wp:image --></div>
+<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:390px"><!-- wp:site-title {"isLink":false} /--></div>
 <!-- /wp:column -->
 
 <!-- wp:column {"verticalAlignment":"center","width":"100%","layout":{"type":"default"}} -->
