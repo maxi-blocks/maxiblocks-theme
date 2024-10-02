@@ -20,18 +20,6 @@ if (!defined('MAXIBLOCKS_GO_PREFIX')) {
 if (!defined('MAXIBLOCKS_GO_PATH')) { // path to the root theme folder
     define('MAXIBLOCKS_GO_PATH', get_template_directory());
 }
-if (!defined('MAXIBLOCKS_GO_MAXI_PATTERNS_PATH')) { // path to the maxi/patterns folder
-    define('MAXIBLOCKS_GO_MAXI_PATTERNS_PATH', get_template_directory() . '/maxi/patterns/');
-}
-if (!defined('MAXIBLOCKS_GO_MAXI_PATTERNS_URL')) {
-    define('MAXIBLOCKS_GO_MAXI_PATTERNS_URL', get_template_directory_uri() . '/maxi/patterns/');
-}
-if (!defined('MAXIBLOCKS_GO_MAXI_TEMPLATES_PATH')) { // path to the maxi/templates folder
-    define('MAXIBLOCKS_GO_MAXI_TEMPLATES_PATH', get_template_directory() . '/maxi/templates/');
-}
-if (!defined('MAXIBLOCKS_GO_MAXI_PARTS_PATH')) { // path to the maxi/parts folder
-    define('MAXIBLOCKS_GO_MAXI_PARTS_PATH', get_template_directory() . '/maxi/parts/');
-}
 if (!defined('MAXIBLOCKS_GO_PATH_BUILD_ADMIN_PHP')) { // path to the /assets/build/admin/php theme folder
     define('MAXIBLOCKS_GO_PATH_BUILD_ADMIN_PHP', get_template_directory() . '/assets/build/admin/php');
 }
@@ -49,15 +37,23 @@ if (!defined('MAXIBLOCKS_GO_URL_BUILD_FRONTEND')) { // url to the /assets/build/
 }
 if (!defined('MAXIBLOCKS_GO_URL_SRC_ADMIN')) { // url to the /assets/src/admin theme folder
     define('MAXIBLOCKS_GO_URL_SRC_ADMIN', get_template_directory_uri() . '/assets/src/admin');
+}if (!defined('MAXIBLOCKS_GO_MAXI_PATTERNS_PATH')) { // path to the maxi/patterns folder
+    define('MAXIBLOCKS_GO_MAXI_PATTERNS_PATH', get_template_directory() . '/maxi/patterns/');
+}
+if (!defined('MAXIBLOCKS_GO_MAXI_PATTERNS_URL')) {
+    define('MAXIBLOCKS_GO_MAXI_PATTERNS_URL', get_template_directory_uri() . '/maxi/patterns/');
+}
+if (!defined('MAXIBLOCKS_GO_MAXI_TEMPLATES_PATH')) { // path to the maxi/templates folder
+    define('MAXIBLOCKS_GO_MAXI_TEMPLATES_PATH', get_template_directory() . '/maxi/templates/');
+}
+if (!defined('MAXIBLOCKS_GO_MAXI_PARTS_PATH')) { // path to the maxi/parts folder
+    define('MAXIBLOCKS_GO_MAXI_PARTS_PATH', get_template_directory() . '/maxi/parts/');
 }
 if (!defined('MAXIBLOCKS_GO_URL_SRC_FRONTEND')) { // url to the /assets/src/frontend theme folder
     define('MAXIBLOCKS_GO_URL_SRC_FRONTEND', get_template_directory_uri() . '/assets/src/frontend');
 }
 if (!defined('MAXIBLOCKS_GO_PLUGIN_PATH')) { // maxi-blocks plugin path
     define('MAXIBLOCKS_GO_PLUGIN_PATH', 'maxi-blocks/plugin.php');
-}
-if (!defined('MAXIBLOCKS_GO_FSE_JS')) {
-    define('MAXIBLOCKS_GO_FSE_JS', MAXIBLOCKS_GO_PREFIX . 'fse');
 }
 
 /**
@@ -165,145 +161,7 @@ function maxiblocks_go_custom_theme_css()
 }
 add_action('wp_enqueue_scripts', 'maxiblocks_go_custom_theme_css');
 
-function maxiblocks_go_get_maxi_patterns()
-{
-    return glob(MAXIBLOCKS_GO_MAXI_PATTERNS_PATH . '*', GLOB_ONLYDIR);
-}
-
-/**
- * Registers custom block pattern categories for MaxiBlocks Go.
- *
- * @since MaxiBlocks Go theme 1.0.1
- */
-function maxiblocks_go_register_maxi_block_categories()
-{
-    // Define block pattern categories with labels.
-    $block_pattern_categories = array(
-        'maxiblocks-go-author-bio' => array('label' => __('MaxiBlocks author bio', 'maxiblocks-go')),
-        'maxiblocks-go-post-single' => array('label' => __('MaxiBlocks post single', 'maxiblocks-go')),
-        'maxiblocks-go-homepage' => array('label' => __('MaxiBlocks homepage', 'maxiblocks-go')),
-        'maxiblocks-go-footer' => array('label' => __('MaxiBlocks footer', 'maxiblocks-go')),
-        'maxiblocks-go-header-navigation' => array('label' => __('MaxiBlocks header navigation', 'maxiblocks-go')),
-        'maxiblocks-go-blog-index' => array('label' => __('MaxiBlocks blog index', 'maxiblocks-go')),
-        'maxiblocks-go-not-found-404' => array('label' => __('MaxiBlocks not found 404', 'maxiblocks-go')),
-        'maxiblocks-go-all-archives' => array('label' => __('MaxiBlocks all archives', 'maxiblocks-go')),
-        'maxiblocks-go-search-results' => array('label' => __('MaxiBlocks search results', 'maxiblocks-go')),
-    );
-
-    // Allow filtering the block pattern categories.
-    $block_pattern_categories = apply_filters('maxiblocks_go_block_pattern_categories', $block_pattern_categories);
-
-    // Register each block pattern category.
-    foreach ($block_pattern_categories as $name => $properties) {
-        register_block_pattern_category($name, $properties);
-    }
-}
-
-// Hook the function to the init action.
-add_action('init', 'maxiblocks_go_register_maxi_block_categories', 100);
-
 /** Add widgets support for Customizer **/
 if (is_customize_preview() && ! current_theme_supports('widgets')) {
     add_theme_support('widgets');
-}
-
-function maxiblocks_go_fse_admin_script()
-{
-    $fse_js_url = defined('MAXIBLOCKS_GO_DEBUG') && MAXIBLOCKS_GO_DEBUG ?
-        MAXIBLOCKS_GO_URL_SRC_ADMIN . '/js/fse.js' :
-        MAXIBLOCKS_GO_URL_BUILD_ADMIN . '/js/fse.js';
-    
-    wp_enqueue_script(
-        MAXIBLOCKS_GO_FSE_JS,
-        $fse_js_url,
-        [],
-        MAXIBLOCKS_GO_VERSION,
-        true
-    );
-
-
-    $vars = array(
-        'url'         => MAXIBLOCKS_GO_MAXI_PATTERNS_URL,
-        'directories' => maxiblocks_go_get_maxi_patterns(),
-    );
-
-    wp_localize_script(MAXIBLOCKS_GO_FSE_JS, 'maxiblocks', $vars);
-
-
-}
-
-add_action('admin_enqueue_scripts', 'maxiblocks_go_fse_admin_script');
-
-function maxiblocks_go_frontend_script()
-{
-    $frontend_js_url = defined('MAXIBLOCKS_GO_DEBUG') && MAXIBLOCKS_GO_DEBUG ?
-        MAXIBLOCKS_GO_URL_SRC_FRONTEND . '/js/maxiblocks-theme.js' :
-        MAXIBLOCKS_GO_URL_BUILD_FRONTEND . '/js/scripts.min.js';
-
-    $slug = MAXIBLOCKS_GO_PREFIX . 'frontend-scripts';
-    
-    wp_enqueue_script(
-        $slug,
-        $frontend_js_url,
-        [],
-        MAXIBLOCKS_GO_VERSION,
-        true
-    );
-
-
-}
-
-//add_action('wp_enqueue_scripts', 'maxiblocks_go_frontend_script');
-
-/**
- * Adds default content to new templates of the 'wp_template' post type.
- *
- * @param string $content Default content for the template.
- * @param WP_Post $post Post object.
- * @return string Modified content.
- */
-function maxiblocks_go_default_template_content($content, $post)
-{
-    if ($post->post_type === 'wp_template' && empty($content)) {
-        $default_content = '<!-- wp:paragraph --><p>' . __('Add your default template content here...', 'maxiblocks-go') . '</p><!-- /wp:paragraph -->';
-        $content = $default_content;
-    }
-    return $content;
-}
-add_filter('default_content', 'maxiblocks_go_default_template_content', 10, 2);
-
-/**
- * Check and update templates if necessary
- */
-function maxiblocks_go_check_and_update_templates()
-{
-    $templates_imported = get_option('maxiblocks_go_templates_imported', false);
-    
-    if ($templates_imported) {
-        $current_version = get_option('maxiblocks_go_templates_version', '0');
-        $theme_version = wp_get_theme('maxiblocks-go')->get('Version');
-
-        if (version_compare($current_version, $theme_version, '<')) {
-            maxiblocks_go_import_templates();
-            update_option('maxiblocks_go_templates_version', $theme_version);
-        }
-    }
-}
-add_action('init', 'maxiblocks_go_check_and_update_templates', 1);
-
-/**
- * Import templates
- */
-function maxiblocks_go_import_templates()
-{
-    // Copy templates
-    maxiblocks_go_copy_directory(MAXIBLOCKS_GO_MAXI_TEMPLATES_PATH, MAXIBLOCKS_GO_PATH . '/templates');
-
-    // Copy patterns
-    maxiblocks_go_copy_directory(MAXIBLOCKS_GO_MAXI_PATTERNS_PATH, MAXIBLOCKS_GO_PATH . '/patterns');
-
-    // Copy parts
-    maxiblocks_go_copy_directory(MAXIBLOCKS_GO_MAXI_PARTS_PATH, MAXIBLOCKS_GO_PATH . '/parts');
-
-    maxiblocks_go_add_styles_meta_fonts_to_db();
 }
