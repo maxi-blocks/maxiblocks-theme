@@ -112,24 +112,6 @@ function maxiblocks_go_customize_register($wp_customize)
 
 add_action('customize_register', 'maxiblocks_go_customize_register', 11);
 
-/**
- * Renames the 'Customize' menu item to 'Classic customizer' in the WordPress admin sidebar menu.
- */
-function maxiblocks_go_rename_customize_menu_item_in_sidebar()
-{
-    global $submenu;
-
-    if (isset($submenu['themes.php'])) {
-        foreach ($submenu['themes.php'] as $index => $item) {
-            if ($item[1] === 'customize') {
-                $submenu['themes.php'][$index][0] = __('Classic customizer', 'maxiblocks-go');
-                break;
-            }
-        }
-    }
-}
-add_action('admin_menu', 'maxiblocks_go_rename_customize_menu_item_in_sidebar', 999);
-
 include_once(ABSPATH . 'wp-admin/includes/plugin.php');
 
 if (!is_plugin_active(MAXIBLOCKS_GO_PLUGIN_PATH)) {
@@ -272,72 +254,6 @@ function maxiblocks_go_frontend_script()
 }
 
 //add_action('wp_enqueue_scripts', 'maxiblocks_go_frontend_script');
-
-function maxiblocks_go_setup_default_menu()
-{
-    $existing_menus = wp_get_nav_menus();
-    
-    // Check if there are no menus existing on the site
-    if (empty($existing_menus)) {
-        $menu_name = 'MaxiBlocks Go Menu';
-        $menu_id = wp_create_nav_menu($menu_name);
-        
-        // Add default menu items here
-        wp_update_nav_menu_item($menu_id, 0, array(
-            'menu-item-title' => __('Home', 'maxiblocks-go'),
-            'menu-item-url' => home_url('/'),
-            'menu-item-status' => 'publish'
-        ));
-
-        // Add Features menu item and get its ID
-        $features_id = wp_update_nav_menu_item($menu_id, 0, array(
-            'menu-item-title' => __('Features', 'maxiblocks-go'),
-            'menu-item-url' => '#',
-            'menu-item-status' => 'publish',
-            'menu-item-type' => 'custom'
-        ));
-
-        // Add sub-menu items under Features
-        wp_update_nav_menu_item($menu_id, 0, array(
-            'menu-item-title' => __('Sub-menu #1', 'maxiblocks-go'),
-            'menu-item-url' => '#',
-            'menu-item-parent-id' => $features_id,
-            'menu-item-status' => 'publish',
-            'menu-item-type' => 'custom'
-        ));
-
-        wp_update_nav_menu_item($menu_id, 0, array(
-            'menu-item-title' => __('Sub-menu #2', 'maxiblocks-go'),
-            'menu-item-url' => '#',
-            'menu-item-parent-id' => $features_id,
-            'menu-item-status' => 'publish',
-            'menu-item-type' => 'custom'
-        ));
-
-        wp_update_nav_menu_item($menu_id, 0, array(
-            'menu-item-title' => __('How it works', 'maxiblocks-go'),
-            'menu-item-url' => '#',
-            'menu-item-status' => 'publish',
-            'menu-item-type' => 'custom'
-        ));
-
-        wp_update_nav_menu_item($menu_id, 0, array(
-            'menu-item-title' => __('Get in touch', 'maxiblocks-go'),
-            'menu-item-url' => '#',
-            'menu-item-status' => 'publish',
-            'menu-item-type' => 'custom'
-        ));
-
-        // Assign the newly created menu to a theme location
-        $locations = get_theme_mod('nav_menu_locations');
-        if (!is_array($locations)) {
-            $locations = array();
-        }
-        $locations['primary'] = $menu_id;  // 'primary' is the theme location identifier
-        set_theme_mod('nav_menu_locations', $locations);
-    }
-}
-add_action('after_setup_theme', 'maxiblocks_go_setup_default_menu');
 
 /**
  * Adds default content to new templates of the 'wp_template' post type.
