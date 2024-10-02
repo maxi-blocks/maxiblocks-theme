@@ -52,13 +52,12 @@ function maxiblocks_go_render_install_plugin_notice()
     wp_localize_script(MAXIBLOCKS_GO_PLUGIN_NOTICE_JS, 'maxiblocks', maxiblocks_go_localize_install_plugin_notice_js($plugin_status));
 
     // Define other variables.
-    $install_plugin_image  = MAXIBLOCKS_GO_URL_BUILD_ADMIN . '/images/maxiblocks-plugin-install-notice.jpg';
     $more_info_url = 'https://maxiblocks.com/go/maxi-theme-activation-more-info';
 
     // Start output buffering.
     ob_start();
     ?>
-<div class="maxiblocks-go-notice maxiblocks-go-notice--info" style="background-image: url(<?php echo esc_url($install_plugin_image); ?>);">
+<div class="maxiblocks-go-notice maxiblocks-go-notice--info">
     <button type="button" class="maxiblocks-go-notice__dismiss">
         <span class="maxiblocks-go-notice__dismiss-text">&#10799;</span>
     </button>
