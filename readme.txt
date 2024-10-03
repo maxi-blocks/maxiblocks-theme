@@ -5,8 +5,8 @@ Requires at least: 6.2.2
 Tested up to: 6.6
 Requires PHP: 8.0
 Stable tag: 1.2.0
-License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+License: GPLv3
+License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
 Discover the perfect blend of speed, simplicity, and design with MaxiBlocks' powerful block theme
 
@@ -32,7 +32,7 @@ From a downloaded zip file:
 
 MaxiBlocks Go theme, ©2024 https://maxiblocks.com MaxiBlocks Go theme is distributed under the GNU GPL.
 
-This program is free software: you can redistribute it and modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 or any later version.
+This program is free software: you can redistribute it and modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 or any later version.
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY, including MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 

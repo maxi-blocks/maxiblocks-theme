@@ -1,5 +1,5 @@
 # Copyright (C) 2024 MaxiBlocks
-# This file is distributed under the GNU General Public License v2 or later.
+# This file is distributed under the GNU General Public License v3 or later.
 msgid ""
 msgstr ""
 "Project-Id-Version: MaxiBlocks Go 1.2.1\n"
