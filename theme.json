@@ -9,7 +9,7 @@
 			"defaultGradients": false
 		},
 		"layout": {
-			"contentSize": "620px",
+			"contentSize": "100%",
 			"wideSize": "1280px"
 		},
 		"useRootPaddingAwareAlignments": true
@@ -25,5 +25,10 @@
 			"name": "footer",
 			"title": "Footer"
 		}
-	]
+	],
+	"styles": {
+		"spacing": {
+			"blockGap": "0"
+		}
+	}
 }

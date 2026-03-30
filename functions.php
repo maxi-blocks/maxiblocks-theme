@@ -122,21 +122,73 @@ if (!is_plugin_active(MAXIBLOCKS_GO_PLUGIN_PATH)) {
     add_action('admin_enqueue_scripts', 'maxiblocks_go_enqueue_fonts');
 }
 
-function maxiblocks_go_enqueue_admin_styles()
+/**
+ * URL for the theme admin stylesheet (editor pattern preview + admin notices).
+ *
+ * @return string Absolute URL to the CSS file.
+ */
+function maxiblocks_go_get_admin_stylesheet_url()
 {
-    // Check if we are in debug mode
     if (defined('MAXIBLOCKS_GO_DEBUG') && MAXIBLOCKS_GO_DEBUG) {
-        // Use the unminified CSS file in the SRC directory
-        $admin_css_url = MAXIBLOCKS_GO_URL_SRC_ADMIN . '/css/style.css';
-    } else {
-        // Use the minified CSS file in the BUILD directory
-        $admin_css_url = MAXIBLOCKS_GO_URL_BUILD_ADMIN . '/css/styles.min.css';
+        return MAXIBLOCKS_GO_URL_SRC_ADMIN . '/css/style.css';
     }
 
-    // Enqueue the admin stylesheet.
-    wp_enqueue_style(MAXIBLOCKS_GO_PREFIX . 'admin-styles', $admin_css_url, array(), MAXIBLOCKS_GO_VERSION, 'all');
+    return MAXIBLOCKS_GO_URL_BUILD_ADMIN . '/css/styles.min.css';
 }
+
+/**
+ * Enqueue admin-only UI styles (not the block canvas), e.g. plugin install notice.
+ *
+ * Block editor / Site Editor canvas styles must use enqueue_block_assets so WordPress
+ * can load them inside the iframe (see maxiblocks_go_enqueue_block_editor_canvas_styles).
+ *
+ * @param string $hook_suffix Current admin page hook suffix.
+ * @return void
+ */
+function maxiblocks_go_enqueue_admin_styles($hook_suffix)
+{
+    $screen = function_exists('get_current_screen') ? get_current_screen() : null;
+    if ($screen && $screen->is_block_editor()) {
+        return;
+    }
+
+    wp_enqueue_style(
+        MAXIBLOCKS_GO_PREFIX . 'admin-styles',
+        maxiblocks_go_get_admin_stylesheet_url(),
+        array(),
+        MAXIBLOCKS_GO_VERSION,
+        'all'
+    );
+}
+
+/**
+ * Enqueue theme styles for block content in the editor (including the canvas iframe).
+ *
+ * Must run on {@see 'enqueue_block_assets'} so WordPress can bundle them for the iframe.
+ * Do not gate on {@see wp_should_load_block_editor_scripts_and_styles()}: while collecting
+ * iframe assets, core temporarily forces that filter to false
+ * ({@see _wp_get_iframed_editor_assets()}), which would skip this enqueue and trigger the
+ * "added to the iframe incorrectly" compat warning when styles come from elsewhere.
+ *
+ * @return void
+ */
+function maxiblocks_go_enqueue_block_editor_canvas_styles()
+{
+    if (! is_admin()) {
+        return;
+    }
+
+    wp_enqueue_style(
+        MAXIBLOCKS_GO_PREFIX . 'admin-styles',
+        maxiblocks_go_get_admin_stylesheet_url(),
+        array(),
+        MAXIBLOCKS_GO_VERSION,
+        'all'
+    );
+}
+
 add_action('admin_enqueue_scripts', 'maxiblocks_go_enqueue_admin_styles');
+add_action('enqueue_block_assets', 'maxiblocks_go_enqueue_block_editor_canvas_styles');
 
 function maxiblocks_go_enqueue_frontend_styles()
 {

@@ -16,7 +16,7 @@
 		"combine-admin-css": "concat assets/build/admin/css/*.css > assets/build/admin/css/temp_admin_combined.css",
 		"combine-admin-scss": "node-sass --output-style expanded assets/src/admin/scss/ -o assets/temp/admin/css/ && concat assets/temp/admin/css/*.css > assets/src/admin/css/style.css && rimraf assets/temp/admin",
 		"minify-admin-css": "cleancss -o assets/build/admin/css/styles.min.css assets/build/admin/css/temp_admin_combined.css && rimraf assets/build/admin/css/temp_admin_combined.css",
-		"minify-admin-js": "for file in assets/src/admin/js/*.js; do terser \"$file\" --compress --mangle --output \"assets/build/admin/js/$(basename $file)\"; done",
+		"minify-admin-js": "mkdir -p assets/build/admin/js && for file in assets/src/admin/js/*.js; do [ -f \"$file\" ] || continue; terser \"$file\" --compress --mangle --output \"assets/build/admin/js/$(basename \"$file\")\"; done",
 		"copy-admin-php": "copyfiles -u 3 assets/src/admin/php/* assets/build/admin/",
 		"copy-admin-images": "copyfiles -u 3 assets/src/admin/images/* assets/build/admin/",
 		"build-admin": "npm run build-admin-scss && npm run combine-admin-css && npm run minify-admin-css && npm run combine-admin-scss && npm run minify-admin-js && npm run copy-admin-php && npm run copy-admin-images",
