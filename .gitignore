@@ -28,3 +28,8 @@ js/min
 
 # Ignore for security reasons
 .env
+
+# Plugin-local / generated FSE paths (entire trees)
+/patterns/
+/templates/
+/parts/
